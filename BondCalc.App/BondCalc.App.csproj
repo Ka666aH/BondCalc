@@ -9,7 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Interfaces\" />
+    <Compile Remove="Application\Interfaces\**" />
+    <EmbeddedResource Remove="Application\Interfaces\**" />
+    <None Remove="Application\Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Application\Services\" />
     <Folder Include="Domain\Entities\" />
   </ItemGroup>
