@@ -33,6 +33,7 @@ namespace BondCalc.App.Presentation.Forms
             var first = dtpFirstCoupon.Value;
             var last = dtpLastCoupon.Value;
             var period = (int)nudPeriod.Value;
+            var amount = (double)nudCouponAmount.Value;
 
             if (period <= 0)
             {
@@ -50,7 +51,7 @@ namespace BondCalc.App.Presentation.Forms
 
             for (var current = first; current <= last; current = current.AddDays(period))
             {
-                dgvCoupons.Rows.Add(current, 0.0);
+                dgvCoupons.Rows.Add(current, amount);
             }
 
             if (dgvCoupons.Rows.Count == 0)
@@ -134,6 +135,7 @@ namespace BondCalc.App.Presentation.Forms
             dtpFirstCoupon.Value = DateTime.Now;
             dtpLastCoupon.Value = DateTime.Now.AddYears(5);
             nudPeriod.Value = 182;
+            nudCouponAmount.Value = 0;
             nudAmortParts.Value = 5;
             dgvCoupons.Rows.Clear();
             dgvAmortizations.Rows.Clear();
@@ -152,11 +154,14 @@ namespace BondCalc.App.Presentation.Forms
                 var result = new Calculator(bond, deal, inflationRate);
 
                 lblBuyPriceVal.Text = result.BuyPrice.ToString("N2");
+
                 lblRepayIncomeVal.Text = result.RepaymentIncome.ToString("N2");
                 lblCouponIncomeVal.Text = result.TotalCouponIncome.ToString("N2");
                 lblTotalIncomeVal.Text = result.TotalIncome.ToString("N2");
                 lblTotalYieldVal.Text = result.TotalYield.ToString("P2");
                 lblAnnualYieldVal.Text = result.AnnualYield.ToString("P2");
+                lblRealRepayIncomeVal.Text = result.RealRepaymentIncome.ToString("N2");
+                lblRealCouponIncomeVal.Text = result.RealTotalCouponIncome.ToString("N2");
                 lblRealIncomeVal.Text = result.RealTotalIncome.ToString("N2");
                 lblRealYieldVal.Text = result.RealTotalYield.ToString("P2");
                 lblRealAnnualYieldVal.Text = result.RealAnnualYield.ToString("P2");
@@ -219,3 +224,9 @@ namespace BondCalc.App.Presentation.Forms
         }
     }
 }
+//TODO
+//1 В таблице оставить только дату без времени
+//2 Amount амортизации пропал
+//3 Значения по умолчанию
+//4 [БАГ] Реальная доходность больше номинальной
+ы
