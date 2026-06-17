@@ -68,6 +68,8 @@
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
             splitMain = new SplitContainer();
+            nudPurchase = new DateTimePicker();
+            label1 = new Label();
             grpParameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudInflation).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).BeginInit();
@@ -102,7 +104,7 @@
             grpParameters.Dock = DockStyle.Top;
             grpParameters.Location = new Point(0, 0);
             grpParameters.Name = "grpParameters";
-            grpParameters.Size = new Size(360, 152);
+            grpParameters.Size = new Size(360, 129);
             grpParameters.TabIndex = 0;
             grpParameters.TabStop = false;
             grpParameters.Text = "Bond Parameters";
@@ -182,14 +184,16 @@
             // 
             // grpDeal
             // 
+            grpDeal.Controls.Add(nudPurchase);
+            grpDeal.Controls.Add(label1);
             grpDeal.Controls.Add(nudAccrued);
             grpDeal.Controls.Add(nudPrice);
             grpDeal.Controls.Add(lblAccrued);
             grpDeal.Controls.Add(lblPrice);
             grpDeal.Dock = DockStyle.Top;
-            grpDeal.Location = new Point(0, 152);
+            grpDeal.Location = new Point(0, 129);
             grpDeal.Name = "grpDeal";
-            grpDeal.Size = new Size(360, 80);
+            grpDeal.Size = new Size(360, 101);
             grpDeal.TabIndex = 15;
             grpDeal.TabStop = false;
             grpDeal.Text = "Deal";
@@ -246,7 +250,7 @@
             grpCoupons.Controls.Add(btnRemoveCoupon);
             grpCoupons.Controls.Add(dgvCoupons);
             grpCoupons.Dock = DockStyle.Top;
-            grpCoupons.Location = new Point(0, 232);
+            grpCoupons.Location = new Point(0, 230);
             grpCoupons.Name = "grpCoupons";
             grpCoupons.Size = new Size(360, 280);
             grpCoupons.TabIndex = 1;
@@ -384,7 +388,7 @@
             grpAmortizations.Controls.Add(btnAddAmortization);
             grpAmortizations.Controls.Add(dgvAmortizations);
             grpAmortizations.Dock = DockStyle.Top;
-            grpAmortizations.Location = new Point(0, 512);
+            grpAmortizations.Location = new Point(0, 510);
             grpAmortizations.Name = "grpAmortizations";
             grpAmortizations.Size = new Size(360, 180);
             grpAmortizations.TabIndex = 2;
@@ -638,6 +642,24 @@
             splitMain.TabIndex = 0;
             splitMain.TabStop = false;
             // 
+            // nudPurchase
+            // 
+            nudPurchase.Format = DateTimePickerFormat.Short;
+            nudPurchase.Location = new Point(140, 74);
+            nudPurchase.Name = "nudPurchase";
+            nudPurchase.Size = new Size(211, 23);
+            nudPurchase.TabIndex = 13;
+            nudPurchase.Value = new DateTime(2026, 6, 17, 0, 0, 0, 0);
+            // 
+            // label1
+            // 
+            label1.Location = new Point(12, 76);
+            label1.Name = "label1";
+            label1.Size = new Size(120, 20);
+            label1.TabIndex = 12;
+            label1.Text = "Purchase Date:";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // BondCacl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -729,5 +751,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DateTimePicker nudPurchase;
+        private Label label1;
     }
 }

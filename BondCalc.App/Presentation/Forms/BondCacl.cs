@@ -1,4 +1,6 @@
-﻿using BondCalc.App.Domain.Entities;
+﻿using BondCalc.App.Application.Services;
+using BondCalc.App.Domain.Entities;
+using System.Drawing.Text;
 
 namespace BondCalc.App.Presentation.Forms
 {
@@ -7,12 +9,12 @@ namespace BondCalc.App.Presentation.Forms
         public BondCacl()
         {
             InitializeComponent();
-            UpdateAmortAmountLabel();
+            Reset();
         }
 
         private void btnAddCoupon_Click(object? sender, EventArgs e)
         {
-            dgvCoupons.Rows.Add(DateTime.Now.AddMonths(6), 0.0);
+            dgvCoupons.Rows.Add(DateTime.Now, 0.0);
         }
 
         private void btnRemoveCoupon_Click(object? sender, EventArgs e)
@@ -47,8 +49,6 @@ namespace BondCalc.App.Presentation.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            dgvCoupons.Rows.Clear();
 
             for (var current = first; current <= last; current = current.AddDays(period))
             {
@@ -88,7 +88,6 @@ namespace BondCalc.App.Presentation.Forms
         private void nudAmortParts_ValueChanged(object? sender, EventArgs e)
         {
             UpdateAmortAmountLabel();
-            GenerateAmortizations();
         }
 
         private void UpdateAmortAmountLabel()
@@ -110,8 +109,6 @@ namespace BondCalc.App.Presentation.Forms
             var totalDays = (last - first).Days;
             var period = parts > 1 ? totalDays / (parts - 1) : 0;
 
-            dgvAmortizations.Rows.Clear();
-
             for (int i = 0; i < parts; i++)
             {
                 var date = first.AddDays(i * period);
@@ -125,8 +122,13 @@ namespace BondCalc.App.Presentation.Forms
 
         private void btnReset_Click(object? sender, EventArgs e)
         {
+            Reset();
+        }
+        private void Reset()
+        {
             nudNominal.Value = 1000;
             nudPrice.Value = 1000;
+            nudPurchase.Value = DateTime.Now;
             nudInflation.Value = 0;
             nudAccrued.Value = 0;
             dtpPlacement.Value = DateTime.Now;
@@ -140,7 +142,6 @@ namespace BondCalc.App.Presentation.Forms
             lblYtmValue.Text = "-";
             lblSellByValue.Text = "-";
             UpdateAmortAmountLabel();
-            GenerateAmortizations();
         }
 
         private void btnCalculate_Click(object? sender, EventArgs e)
@@ -148,14 +149,11 @@ namespace BondCalc.App.Presentation.Forms
             try
             {
                 var bond = BuildBond();
+                var deal = BuildDeal();
                 var inflationRate = (double)nudInflation.Value / 100.0;
 
-                // TODO: call BondService.Calculate(bond, inflationRate)
-                // and populate results once the service is implemented
-
-                lblYtmValue.Text = "Service not implemented";
-                lblSellByValue.Text = "-";
-                dgvSchedule.Rows.Clear();
+                var calculator = new Calculator(bond, deal, inflationRate);
+                
             }
             catch (Exception ex)
             {
@@ -193,10 +191,12 @@ namespace BondCalc.App.Presentation.Forms
 
             return new Bond(value, placement, repayment, coupons, amortizations);
         }
-
-        private (double price, double accruedInterest) GetDealData()
+        private Deal BuildDeal()
         {
-            return ((double)nudPrice.Value, (double)nudAccrued.Value);
+            var price = (double)nudPrice.Value;
+            var aci = (double)nudAccrued.Value;
+            var date = nudPurchase.Value;
+            return new Deal(price, aci, DateOnly.FromDateTime(date));
         }
     }
 }
