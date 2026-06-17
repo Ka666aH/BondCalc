@@ -2,18 +2,16 @@
 {
     public class Bond
     {
-        public double NominalValue { get; init; }
-        public DateOnly DateOfPlacement { get; init; }
-        public DateOnly DateOfRepayment { get; init; }
-        public int CouponPeriodDays { get; init; }
+        public double Value { get; init; }
+        public DateOnly Placement { get; init; }
+        public DateOnly Repayment { get; init; }
         public List<Coupon> Coupons { get; init; }
         public List<Amortization> Amortizations { get; init;  }
-        public Bond(double nominalValue, DateOnly dateOfPlacement, DateOnly dateOfRepayment, int couponPeriodDays, List<Coupon> coupons, List<Amortization> amortizations)
+        public Bond(double value, DateOnly placement, DateOnly repayment, List<Coupon> coupons, List<Amortization> amortizations)
         {
-            NominalValue = nominalValue;
-            DateOfPlacement = dateOfPlacement;
-            DateOfRepayment = dateOfRepayment;
-            CouponPeriodDays = couponPeriodDays;
+            Value = value;
+            Placement = placement;
+            Repayment = repayment;
             Coupons = coupons;
             Amortizations = amortizations;
         }
