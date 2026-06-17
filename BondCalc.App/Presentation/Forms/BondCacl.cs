@@ -1,7 +1,5 @@
 ﻿using BondCalc.App.Application.Services;
 using BondCalc.App.Domain.Entities;
-using System.Drawing.Text;
-
 namespace BondCalc.App.Presentation.Forms
 {
     public partial class BondCacl : Form
@@ -138,9 +136,8 @@ namespace BondCalc.App.Presentation.Forms
             nudPeriod.Value = 182;
             nudAmortParts.Value = 5;
             dgvCoupons.Rows.Clear();
-            dgvSchedule.Rows.Clear();
-            lblYtmValue.Text = "-";
-            lblSellByValue.Text = "-";
+            dgvAmortizations.Rows.Clear();
+            ClearResults();
             UpdateAmortAmountLabel();
         }
 
@@ -152,8 +149,17 @@ namespace BondCalc.App.Presentation.Forms
                 var deal = BuildDeal();
                 var inflationRate = (double)nudInflation.Value / 100.0;
 
-                var calculator = new Calculator(bond, deal, inflationRate);
-                
+                var result = new Calculator(bond, deal, inflationRate);
+
+                lblBuyPriceVal.Text = result.BuyPrice.ToString("N2");
+                lblRepayIncomeVal.Text = result.RepaymentIncome.ToString("N2");
+                lblCouponIncomeVal.Text = result.TotalCouponIncome.ToString("N2");
+                lblTotalIncomeVal.Text = result.TotalIncome.ToString("N2");
+                lblTotalYieldVal.Text = result.TotalYield.ToString("P2");
+                lblAnnualYieldVal.Text = result.AnnualYield.ToString("P2");
+                lblRealIncomeVal.Text = result.RealTotalIncome.ToString("N2");
+                lblRealYieldVal.Text = result.RealTotalYield.ToString("P2");
+                lblRealAnnualYieldVal.Text = result.RealAnnualYield.ToString("P2");
             }
             catch (Exception ex)
             {
@@ -163,6 +169,19 @@ namespace BondCalc.App.Presentation.Forms
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void ClearResults()
+        {
+            lblBuyPriceVal.Text = "-";
+            lblRepayIncomeVal.Text = "-";
+            lblCouponIncomeVal.Text = "-";
+            lblTotalIncomeVal.Text = "-";
+            lblTotalYieldVal.Text = "-";
+            lblAnnualYieldVal.Text = "-";
+            lblRealIncomeVal.Text = "-";
+            lblRealYieldVal.Text = "-";
+            lblRealAnnualYieldVal.Text = "-";
         }
 
         private Bond BuildBond()

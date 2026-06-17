@@ -8,6 +8,7 @@ namespace BondCalc.App.Application.Services
         private Deal _deal;
         private double _dailyInflation;
         private int _daysToRepayment;
+
         private const double _daysInYear = 365.25;
 
         public double BuyPrice { get; }
