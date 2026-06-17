@@ -14,8 +14,4 @@
     <None Remove="Application\Interfaces\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Services\" />
-  </ItemGroup>
-
 </Project>
