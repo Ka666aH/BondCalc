@@ -8,5 +8,15 @@
         public int CouponPeriodDays { get; init; }
         public List<Coupon> Coupons { get; init; }
         public List<Amortization> Amortizations { get; init;  }
+        public Bond(double nominalValue, DateOnly dateOfPlacement, DateOnly dateOfRepayment, int couponPeriodDays, List<Coupon> coupons, List<Amortization> amortizations)
+        {
+            NominalValue = nominalValue;
+            DateOfPlacement = dateOfPlacement;
+            DateOfRepayment = dateOfRepayment;
+            CouponPeriodDays = couponPeriodDays;
+            Coupons = coupons;
+            Amortizations = amortizations;
+        }
+        
     }
 }
