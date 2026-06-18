@@ -980,12 +980,17 @@
             chartSchedule.Size = new Size(480, 319);
             chartSchedule.TabIndex = 1;
             var chartArea = new ChartArea("Default");
+            chartArea.BackColor = Color.Transparent;
             chartArea.AxisX.Title = "Date";
+            chartArea.AxisX.TitleFont = new Font(Font.FontFamily, 8);
             chartArea.AxisX.LabelStyle.Format = "dd.MM.yy";
             chartArea.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
-            chartArea.AxisY.Title = "Yield, %";
+            chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
+            chartArea.AxisY.LabelStyle.Format = "{0:F1}%";
+            chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
             chartSchedule.ChartAreas.Add(chartArea);
             var legend = new Legend();
+            legend.BackColor = Color.Transparent;
             legend.Docking = Docking.Bottom;
             legend.Alignment = StringAlignment.Center;
             chartSchedule.Legends.Add(legend);

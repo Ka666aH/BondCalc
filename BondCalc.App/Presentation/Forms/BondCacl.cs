@@ -198,14 +198,14 @@ namespace BondCalc.App.Presentation.Forms
                 {
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.Green),
-                    BorderWidth = 2,
+                    BorderWidth = 4,
                     IsVisibleInLegend = true
                 };
                 var realSeries = new Series("Real Yield")
                 {
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.DodgerBlue),
-                    BorderWidth = 2,
+                    BorderWidth = 4,
                     BorderDashStyle = ChartDashStyle.Dash,
                     IsVisibleInLegend = true
                 };
@@ -213,7 +213,7 @@ namespace BondCalc.App.Presentation.Forms
                 {
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.Red),
-                    BorderWidth = 2,
+                    BorderWidth = 4,
                     IsVisibleInLegend = true
                 };
                 foreach (var p in result.NominalYieldSeries)
