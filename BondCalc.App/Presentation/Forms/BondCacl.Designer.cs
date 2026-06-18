@@ -427,6 +427,7 @@
             // 
             dgvCoupons.AllowUserToAddRows = false;
             dgvCoupons.AllowUserToDeleteRows = false;
+            dgvCoupons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCoupons.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCoupons.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCoupons.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -541,6 +542,7 @@
             // 
             dgvAmortizations.AllowUserToAddRows = false;
             dgvAmortizations.AllowUserToDeleteRows = false;
+            dgvAmortizations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAmortizations.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvAmortizations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAmortizations.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;

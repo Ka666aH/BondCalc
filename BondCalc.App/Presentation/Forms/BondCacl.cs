@@ -1,4 +1,5 @@
-﻿using BondCalc.App.Application.Services;
+﻿using System.Globalization;
+using BondCalc.App.Application.Services;
 using BondCalc.App.Domain.Entities;
 namespace BondCalc.App.Presentation.Forms
 {
@@ -148,6 +149,9 @@ namespace BondCalc.App.Presentation.Forms
         {
             try
             {
+                dgvCoupons.EndEdit();
+                dgvAmortizations.EndEdit();
+
                 var bond = BuildBond();
                 var deal = BuildDeal();
                 var inflationRate = (double)nudInflation.Value / 100.0;
@@ -209,28 +213,72 @@ namespace BondCalc.App.Presentation.Forms
             var value = (double)nudNominal.Value;
             var placement = DateOnly.FromDateTime(dtpPlacement.Value);
             var repayment = DateOnly.FromDateTime(dtpRepayment.Value);
+            var purchaseDate = DateOnly.FromDateTime(nudPurchase.Value);
 
             var coupons = new List<Coupon>();
             foreach (DataGridViewRow row in dgvCoupons.Rows)
             {
-                if (row.Cells[0].Value is DateOnly date && row.Cells[1].Value is double amount)
+                if (TryGetDate(row.Cells[0], out var date)
+                    && TryGetDouble(row.Cells[1], out var amount)
+                    && date >= purchaseDate)
                 {
-                    var purchaseDate = DateOnly.FromDateTime(nudPurchase.Value);
-                    if (date >= purchaseDate) coupons.Add(new Coupon(amount, date));
+                    coupons.Add(new Coupon(amount, date));
                 }
             }
 
             var amortizations = new List<Amortization>();
             foreach (DataGridViewRow row in dgvAmortizations.Rows)
             {
-                if (row.Cells[0].Value is DateOnly date && row.Cells[1].Value is double amount)
+                if (TryGetDate(row.Cells[0], out var date)
+                    && TryGetDouble(row.Cells[1], out var amount)
+                    && date >= purchaseDate)
                 {
-                    var purchaseDate = DateOnly.FromDateTime(nudPurchase.Value);
-                    if (date >= purchaseDate) amortizations.Add(new Amortization(amount, date));
+                    amortizations.Add(new Amortization(amount, date));
                 }
             }
 
             return new Bond(value, placement, repayment, coupons, amortizations);
+        }
+
+        private static bool TryGetDate(DataGridViewCell cell, out DateOnly result)
+        {
+            if (cell.Value is DateTime dt)
+            {
+                result = DateOnly.FromDateTime(dt);
+                return true;
+            }
+            if (cell.Value is DateOnly do1)
+            {
+                result = do1;
+                return true;
+            }
+            if (cell.Value is string s
+                && (DateOnly.TryParse(s, CultureInfo.CurrentCulture, DateTimeStyles.None, out var parsed)
+                    || DateOnly.TryParse(s, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsed)))
+            {
+                result = parsed;
+                return true;
+            }
+            result = default;
+            return false;
+        }
+
+        private static bool TryGetDouble(DataGridViewCell cell, out double result)
+        {
+            if (cell.Value is double d)
+            {
+                result = d;
+                return true;
+            }
+            if (cell.Value is string s
+                && (double.TryParse(s, NumberStyles.Any, CultureInfo.CurrentCulture, out var parsed)
+                    || double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out parsed)))
+            {
+                result = parsed;
+                return true;
+            }
+            result = 0;
+            return false;
         }
         private Deal BuildDeal()
         {
