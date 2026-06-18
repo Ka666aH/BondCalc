@@ -141,15 +141,32 @@ namespace BondCalc.App.Application.Services
         }
         public List<ChartPoint> CalculateNominalYieldSeries()
         {
-            return [];
+            var points = new List<ChartPoint> { new(_deal.Date, 0) };
+            foreach (var row in Schedule)
+            {
+                points.Add(new(row.Date, row.CumulativeIncome / BuyPrice * 100));
+            }
+            return points;
         }
         public List<ChartPoint> CalculateRealYieldSeries()
         {
-            return [];
+            var points = new List<ChartPoint> { new(_deal.Date, 0) };
+            foreach (var row in Schedule)
+            {
+                points.Add(new(row.Date, row.CumulativeRealIncome / BuyPrice * 100));
+            }
+            return points;
         }
         public List<ChartPoint> CalculateInflationSeries()
         {
-            return [];
+            var points = new List<ChartPoint> { new(_deal.Date, 0) };
+            foreach (var row in Schedule)
+            {
+                int days = row.Date.DayNumber - _deal.Date.DayNumber;
+                double value = (Math.Pow(_dailyInflation, days) - 1) * 100;
+                points.Add(new(row.Date, value));
+            }
+            return points;
         }
     }
 }
