@@ -983,7 +983,7 @@
             chartArea.BackColor = Color.Transparent;
             chartArea.Position.Auto = false;
             chartArea.Position = new ElementPosition(0, 0, 100, 100);
-            chartArea.InnerPlotPosition = new ElementPosition(10, 10, 90, 70);
+            chartArea.InnerPlotPosition = new ElementPosition(10, 5, 90, 70);
             //chartArea.AxisY.Title = "Yield";
             //chartArea.AxisY.TitleFont = new Font(Font.FontFamily, 8);
             //chartArea.AxisX.Title = "Date";
@@ -1053,6 +1053,7 @@
             splitMain.Panel1.Controls.Add(grpParameters);
             splitMain.Panel1.Controls.Add(btnCalculate);
             splitMain.Panel1MinSize = 360;
+            splitMain.Panel2MinSize = 500;
             // 
             // splitMain.Panel2
             // 
@@ -1071,7 +1072,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(859, 791);
             Controls.Add(splitMain);
-            MinimumSize = new Size(700, 500);
+            MinimumSize = new Size(920, 820);
             Name = "BondCacl";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BondCalc - Inflation-Adjusted Bond Yield Calculator";
