@@ -116,15 +116,11 @@ namespace BondCalc.App.Presentation.Forms
             var nominal = (double)nudNominal.Value;
             var amount = nominal / parts;
             var totalDays = (last - first).Days;
-            var period = parts > 1 ? totalDays / (parts - 1) : 0;
+            var period = parts > 1 ? totalDays / parts : 0;
 
-            for (int i = 0; i < parts; i++)
+            for (int i = 1; i <= parts; i++)
             {
-                var date = first.AddDays(i * period);
-                if (i == parts - 1)
-                {
-                    date = last;
-                }
+                var date = i == parts ? last : first.AddDays(i * period);
                 dgvAmortizations.Rows.Add(DateOnly.FromDateTime(date), amount);
             }
         }
