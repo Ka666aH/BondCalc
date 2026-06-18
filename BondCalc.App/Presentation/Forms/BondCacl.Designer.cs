@@ -221,9 +221,9 @@
             grpDeal.Controls.Add(lblAccrued);
             grpDeal.Controls.Add(lblPrice);
             grpDeal.Dock = DockStyle.Top;
-            grpDeal.Location = new Point(0, 129);
+            grpDeal.Location = new Point(0, 414);
             grpDeal.Name = "grpDeal";
-            grpDeal.Size = new Size(368, 101);
+            grpDeal.Size = new Size(368, 110);
             grpDeal.TabIndex = 15;
             grpDeal.TabStop = false;
             grpDeal.Text = "Deal";
@@ -299,9 +299,9 @@
             grpCoupons.Controls.Add(btnRemoveCoupon);
             grpCoupons.Controls.Add(dgvCoupons);
             grpCoupons.Dock = DockStyle.Top;
-            grpCoupons.Location = new Point(0, 230);
+            grpCoupons.Location = new Point(0, 129);
             grpCoupons.Name = "grpCoupons";
-            grpCoupons.Size = new Size(368, 306);
+            grpCoupons.Size = new Size(368, 285);
             grpCoupons.TabIndex = 1;
             grpCoupons.TabStop = false;
             grpCoupons.Text = "Coupons";
@@ -334,9 +334,10 @@
             // 
             // btnGenerate
             // 
-            btnGenerate.Location = new Point(8, 247);
+            btnGenerate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnGenerate.Location = new Point(8, 252);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(85, 23);
+            btnGenerate.Size = new Size(93, 23);
             btnGenerate.TabIndex = 11;
             btnGenerate.Text = "Generate";
             btnGenerate.UseVisualStyleBackColor = true;
@@ -363,7 +364,7 @@
             // btnClearCoupons
             // 
             btnClearCoupons.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnClearCoupons.Location = new Point(271, 247);
+            btnClearCoupons.Location = new Point(279, 252);
             btnClearCoupons.Name = "btnClearCoupons";
             btnClearCoupons.Size = new Size(80, 23);
             btnClearCoupons.TabIndex = 12;
@@ -401,7 +402,7 @@
             // btnAddCoupon
             // 
             btnAddCoupon.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAddCoupon.Location = new Point(99, 247);
+            btnAddCoupon.Location = new Point(107, 252);
             btnAddCoupon.Name = "btnAddCoupon";
             btnAddCoupon.Size = new Size(80, 23);
             btnAddCoupon.TabIndex = 1;
@@ -412,7 +413,7 @@
             // btnRemoveCoupon
             // 
             btnRemoveCoupon.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRemoveCoupon.Location = new Point(185, 247);
+            btnRemoveCoupon.Location = new Point(193, 252);
             btnRemoveCoupon.Name = "btnRemoveCoupon";
             btnRemoveCoupon.Size = new Size(80, 23);
             btnRemoveCoupon.TabIndex = 2;
@@ -431,7 +432,7 @@
             dgvCoupons.Location = new Point(8, 129);
             dgvCoupons.Name = "dgvCoupons";
             dgvCoupons.RowHeadersVisible = false;
-            dgvCoupons.Size = new Size(351, 112);
+            dgvCoupons.Size = new Size(351, 117);
             dgvCoupons.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn3
@@ -455,9 +456,9 @@
             grpAmortizations.Controls.Add(btnAddAmortization);
             grpAmortizations.Controls.Add(dgvAmortizations);
             grpAmortizations.Dock = DockStyle.Top;
-            grpAmortizations.Location = new Point(0, 536);
+            grpAmortizations.Location = new Point(0, 524);
             grpAmortizations.Name = "grpAmortizations";
-            grpAmortizations.Size = new Size(368, 180);
+            grpAmortizations.Size = new Size(368, 195);
             grpAmortizations.TabIndex = 2;
             grpAmortizations.TabStop = false;
             grpAmortizations.Text = "Amortizations";
@@ -492,9 +493,10 @@
             // 
             // btnGenerateAmort
             // 
-            btnGenerateAmort.Location = new Point(8, 149);
+            btnGenerateAmort.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnGenerateAmort.Location = new Point(8, 164);
             btnGenerateAmort.Name = "btnGenerateAmort";
-            btnGenerateAmort.Size = new Size(85, 25);
+            btnGenerateAmort.Size = new Size(93, 23);
             btnGenerateAmort.TabIndex = 11;
             btnGenerateAmort.Text = "Generate";
             btnGenerateAmort.UseVisualStyleBackColor = true;
@@ -503,7 +505,7 @@
             // btnClearAmortizations
             // 
             btnClearAmortizations.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnClearAmortizations.Location = new Point(271, 149);
+            btnClearAmortizations.Location = new Point(279, 164);
             btnClearAmortizations.Name = "btnClearAmortizations";
             btnClearAmortizations.Size = new Size(80, 23);
             btnClearAmortizations.TabIndex = 13;
@@ -514,7 +516,7 @@
             // btnRemoveAmortization
             // 
             btnRemoveAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRemoveAmortization.Location = new Point(185, 149);
+            btnRemoveAmortization.Location = new Point(193, 164);
             btnRemoveAmortization.Name = "btnRemoveAmortization";
             btnRemoveAmortization.Size = new Size(80, 23);
             btnRemoveAmortization.TabIndex = 2;
@@ -525,7 +527,7 @@
             // btnAddAmortization
             // 
             btnAddAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAddAmortization.Location = new Point(99, 149);
+            btnAddAmortization.Location = new Point(107, 164);
             btnAddAmortization.Name = "btnAddAmortization";
             btnAddAmortization.Size = new Size(80, 23);
             btnAddAmortization.TabIndex = 1;
@@ -544,7 +546,7 @@
             dgvAmortizations.Location = new Point(8, 48);
             dgvAmortizations.Name = "dgvAmortizations";
             dgvAmortizations.RowHeadersVisible = false;
-            dgvAmortizations.Size = new Size(351, 95);
+            dgvAmortizations.Size = new Size(351, 110);
             dgvAmortizations.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -559,11 +561,11 @@
             // 
             // btnCalculate
             // 
-            btnCalculate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCalculate.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnCalculate.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            btnCalculate.Location = new Point(8, 722);
+            btnCalculate.Location = new Point(8, 728);
             btnCalculate.Name = "btnCalculate";
-            btnCalculate.Size = new Size(277, 57);
+            btnCalculate.Size = new Size(285, 60);
             btnCalculate.TabIndex = 3;
             btnCalculate.Text = "Calculate";
             btnCalculate.UseVisualStyleBackColor = true;
@@ -571,9 +573,9 @@
             // 
             // btnReset
             // 
-            btnReset.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             btnReset.Font = new Font("Segoe UI", 24F);
-            btnReset.Location = new Point(291, 719);
+            btnReset.Location = new Point(299, 728);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(60, 60);
             btnReset.TabIndex = 14;
@@ -955,9 +957,9 @@
             // splitMain.Panel1
             // 
             splitMain.Panel1.Controls.Add(btnReset);
+            splitMain.Panel1.Controls.Add(grpDeal);
             splitMain.Panel1.Controls.Add(grpAmortizations);
             splitMain.Panel1.Controls.Add(grpCoupons);
-            splitMain.Panel1.Controls.Add(grpDeal);
             splitMain.Panel1.Controls.Add(grpParameters);
             splitMain.Panel1.Controls.Add(btnCalculate);
             splitMain.Panel1MinSize = 360;
