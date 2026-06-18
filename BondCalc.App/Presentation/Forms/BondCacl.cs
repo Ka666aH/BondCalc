@@ -226,7 +226,7 @@ namespace BondCalc.App.Presentation.Forms
                 if (row.Cells[0].Value is DateOnly date && row.Cells[1].Value is double amount)
                 {
                     var purchaseDate = DateOnly.FromDateTime(nudPurchase.Value);
-                    if (date >= purchaseDate) coupons.Add(new Coupon(amount, date));
+                    if (date >= purchaseDate) amortizations.Add(new Amortization(amount, date));
                 }
             }
 
@@ -245,3 +245,4 @@ namespace BondCalc.App.Presentation.Forms
 // Шаг в дате купона
 // Локализация
 // Сделать удобную форму
+// Дата погашения заменяет последний купон
