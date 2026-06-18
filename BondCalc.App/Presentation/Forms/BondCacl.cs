@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Windows.Forms.DataVisualization.Charting;
 using BondCalc.App.Application.Services;
 using BondCalc.App.Domain.Entities;
 namespace BondCalc.App.Presentation.Forms
@@ -149,6 +150,7 @@ namespace BondCalc.App.Presentation.Forms
             dgvCoupons.Rows.Clear();
             dgvAmortizations.Rows.Clear();
             dgvSchedule.Rows.Clear();
+            chartSchedule.Series.Clear();
             ClearResults();
             UpdateAmortAmountLabel();
         }
@@ -190,6 +192,39 @@ namespace BondCalc.App.Presentation.Forms
                         row.RealAmount.ToString("N2"),
                         row.CumulativeRealIncome.ToString("N2"));
                 }
+
+                chartSchedule.Series.Clear();
+                var nominalSeries = new Series("Nominal Yield")
+                {
+                    ChartType = SeriesChartType.Line,
+                    Color = Color.FromArgb(180, Color.Green),
+                    BorderWidth = 2,
+                    IsVisibleInLegend = true
+                };
+                var realSeries = new Series("Real Yield")
+                {
+                    ChartType = SeriesChartType.Line,
+                    Color = Color.FromArgb(180, Color.DodgerBlue),
+                    BorderWidth = 2,
+                    BorderDashStyle = ChartDashStyle.Dash,
+                    IsVisibleInLegend = true
+                };
+                var inflationSeries = new Series("Inflation")
+                {
+                    ChartType = SeriesChartType.Line,
+                    Color = Color.FromArgb(180, Color.Red),
+                    BorderWidth = 2,
+                    IsVisibleInLegend = true
+                };
+                foreach (var p in result.NominalYieldSeries)
+                    nominalSeries.Points.AddXY(p.Date.ToDateTime(TimeOnly.MinValue), p.Value);
+                foreach (var p in result.RealYieldSeries)
+                    realSeries.Points.AddXY(p.Date.ToDateTime(TimeOnly.MinValue), p.Value);
+                foreach (var p in result.InflationSeries)
+                    inflationSeries.Points.AddXY(p.Date.ToDateTime(TimeOnly.MinValue), p.Value);
+                chartSchedule.Series.Add(nominalSeries);
+                chartSchedule.Series.Add(realSeries);
+                chartSchedule.Series.Add(inflationSeries);
             }
             catch (Exception ex)
             {

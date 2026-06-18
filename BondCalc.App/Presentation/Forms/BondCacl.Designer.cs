@@ -1,5 +1,7 @@
 ﻿namespace BondCalc.App.Presentation.Forms
 {
+    using System.Windows.Forms.DataVisualization.Charting;
+
     partial class BondCacl
     {
         private System.ComponentModel.IContainer components = null;
@@ -95,6 +97,7 @@
             lblNominalHeader = new Label();
             grpSchedule = new GroupBox();
             dgvSchedule = new DataGridView();
+            chartSchedule = new Chart();
             colSchDate = new DataGridViewTextBoxColumn();
             colSchType = new DataGridViewTextBoxColumn();
             colSchNominal = new DataGridViewTextBoxColumn();
@@ -119,6 +122,7 @@
             grpOutput.SuspendLayout();
             grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartSchedule).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitMain).BeginInit();
             splitMain.Panel1.SuspendLayout();
             splitMain.Panel2.SuspendLayout();
@@ -942,6 +946,7 @@
             // 
             // grpSchedule
             // 
+            grpSchedule.Controls.Add(chartSchedule);
             grpSchedule.Controls.Add(dgvSchedule);
             grpSchedule.Dock = DockStyle.Fill;
             grpSchedule.Location = new Point(0, 200);
@@ -958,13 +963,32 @@
             dgvSchedule.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSchedule.Columns.AddRange(new DataGridViewColumn[] { colSchDate, colSchType, colSchNominal, colSchCumNominal, colSchReal, colSchCumReal });
-            dgvSchedule.Dock = DockStyle.Fill;
+            dgvSchedule.Dock = DockStyle.Top;
             dgvSchedule.Location = new Point(3, 19);
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.ReadOnly = true;
             dgvSchedule.RowHeadersVisible = false;
-            dgvSchedule.Size = new Size(480, 569);
+            dgvSchedule.Size = new Size(480, 250);
             dgvSchedule.TabIndex = 0;
+            // 
+            // chartSchedule
+            // 
+            chartSchedule.BackColor = SystemColors.Control;
+            chartSchedule.Dock = DockStyle.Fill;
+            chartSchedule.Location = new Point(3, 269);
+            chartSchedule.Name = "chartSchedule";
+            chartSchedule.Size = new Size(480, 319);
+            chartSchedule.TabIndex = 1;
+            var chartArea = new ChartArea("Default");
+            chartArea.AxisX.Title = "Date";
+            chartArea.AxisX.LabelStyle.Format = "dd.MM.yy";
+            chartArea.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
+            chartArea.AxisY.Title = "Yield, %";
+            chartSchedule.ChartAreas.Add(chartArea);
+            var legend = new Legend();
+            legend.Docking = Docking.Bottom;
+            legend.Alignment = StringAlignment.Center;
+            chartSchedule.Legends.Add(legend);
             // 
             // colSchDate
             // 
@@ -1056,6 +1080,7 @@
             grpOutput.ResumeLayout(false);
             grpSchedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartSchedule).EndInit();
             splitMain.Panel1.ResumeLayout(false);
             splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitMain).EndInit();
@@ -1131,6 +1156,7 @@
 
         private GroupBox grpSchedule;
         private DataGridView dgvSchedule;
+        private Chart chartSchedule;
 
         private SplitContainer splitMain;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
