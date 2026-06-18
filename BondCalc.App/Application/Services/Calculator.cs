@@ -24,11 +24,13 @@ namespace BondCalc.App.Application.Services
         public double RealTotalIncome { get; }
         public double RealTotalYield { get; }
         public double RealAnnualYield { get; }
-        public Calculator(Bond bond, Deal deal, double annualInflation)
+
+        public List<ScheduleRow> Schedule { get; }
+        public Calculator(Bond bond, Deal deal, double annualInflationRate)
         {
             _bond = bond;
             _deal = deal;
-            _dailyInflation = annualInflation / _daysInYear;
+            _dailyInflation = 1 + (annualInflationRate / _daysInYear);
             _daysToRepayment = _bond.Repayment.DayNumber - _deal.Date.DayNumber;
 
             BuyPrice = CalculateBuyPrice();
@@ -44,6 +46,8 @@ namespace BondCalc.App.Application.Services
             RealTotalIncome = CalculateRealTotalIncome();
             RealTotalYield = CalculateRealTotalYield();
             RealAnnualYield = CalculateRealAnnualYield();
+
+            Schedule = CalculateSchedule();
         }
         private double CalculateBuyPrice() => _deal.Price + _deal.ACI;
         private double CalculateRepaymentIncome() => _bond.Value - _deal.Price;
@@ -57,13 +61,13 @@ namespace BondCalc.App.Application.Services
             {
                 amortizationSum += amortization.Amount;
                 int days = amortization.Date.DayNumber - _deal.Date.DayNumber;
-                double totalInflation = Math.Pow(1 + _dailyInflation, days);
+                double totalInflation = Math.Pow(_dailyInflation, days);
                 double realAmortizationIncome = amortization.Amount / totalInflation;
                 result += realAmortizationIncome;
             }
             if (amortizationSum < _bond.Value)
             {
-                double totalInflation = Math.Pow(1 + _dailyInflation, _daysToRepayment);
+                double totalInflation = Math.Pow(_dailyInflation, _daysToRepayment);
                 double realRepaymentIncome = (_bond.Value - amortizationSum) / totalInflation;
                 result += realRepaymentIncome;
             }
@@ -75,7 +79,7 @@ namespace BondCalc.App.Application.Services
             foreach (var coupon in _bond.Coupons)
             {
                 int days = coupon.Date.DayNumber - _deal.Date.DayNumber;
-                double totalInflation = Math.Pow(1 + _dailyInflation, days);
+                double totalInflation = Math.Pow(_dailyInflation, days);
                 double realCouponAmount = coupon.Amount / totalInflation;
                 result += realCouponAmount;
             }
@@ -86,5 +90,46 @@ namespace BondCalc.App.Application.Services
         private double CalculateRealTotalYield() => RealTotalIncome / BuyPrice;
         private double CalculateAnnualYield() => TotalYield / _daysToRepayment * _daysInYear;
         private double CalculateRealAnnualYield() => RealTotalYield / _daysToRepayment * _daysInYear;
+
+        private List<ScheduleRow> CalculateSchedule()
+        {
+            var rows = new List<ScheduleRow>();
+            double cumulativeNominal = 0;
+            double cumulativeReal = 0;
+
+            foreach (var coupon in _bond.Coupons)
+            {
+                int days = coupon.Date.DayNumber - _deal.Date.DayNumber;
+                double infl = Math.Pow(_dailyInflation, days);
+                double real = coupon.Amount / infl;
+                cumulativeNominal += coupon.Amount;
+                cumulativeReal += real;
+                rows.Add(new(coupon.Date, "Coupon", coupon.Amount, cumulativeNominal, real, cumulativeReal));
+            }
+
+            double amortSum = 0;
+            foreach (var amort in _bond.Amortizations)
+            {
+                amortSum += amort.Amount;
+                int days = amort.Date.DayNumber - _deal.Date.DayNumber;
+                double infl = Math.Pow(_dailyInflation, days);
+                double real = amort.Amount / infl;
+                cumulativeNominal += amort.Amount;
+                cumulativeReal += real;
+                rows.Add(new(amort.Date, "Amortization", amort.Amount, cumulativeNominal, real, cumulativeReal));
+            }
+
+            double remaining = _bond.Value - amortSum;
+            if (remaining > 0)
+            {
+                double infl = Math.Pow(_dailyInflation, _daysToRepayment);
+                double real = remaining / infl;
+                cumulativeNominal += remaining;
+                cumulativeReal += real;
+                rows.Add(new(_bond.Repayment, "Repayment", remaining, cumulativeNominal, real, cumulativeReal));
+            }
+
+            return [.. rows.OrderBy(r => r.Date)];
+        }
     }
 }
