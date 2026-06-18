@@ -145,6 +145,7 @@
             nudInflation.Name = "nudInflation";
             nudInflation.Size = new Size(211, 23);
             nudInflation.TabIndex = 7;
+            nudInflation.Value = new decimal(new int[] { 15, 0, 0, 0 });
             // 
             // nudNominal
             // 
@@ -234,7 +235,6 @@
             nudPurchase.Name = "nudPurchase";
             nudPurchase.Size = new Size(211, 23);
             nudPurchase.TabIndex = 13;
-            nudPurchase.Value = new DateTime(2026, 6, 17, 0, 0, 0, 0);
             // 
             // label1
             // 
@@ -330,7 +330,7 @@
             nudPeriod.Name = "nudPeriod";
             nudPeriod.Size = new Size(211, 23);
             nudPeriod.TabIndex = 10;
-            nudPeriod.Value = new decimal(new int[] { 182, 0, 0, 0 });
+            nudPeriod.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
             // btnGenerate
             // 
@@ -981,6 +981,7 @@
             Controls.Add(splitMain);
             MinimumSize = new Size(700, 500);
             Name = "BondCacl";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "BondCalc - Inflation-Adjusted Bond Yield Calculator";
             grpParameters.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudInflation).EndInit();

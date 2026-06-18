@@ -128,13 +128,13 @@ namespace BondCalc.App.Presentation.Forms
             nudNominal.Value = 1000;
             nudPrice.Value = 1000;
             nudPurchase.Value = DateTime.Now;
-            nudInflation.Value = 0;
+            nudInflation.Value = 15;
             nudAccrued.Value = 0;
             dtpPlacement.Value = DateTime.Now;
             dtpRepayment.Value = DateTime.Now.AddYears(5);
             dtpFirstCoupon.Value = DateTime.Now;
             dtpLastCoupon.Value = DateTime.Now.AddYears(5);
-            nudPeriod.Value = 182;
+            nudPeriod.Value = 30;
             nudCouponAmount.Value = 0;
             nudAmortParts.Value = 5;
             dgvCoupons.Rows.Clear();
@@ -198,20 +198,20 @@ namespace BondCalc.App.Presentation.Forms
             var coupons = new List<Coupon>();
             foreach (DataGridViewRow row in dgvCoupons.Rows)
             {
-                if (row.Cells[0].Value is DateTime date && row.Cells[1].Value is double amount)
+                if (row.Cells[0].Value is DateOnly date && row.Cells[1].Value is double amount)
                 {
-                    var purchaseDate = nudPurchase.Value;
-                    if (date >= purchaseDate) coupons.Add(new Coupon(amount, DateOnly.FromDateTime(date)));
+                    var purchaseDate = DateOnly.FromDateTime(nudPurchase.Value);
+                    if (date >= purchaseDate) coupons.Add(new Coupon(amount, date));
                 }
             }
 
             var amortizations = new List<Amortization>();
             foreach (DataGridViewRow row in dgvAmortizations.Rows)
             {
-                if (row.Cells[0].Value is DateTime date && row.Cells[1].Value is double amount)
+                if (row.Cells[0].Value is DateOnly date && row.Cells[1].Value is double amount)
                 {
-                    var purchaseDate = nudPurchase.Value;
-                    if (date >= purchaseDate) amortizations.Add(new Amortization(amount, DateOnly.FromDateTime(date)));
+                    var purchaseDate = DateOnly.FromDateTime(nudPurchase.Value);
+                    if (date >= purchaseDate) coupons.Add(new Coupon(amount, date));
                 }
             }
 
@@ -227,5 +227,7 @@ namespace BondCalc.App.Presentation.Forms
     }
 }
 //TODO
-// Значения по умолчанию
-// [БАГ] Реальная доходность больше номинальной
+// Шаг в дате купона
+// Поменять местами сделку и купон
+// Локализация
+// Сделать удобную форму
