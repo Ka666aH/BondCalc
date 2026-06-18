@@ -26,6 +26,10 @@ namespace BondCalc.App.Application.Services
         public double RealAnnualYield { get; }
 
         public List<ScheduleRow> Schedule { get; }
+
+        public List<ChartPoint> NominalYieldSeries { get; }
+        public List<ChartPoint> RealYieldSeries { get; }
+        public List<ChartPoint> InflationSeries { get; }
         public Calculator(Bond bond, Deal deal, double annualInflationRate)
         {
             _bond = bond;
@@ -48,6 +52,10 @@ namespace BondCalc.App.Application.Services
             RealAnnualYield = CalculateRealAnnualYield();
 
             Schedule = CalculateSchedule();
+
+            NominalYieldSeries = CalculateNominalYieldSeries();
+            RealYieldSeries = CalculateRealYieldSeries();
+            InflationSeries = CalculateInflationSeries();
         }
         private double CalculateBuyPrice() => _deal.Price + _deal.ACI;
         private double CalculateRepaymentIncome() => _bond.Value - _deal.Price;
@@ -130,6 +138,18 @@ namespace BondCalc.App.Application.Services
             }
 
             return [.. rows.OrderBy(r => r.Date)];
+        }
+        public List<ChartPoint> CalculateNominalYieldSeries()
+        {
+            return [];
+        }
+        public List<ChartPoint> CalculateRealYieldSeries()
+        {
+            return [];
+        }
+        public List<ChartPoint> CalculateInflationSeries()
+        {
+            return [];
         }
     }
 }
