@@ -12,7 +12,7 @@ namespace BondCalc.App.Presentation.Forms
 
         private void btnAddCoupon_Click(object? sender, EventArgs e)
         {
-            dgvCoupons.Rows.Add(DateTime.Now, 0.0);
+            dgvCoupons.Rows.Add(DateOnly.FromDateTime(DateTime.Now), (double)nudCouponAmount.Value);
         }
 
         private void btnRemoveCoupon_Click(object? sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace BondCalc.App.Presentation.Forms
 
             for (var current = first; current <= last; current = current.AddDays(period))
             {
-                dgvCoupons.Rows.Add(current, amount);
+                dgvCoupons.Rows.Add(DateOnly.FromDateTime(current), amount);
             }
 
             if (dgvCoupons.Rows.Count == 0)
@@ -63,7 +63,7 @@ namespace BondCalc.App.Presentation.Forms
 
         private void btnAddAmortization_Click(object? sender, EventArgs e)
         {
-            dgvAmortizations.Rows.Add(DateTime.Now, 0.0);
+            dgvAmortizations.Rows.Add(DateOnly.FromDateTime(DateTime.Now), 0.0);
         }
 
         private void btnRemoveAmortization_Click(object? sender, EventArgs e)
@@ -115,7 +115,7 @@ namespace BondCalc.App.Presentation.Forms
                 {
                     date = last;
                 }
-                dgvAmortizations.Rows.Add(date, amount);
+                dgvAmortizations.Rows.Add(DateOnly.FromDateTime(date), amount);
             }
         }
 
@@ -200,7 +200,8 @@ namespace BondCalc.App.Presentation.Forms
             {
                 if (row.Cells[0].Value is DateTime date && row.Cells[1].Value is double amount)
                 {
-                    coupons.Add(new Coupon(amount, DateOnly.FromDateTime(date)));
+                    var purchaseDate = nudPurchase.Value;
+                    if (date >= purchaseDate) coupons.Add(new Coupon(amount, DateOnly.FromDateTime(date)));
                 }
             }
 
@@ -209,7 +210,8 @@ namespace BondCalc.App.Presentation.Forms
             {
                 if (row.Cells[0].Value is DateTime date && row.Cells[1].Value is double amount)
                 {
-                    amortizations.Add(new Amortization(amount, DateOnly.FromDateTime(date)));
+                    var purchaseDate = nudPurchase.Value;
+                    if (date >= purchaseDate) amortizations.Add(new Amortization(amount, DateOnly.FromDateTime(date)));
                 }
             }
 
@@ -225,7 +227,5 @@ namespace BondCalc.App.Presentation.Forms
     }
 }
 //TODO
-//1 В таблице оставить только дату без времени
-//2 Amount амортизации пропал
-//3 Значения по умолчанию
-//4 [БАГ] Реальная доходность больше номинальной
+// Значения по умолчанию
+// [БАГ] Реальная доходность больше номинальной

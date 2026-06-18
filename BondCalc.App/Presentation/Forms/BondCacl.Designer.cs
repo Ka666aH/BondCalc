@@ -66,6 +66,10 @@
             lblYtmValue = new Label();
             lblYtmLabel = new Label();
             grpOutput = new GroupBox();
+            lblRealRepayIncomeVal = new Label();
+            lblRealRepayIncome = new Label();
+            lblRealCouponIncomeVal = new Label();
+            lblRealCouponIncome = new Label();
             lblRealAnnualYieldVal = new Label();
             lblRealAnnualYield = new Label();
             lblRealYieldVal = new Label();
@@ -93,10 +97,6 @@
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
             splitMain = new SplitContainer();
-            lblRealCouponIncomeVal = new Label();
-            lblRealCouponIncome = new Label();
-            lblRealRepayIncomeVal = new Label();
-            lblRealRepayIncome = new Label();
             grpParameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudInflation).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).BeginInit();
@@ -466,7 +466,7 @@
             // 
             lblAmortAmount.Location = new Point(230, 24);
             lblAmortAmount.Name = "lblAmortAmount";
-            lblAmortAmount.Size = new Size(70, 20);
+            lblAmortAmount.Size = new Size(129, 20);
             lblAmortAmount.TabIndex = 12;
             lblAmortAmount.Text = "Amount: -";
             lblAmortAmount.TextAlign = ContentAlignment.MiddleLeft;
@@ -666,6 +666,44 @@
             grpOutput.TabIndex = 2;
             grpOutput.TabStop = false;
             grpOutput.Text = "Results";
+            // 
+            // lblRealRepayIncomeVal
+            // 
+            lblRealRepayIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblRealRepayIncomeVal.Location = new Point(367, 68);
+            lblRealRepayIncomeVal.Name = "lblRealRepayIncomeVal";
+            lblRealRepayIncomeVal.Size = new Size(120, 20);
+            lblRealRepayIncomeVal.TabIndex = 23;
+            lblRealRepayIncomeVal.Text = "-";
+            lblRealRepayIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblRealRepayIncome
+            // 
+            lblRealRepayIncome.Location = new Point(218, 68);
+            lblRealRepayIncome.Name = "lblRealRepayIncome";
+            lblRealRepayIncome.Size = new Size(158, 20);
+            lblRealRepayIncome.TabIndex = 22;
+            lblRealRepayIncome.Text = "Real Repayment Income:";
+            lblRealRepayIncome.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblRealCouponIncomeVal
+            // 
+            lblRealCouponIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblRealCouponIncomeVal.Location = new Point(367, 88);
+            lblRealCouponIncomeVal.Name = "lblRealCouponIncomeVal";
+            lblRealCouponIncomeVal.Size = new Size(120, 20);
+            lblRealCouponIncomeVal.TabIndex = 21;
+            lblRealCouponIncomeVal.Text = "-";
+            lblRealCouponIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblRealCouponIncome
+            // 
+            lblRealCouponIncome.Location = new Point(218, 88);
+            lblRealCouponIncome.Name = "lblRealCouponIncome";
+            lblRealCouponIncome.Size = new Size(158, 20);
+            lblRealCouponIncome.TabIndex = 20;
+            lblRealCouponIncome.Text = "Real Total Coupon Income:";
+            lblRealCouponIncome.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblRealAnnualYieldVal
             // 
@@ -934,44 +972,6 @@
             splitMain.SplitterWidth = 5;
             splitMain.TabIndex = 0;
             splitMain.TabStop = false;
-            // 
-            // lblRealCouponIncomeVal
-            // 
-            lblRealCouponIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRealCouponIncomeVal.Location = new Point(367, 88);
-            lblRealCouponIncomeVal.Name = "lblRealCouponIncomeVal";
-            lblRealCouponIncomeVal.Size = new Size(120, 20);
-            lblRealCouponIncomeVal.TabIndex = 21;
-            lblRealCouponIncomeVal.Text = "-";
-            lblRealCouponIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblRealCouponIncome
-            // 
-            lblRealCouponIncome.Location = new Point(218, 88);
-            lblRealCouponIncome.Name = "lblRealCouponIncome";
-            lblRealCouponIncome.Size = new Size(158, 20);
-            lblRealCouponIncome.TabIndex = 20;
-            lblRealCouponIncome.Text = "Real Total Coupon Income:";
-            lblRealCouponIncome.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblRealRepayIncomeVal
-            // 
-            lblRealRepayIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRealRepayIncomeVal.Location = new Point(367, 68);
-            lblRealRepayIncomeVal.Name = "lblRealRepayIncomeVal";
-            lblRealRepayIncomeVal.Size = new Size(120, 20);
-            lblRealRepayIncomeVal.TabIndex = 23;
-            lblRealRepayIncomeVal.Text = "-";
-            lblRealRepayIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblRealRepayIncome
-            // 
-            lblRealRepayIncome.Location = new Point(218, 68);
-            lblRealRepayIncome.Name = "lblRealRepayIncome";
-            lblRealRepayIncome.Size = new Size(158, 20);
-            lblRealRepayIncome.TabIndex = 22;
-            lblRealRepayIncome.Text = "Real Repayment Income:";
-            lblRealRepayIncome.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // BondCacl
             // 
