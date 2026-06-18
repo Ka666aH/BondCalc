@@ -8,8 +8,109 @@ namespace BondCalc.App.Presentation.Forms
     {
         public BondCacl()
         {
+            Localization.SetCulture("en-US");
             InitializeComponent();
+            ApplyLanguage();
             Reset();
+        }
+
+        private void OnLanguageEnglish(object? sender, EventArgs e)
+        {
+            Localization.SetCulture("en-US");
+            ApplyLanguage();
+            Reset();
+        }
+
+        private void OnLanguageRussian(object? sender, EventArgs e)
+        {
+            Localization.SetCulture("ru-RU");
+            ApplyLanguage();
+            Reset();
+        }
+
+        private void ApplyLanguage()
+        {
+            var t = Localization.GetString;
+
+            Text = t("FormTitle");
+
+            grpParameters.Text = t("GrpParameters");
+            grpCoupons.Text = t("GrpCoupons");
+            grpAmortizations.Text = t("GrpAmortizations");
+            grpDeal.Text = t("GrpDeal");
+            grpOutput.Text = t("GrpOutput");
+            grpSchedule.Text = t("GrpSchedule");
+            grpResults.Text = t("GrpResults");
+
+            lblNominal.Text = t("LblNominal");
+            lblPlacement.Text = t("LblPlacement");
+            lblRepayment.Text = t("LblRepayment");
+            lblInflation.Text = t("LblInflation");
+            lblPrice.Text = t("LblPrice");
+            lblAccrued.Text = t("LblAccrued");
+            label1.Text = t("LblPurchaseDate");
+
+            lblFirstCoupon.Text = t("LblFirstCoupon");
+            lblLastCoupon.Text = t("LblLastCoupon");
+            lblPeriod.Text = t("LblPeriod");
+            lblCouponAmount.Text = t("LblCouponAmount");
+
+            lblAmortParts.Text = t("LblAmortParts");
+
+            btnCalculate.Text = t("BtnCalculate");
+            btnAddCoupon.Text = t("BtnAdd");
+            btnRemoveCoupon.Text = t("BtnRemove");
+            btnClearCoupons.Text = t("BtnClear");
+            btnGenerate.Text = t("BtnGenerate");
+            btnAddAmortization.Text = t("BtnAdd");
+            btnRemoveAmortization.Text = t("BtnRemove");
+            btnClearAmortizations.Text = t("BtnClear");
+            btnGenerateAmort.Text = t("BtnGenerate");
+
+            lblNominalHeader.Text = t("LblNominalHeader");
+            lblBuyPrice.Text = t("LblBuyPrice");
+            lblRepayIncome.Text = t("LblRepayIncome");
+            lblCouponIncome.Text = t("LblCouponIncome");
+            lblTotalIncome.Text = t("LblTotalIncome");
+            lblTotalYield.Text = t("LblTotalYield");
+            lblAnnualYield.Text = t("LblAnnualYield");
+            lblRealHeader.Text = t("LblRealHeader");
+            lblRealIncome.Text = t("LblRealIncome");
+            lblRealYield.Text = t("LblRealYield");
+            lblRealAnnualYield.Text = t("LblRealAnnualYield");
+            lblRealRepayIncome.Text = t("LblRealRepayIncome");
+            lblRealCouponIncome.Text = t("LblRealCouponIncome");
+
+            lblYtmLabel.Text = t("LblYtmLabel");
+            lblSellByLabel.Text = t("LblSellByLabel");
+
+            dataGridViewTextBoxColumn3.HeaderText = t("ColDate");
+            dataGridViewTextBoxColumn4.HeaderText = t("ColAmount");
+            dataGridViewTextBoxColumn1.HeaderText = t("ColDate");
+            dataGridViewTextBoxColumn2.HeaderText = t("ColAmount");
+            colSchDate.HeaderText = t("ColDate");
+            colSchType.HeaderText = t("ColType");
+            colSchNominal.HeaderText = t("ColNominalAmount");
+            colSchCumNominal.HeaderText = t("ColCumIncome");
+            colSchReal.HeaderText = t("ColRealAmount");
+            colSchCumReal.HeaderText = t("ColCumRealIncome");
+
+            toolsMenuItem.Text = t("MenuLanguage");
+            englishItem.Text = t("MenuEnglish");
+            russianItem.Text = t("MenuRussian");
+
+            UpdateAmortAmountLabel();
+        }
+
+        private static string TranslateType(string type)
+        {
+            return type switch
+            {
+                "Coupon" => Localization.GetString("TypeCoupon"),
+                "Amortization" => Localization.GetString("TypeAmortization"),
+                "Repayment" => Localization.GetString("TypeRepayment"),
+                _ => type
+            };
         }
 
         private void btnAddCoupon_Click(object? sender, EventArgs e)
@@ -39,14 +140,14 @@ namespace BondCalc.App.Presentation.Forms
 
             if (period <= 0)
             {
-                MessageBox.Show("Period must be greater than 0.", "Invalid Input",
+                MessageBox.Show(Localization.GetString("MsgPeriodInvalid"), Localization.GetString("MsgPeriodInvalidTitle"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (first > last)
             {
-                MessageBox.Show("First coupon date must be before last coupon date.", "Invalid Input",
+                MessageBox.Show(Localization.GetString("MsgDateOrderInvalid"), Localization.GetString("MsgDateOrderInvalidTitle"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -58,7 +159,7 @@ namespace BondCalc.App.Presentation.Forms
 
             if (dgvCoupons.Rows.Count == 0)
             {
-                MessageBox.Show("No coupons generated. Check the date range.", "Empty Result",
+                MessageBox.Show(Localization.GetString("MsgNoCoupons"), Localization.GetString("MsgNoCouponsTitle"),
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -104,7 +205,7 @@ namespace BondCalc.App.Presentation.Forms
             var parts = (int)nudAmortParts.Value;
             var nominal = (double)nudNominal.Value;
             var amount = nominal / parts;
-            lblAmortAmount.Text = $"Amount: {amount:F2}";
+            lblAmortAmount.Text = $"{Localization.GetString("AmortAmountPrefix")} {amount:F2}";
         }
 
         private void GenerateAmortizations()
@@ -182,7 +283,7 @@ namespace BondCalc.App.Presentation.Forms
                 {
                     dgvSchedule.Rows.Add(
                         row.Date.ToString("dd.MM.yyyy"),
-                        row.Type,
+                        TranslateType(row.Type),
                         row.NominalAmount.ToString("N2"),
                         row.CumulativeIncome.ToString("N2"),
                         row.RealAmount.ToString("N2"),
@@ -190,14 +291,14 @@ namespace BondCalc.App.Presentation.Forms
                 }
 
                 chartSchedule.Series.Clear();
-                var nominalSeries = new Series("Nominal Yield")
+                var nominalSeries = new Series(Localization.GetString("ChartNominalYield"))
                 {
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.Green),
                     BorderWidth = 2,
                     IsVisibleInLegend = true
                 };
-                var realSeries = new Series("Real Yield")
+                var realSeries = new Series(Localization.GetString("ChartRealYield"))
                 {
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.DodgerBlue),
@@ -205,7 +306,7 @@ namespace BondCalc.App.Presentation.Forms
                     BorderDashStyle = ChartDashStyle.Dash,
                     IsVisibleInLegend = true
                 };
-                var inflationSeries = new Series("Inflation")
+                var inflationSeries = new Series(Localization.GetString("ChartInflation"))
                 {
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.Red),
@@ -226,7 +327,7 @@ namespace BondCalc.App.Presentation.Forms
             {
                 MessageBox.Show(
                     ex.Message,
-                    "Calculation Error",
+                    Localization.GetString("MsgCalcErrorTitle"),
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -333,6 +434,3 @@ namespace BondCalc.App.Presentation.Forms
         }
     }
 }
-//TODO
-// Локализация
-// Сделать удобную форму

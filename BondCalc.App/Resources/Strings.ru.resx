@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FormTitle" xml:space="preserve"><value>BondCalc — Калькулятор доходности облигаций с учётом инфляции</value></data>
+  <data name="GrpParameters" xml:space="preserve"><value>Параметры облигации</value></data>
+  <data name="GrpCoupons" xml:space="preserve"><value>Купоны</value></data>
+  <data name="GrpAmortizations" xml:space="preserve"><value>Амортизации</value></data>
+  <data name="GrpDeal" xml:space="preserve"><value>Сделка</value></data>
+  <data name="GrpOutput" xml:space="preserve"><value>Результаты</value></data>
+  <data name="GrpSchedule" xml:space="preserve"><value>График купонов</value></data>
+  <data name="GrpResults" xml:space="preserve"><value>Результаты</value></data>
+  <data name="LblNominal" xml:space="preserve"><value>Номинальная стоимость:</value></data>
+  <data name="LblPlacement" xml:space="preserve"><value>Дата размещения:</value></data>
+  <data name="LblRepayment" xml:space="preserve"><value>Дата погашения:</value></data>
+  <data name="LblInflation" xml:space="preserve"><value>Ставка инфляции (%):</value></data>
+  <data name="LblPrice" xml:space="preserve"><value>Цена покупки:</value></data>
+  <data name="LblAccrued" xml:space="preserve"><value>НКД:</value></data>
+  <data name="LblPurchaseDate" xml:space="preserve"><value>Дата покупки:</value></data>
+  <data name="LblFirstCoupon" xml:space="preserve"><value>Дата первого купона:</value></data>
+  <data name="LblLastCoupon" xml:space="preserve"><value>Дата последнего купона:</value></data>
+  <data name="LblPeriod" xml:space="preserve"><value>Период (дней):</value></data>
+  <data name="LblCouponAmount" xml:space="preserve"><value>Сумма купона:</value></data>
+  <data name="LblAmortParts" xml:space="preserve"><value>Количество частей:</value></data>
+  <data name="BtnCalculate" xml:space="preserve"><value>Рассчитать</value></data>
+  <data name="BtnAdd" xml:space="preserve"><value>Добавить</value></data>
+  <data name="BtnRemove" xml:space="preserve"><value>Удалить</value></data>
+  <data name="BtnClear" xml:space="preserve"><value>Очистить</value></data>
+  <data name="BtnGenerate" xml:space="preserve"><value>Сгенерировать</value></data>
+  <data name="LblNominalHeader" xml:space="preserve"><value>── Номинальный ──</value></data>
+  <data name="LblBuyPrice" xml:space="preserve"><value>Цена покупки:</value></data>
+  <data name="LblRepayIncome" xml:space="preserve"><value>Доход от погашения:</value></data>
+  <data name="LblCouponIncome" xml:space="preserve"><value>Всего купонный доход:</value></data>
+  <data name="LblTotalIncome" xml:space="preserve"><value>Общий доход:</value></data>
+  <data name="LblTotalYield" xml:space="preserve"><value>Общая доходность:</value></data>
+  <data name="LblAnnualYield" xml:space="preserve"><value>Годовая доходность:</value></data>
+  <data name="LblRealHeader" xml:space="preserve"><value>── Реальный (с учётом инфляции) ──</value></data>
+  <data name="LblRealIncome" xml:space="preserve"><value>Реальный общий доход:</value></data>
+  <data name="LblRealYield" xml:space="preserve"><value>Реальная доходность:</value></data>
+  <data name="LblRealAnnualYield" xml:space="preserve"><value>Реальная годовая доходность:</value></data>
+  <data name="LblRealRepayIncome" xml:space="preserve"><value>Реальный доход от погашения:</value></data>
+  <data name="LblRealCouponIncome" xml:space="preserve"><value>Реальный купонный доход:</value></data>
+  <data name="LblYtmLabel" xml:space="preserve"><value>YTM с учётом инфляции:</value></data>
+  <data name="LblSellByLabel" xml:space="preserve"><value>Дата продажи:</value></data>
+  <data name="ColDate" xml:space="preserve"><value>Дата</value></data>
+  <data name="ColAmount" xml:space="preserve"><value>Сумма</value></data>
+  <data name="ColType" xml:space="preserve"><value>Тип</value></data>
+  <data name="ColNominalAmount" xml:space="preserve"><value>Номинальная сумма</value></data>
+  <data name="ColCumIncome" xml:space="preserve"><value>Накопленный доход</value></data>
+  <data name="ColRealAmount" xml:space="preserve"><value>Реальная сумма</value></data>
+  <data name="ColCumRealIncome" xml:space="preserve"><value>Накопленный реальный доход</value></data>
+  <data name="MenuLanguage" xml:space="preserve"><value>Язык</value></data>
+  <data name="MenuEnglish" xml:space="preserve"><value>Английский</value></data>
+  <data name="MenuRussian" xml:space="preserve"><value>Русский</value></data>
+  <data name="ChartNominalYield" xml:space="preserve"><value>Номинальная доходность</value></data>
+  <data name="ChartRealYield" xml:space="preserve"><value>Реальная доходность</value></data>
+  <data name="ChartInflation" xml:space="preserve"><value>Инфляция</value></data>
+  <data name="TypeCoupon" xml:space="preserve"><value>Купон</value></data>
+  <data name="TypeAmortization" xml:space="preserve"><value>Амортизация</value></data>
+  <data name="TypeRepayment" xml:space="preserve"><value>Погашение</value></data>
+  <data name="MsgPeriodInvalid" xml:space="preserve"><value>Период должен быть больше 0.</value></data>
+  <data name="MsgPeriodInvalidTitle" xml:space="preserve"><value>Неверный ввод</value></data>
+  <data name="MsgDateOrderInvalid" xml:space="preserve"><value>Дата первого купона должна быть раньше даты последнего.</value></data>
+  <data name="MsgDateOrderInvalidTitle" xml:space="preserve"><value>Неверный ввод</value></data>
+  <data name="MsgNoCoupons" xml:space="preserve"><value>Купоны не сгенерированы. Проверьте диапазон дат.</value></data>
+  <data name="MsgNoCouponsTitle" xml:space="preserve"><value>Пустой результат</value></data>
+  <data name="MsgCalcErrorTitle" xml:space="preserve"><value>Ошибка расчёта</value></data>
+  <data name="AmortAmountPrefix" xml:space="preserve"><value>Сумма:</value></data>
+</root>

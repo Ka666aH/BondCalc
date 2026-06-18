@@ -1066,16 +1066,49 @@
             splitMain.TabIndex = 0;
             splitMain.TabStop = false;
             // 
+            // menuStrip
+            // 
+            menuStrip = new MenuStrip();
+            toolsMenuItem = new ToolStripMenuItem();
+            englishItem = new ToolStripMenuItem();
+            russianItem = new ToolStripMenuItem();
+            menuStrip.Items.AddRange(new ToolStripItem[] { toolsMenuItem });
+            toolsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishItem, russianItem });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.TabIndex = 16;
+            menuStrip.Text = "menuStrip";
+            // 
+            // toolsMenuItem
+            // 
+            toolsMenuItem.Name = "toolsMenuItem";
+            toolsMenuItem.Text = "Language";
+            // 
+            // englishItem
+            // 
+            englishItem.Name = "englishItem";
+            englishItem.Text = "English";
+            englishItem.Click += OnLanguageEnglish;
+            // 
+            // russianItem
+            // 
+            russianItem.Name = "russianItem";
+            russianItem.Text = "Русский";
+            russianItem.Click += OnLanguageRussian;
+            // 
             // BondCacl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(859, 791);
+            ClientSize = new Size(859, 815);
+            Controls.Add(menuStrip);
             Controls.Add(splitMain);
-            MinimumSize = new Size(920, 820);
+            MainMenuStrip = menuStrip;
+            MinimumSize = new Size(920, 844);
             Name = "BondCacl";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BondCalc - Inflation-Adjusted Bond Yield Calculator";
+            Icon = new Icon("bondCalc.ico");
             grpParameters.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudInflation).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).EndInit();
@@ -1099,6 +1132,7 @@
             ((System.ComponentModel.ISupportInitialize)splitMain).EndInit();
             splitMain.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         private GroupBox grpOutput;
@@ -1188,5 +1222,9 @@
         private Label lblRealRepayIncome;
         private Label lblRealCouponIncomeVal;
         private Label lblRealCouponIncome;
+        private MenuStrip menuStrip;
+        private ToolStripMenuItem toolsMenuItem;
+        private ToolStripMenuItem englishItem;
+        private ToolStripMenuItem russianItem;
     }
 }
