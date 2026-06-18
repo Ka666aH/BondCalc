@@ -62,6 +62,14 @@ namespace BondCalc.App.Presentation.Forms
             }
         }
 
+        private void btnPeriod_Click(object? sender, EventArgs e)
+        {
+            if (sender is Button btn && int.TryParse(btn.Text, out var days))
+            {
+                nudPeriod.Value = days;
+            }
+        }
+
         private void btnAddAmortization_Click(object? sender, EventArgs e)
         {
             dgvAmortizations.Rows.Add(DateOnly.FromDateTime(DateTime.Now), 0.0);
@@ -287,10 +295,13 @@ namespace BondCalc.App.Presentation.Forms
             var date = nudPurchase.Value;
             return new Deal(price, aci, DateOnly.FromDateTime(date));
         }
+
+        private void dtpRepayment_ValueChanged(object sender, EventArgs e)
+        {
+            dtpLastCoupon.Value = dtpRepayment.Value;
+        }
     }
 }
 //TODO
-// Шаг в дате купона
 // Локализация
 // Сделать удобную форму
-// Дата погашения заменяет последний купон

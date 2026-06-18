@@ -35,6 +35,9 @@
             dtpLastCoupon = new DateTimePicker();
             dtpFirstCoupon = new DateTimePicker();
             nudPeriod = new NumericUpDown();
+            btnPeriod30 = new Button();
+            btnPeriod90 = new Button();
+            btnPeriod180 = new Button();
             btnGenerate = new Button();
             lblLastCoupon = new Label();
             lblFirstCoupon = new Label();
@@ -143,6 +146,7 @@
             // nudInflation
             // 
             nudInflation.DecimalPlaces = 2;
+            nudInflation.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             nudInflation.Location = new Point(140, 100);
             nudInflation.Name = "nudInflation";
             nudInflation.Size = new Size(211, 23);
@@ -168,6 +172,7 @@
             dtpRepayment.Size = new Size(211, 23);
             dtpRepayment.TabIndex = 5;
             dtpRepayment.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
+            dtpRepayment.ValueChanged += dtpRepayment_ValueChanged;
             // 
             // dtpPlacement
             // 
@@ -223,7 +228,7 @@
             grpDeal.Controls.Add(lblAccrued);
             grpDeal.Controls.Add(lblPrice);
             grpDeal.Dock = DockStyle.Top;
-            grpDeal.Location = new Point(0, 414);
+            grpDeal.Location = new Point(0, 609);
             grpDeal.Name = "grpDeal";
             grpDeal.Size = new Size(368, 110);
             grpDeal.TabIndex = 15;
@@ -290,6 +295,9 @@
             grpCoupons.Controls.Add(dtpLastCoupon);
             grpCoupons.Controls.Add(dtpFirstCoupon);
             grpCoupons.Controls.Add(nudPeriod);
+            grpCoupons.Controls.Add(btnPeriod30);
+            grpCoupons.Controls.Add(btnPeriod90);
+            grpCoupons.Controls.Add(btnPeriod180);
             grpCoupons.Controls.Add(btnGenerate);
             grpCoupons.Controls.Add(lblLastCoupon);
             grpCoupons.Controls.Add(lblFirstCoupon);
@@ -326,13 +334,43 @@
             // 
             // nudPeriod
             // 
-            nudPeriod.Location = new Point(140, 74);
+            nudPeriod.Location = new Point(241, 74);
             nudPeriod.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             nudPeriod.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudPeriod.Name = "nudPeriod";
-            nudPeriod.Size = new Size(211, 23);
+            nudPeriod.Size = new Size(110, 23);
             nudPeriod.TabIndex = 10;
             nudPeriod.Value = new decimal(new int[] { 30, 0, 0, 0 });
+            // 
+            // btnPeriod30
+            // 
+            btnPeriod30.Location = new Point(140, 74);
+            btnPeriod30.Name = "btnPeriod30";
+            btnPeriod30.Size = new Size(30, 23);
+            btnPeriod30.TabIndex = 22;
+            btnPeriod30.Text = "30";
+            btnPeriod30.UseVisualStyleBackColor = true;
+            btnPeriod30.Click += btnPeriod_Click;
+            // 
+            // btnPeriod90
+            // 
+            btnPeriod90.Location = new Point(172, 74);
+            btnPeriod90.Name = "btnPeriod90";
+            btnPeriod90.Size = new Size(30, 23);
+            btnPeriod90.TabIndex = 23;
+            btnPeriod90.Text = "90";
+            btnPeriod90.UseVisualStyleBackColor = true;
+            btnPeriod90.Click += btnPeriod_Click;
+            // 
+            // btnPeriod180
+            // 
+            btnPeriod180.Location = new Point(204, 74);
+            btnPeriod180.Name = "btnPeriod180";
+            btnPeriod180.Size = new Size(35, 23);
+            btnPeriod180.TabIndex = 24;
+            btnPeriod180.Text = "180";
+            btnPeriod180.UseVisualStyleBackColor = true;
+            btnPeriod180.Click += btnPeriod_Click;
             // 
             // btnGenerate
             // 
@@ -427,7 +465,6 @@
             // 
             dgvCoupons.AllowUserToAddRows = false;
             dgvCoupons.AllowUserToDeleteRows = false;
-            dgvCoupons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCoupons.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCoupons.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCoupons.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -435,6 +472,7 @@
             dgvCoupons.Location = new Point(8, 129);
             dgvCoupons.Name = "dgvCoupons";
             dgvCoupons.RowHeadersVisible = false;
+            dgvCoupons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCoupons.Size = new Size(351, 117);
             dgvCoupons.TabIndex = 0;
             // 
@@ -459,7 +497,7 @@
             grpAmortizations.Controls.Add(btnAddAmortization);
             grpAmortizations.Controls.Add(dgvAmortizations);
             grpAmortizations.Dock = DockStyle.Top;
-            grpAmortizations.Location = new Point(0, 524);
+            grpAmortizations.Location = new Point(0, 414);
             grpAmortizations.Name = "grpAmortizations";
             grpAmortizations.Size = new Size(368, 195);
             grpAmortizations.TabIndex = 2;
@@ -542,7 +580,6 @@
             // 
             dgvAmortizations.AllowUserToAddRows = false;
             dgvAmortizations.AllowUserToDeleteRows = false;
-            dgvAmortizations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAmortizations.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvAmortizations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAmortizations.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -550,6 +587,7 @@
             dgvAmortizations.Location = new Point(8, 48);
             dgvAmortizations.Name = "dgvAmortizations";
             dgvAmortizations.RowHeadersVisible = false;
+            dgvAmortizations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAmortizations.Size = new Size(351, 110);
             dgvAmortizations.TabIndex = 0;
             // 
@@ -912,7 +950,6 @@
             grpSchedule.TabIndex = 1;
             grpSchedule.TabStop = false;
             grpSchedule.Text = "Coupon Schedule";
-            grpSchedule.Visible = true;
             // 
             // dgvSchedule
             // 
@@ -1059,6 +1096,9 @@
         private DateTimePicker dtpLastCoupon;
         private DateTimePicker dtpFirstCoupon;
         private NumericUpDown nudPeriod;
+        private Button btnPeriod30;
+        private Button btnPeriod90;
+        private Button btnPeriod180;
         private Button btnGenerate;
         private Label lblLastCoupon;
         private Label lblFirstCoupon;
