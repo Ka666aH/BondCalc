@@ -92,10 +92,12 @@
             lblNominalHeader = new Label();
             grpSchedule = new GroupBox();
             dgvSchedule = new DataGridView();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
+            colSchDate = new DataGridViewTextBoxColumn();
+            colSchType = new DataGridViewTextBoxColumn();
+            colSchNominal = new DataGridViewTextBoxColumn();
+            colSchCumNominal = new DataGridViewTextBoxColumn();
+            colSchReal = new DataGridViewTextBoxColumn();
+            colSchCumReal = new DataGridViewTextBoxColumn();
             splitMain = new SplitContainer();
             grpParameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudInflation).BeginInit();
@@ -661,10 +663,10 @@
             grpOutput.Controls.Add(lblBuyPriceVal);
             grpOutput.Controls.Add(lblBuyPrice);
             grpOutput.Controls.Add(lblNominalHeader);
-            grpOutput.Dock = DockStyle.Fill;
+            grpOutput.Dock = DockStyle.Top;
             grpOutput.Location = new Point(0, 0);
             grpOutput.Name = "grpOutput";
-            grpOutput.Size = new Size(486, 791);
+            grpOutput.Size = new Size(486, 200);
             grpOutput.TabIndex = 2;
             grpOutput.TabStop = false;
             grpOutput.Text = "Results";
@@ -901,13 +903,14 @@
             // grpSchedule
             // 
             grpSchedule.Controls.Add(dgvSchedule);
-            grpSchedule.Location = new Point(0, 80);
+            grpSchedule.Dock = DockStyle.Fill;
+            grpSchedule.Location = new Point(0, 200);
             grpSchedule.Name = "grpSchedule";
-            grpSchedule.Size = new Size(475, 686);
+            grpSchedule.Size = new Size(486, 591);
             grpSchedule.TabIndex = 1;
             grpSchedule.TabStop = false;
             grpSchedule.Text = "Coupon Schedule";
-            grpSchedule.Visible = false;
+            grpSchedule.Visible = true;
             // 
             // dgvSchedule
             // 
@@ -915,38 +918,50 @@
             dgvSchedule.AllowUserToDeleteRows = false;
             dgvSchedule.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSchedule.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8 });
+            dgvSchedule.Columns.AddRange(new DataGridViewColumn[] { colSchDate, colSchType, colSchNominal, colSchCumNominal, colSchReal, colSchCumReal });
             dgvSchedule.Dock = DockStyle.Fill;
             dgvSchedule.Location = new Point(3, 19);
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.ReadOnly = true;
             dgvSchedule.RowHeadersVisible = false;
-            dgvSchedule.Size = new Size(469, 664);
+            dgvSchedule.Size = new Size(480, 569);
             dgvSchedule.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn5
+            // colSchDate
             // 
-            dataGridViewTextBoxColumn5.HeaderText = "Date";
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            dataGridViewTextBoxColumn5.ReadOnly = true;
+            colSchDate.HeaderText = "Date";
+            colSchDate.Name = "colSchDate";
+            colSchDate.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn6
+            // colSchType
             // 
-            dataGridViewTextBoxColumn6.HeaderText = "Coupon";
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.ReadOnly = true;
+            colSchType.HeaderText = "Type";
+            colSchType.Name = "colSchType";
+            colSchType.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn7
+            // colSchNominal
             // 
-            dataGridViewTextBoxColumn7.HeaderText = "Inflation-Adj.";
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            dataGridViewTextBoxColumn7.ReadOnly = true;
+            colSchNominal.HeaderText = "Nominal Amount";
+            colSchNominal.Name = "colSchNominal";
+            colSchNominal.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn8
+            // colSchCumNominal
             // 
-            dataGridViewTextBoxColumn8.HeaderText = "Cumulative Yield";
-            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            dataGridViewTextBoxColumn8.ReadOnly = true;
+            colSchCumNominal.HeaderText = "Cumulative Income";
+            colSchCumNominal.Name = "colSchCumNominal";
+            colSchCumNominal.ReadOnly = true;
+            // 
+            // colSchReal
+            // 
+            colSchReal.HeaderText = "Real Amount";
+            colSchReal.Name = "colSchReal";
+            colSchReal.ReadOnly = true;
+            // 
+            // colSchCumReal
+            // 
+            colSchCumReal.HeaderText = "Cumulative Real Income";
+            colSchCumReal.Name = "colSchCumReal";
+            colSchCumReal.ReadOnly = true;
             // 
             // splitMain
             // 
@@ -966,9 +981,9 @@
             // 
             // splitMain.Panel2
             // 
+            splitMain.Panel2.Controls.Add(grpSchedule);
             splitMain.Panel2.Controls.Add(grpOutput);
             splitMain.Panel2.Controls.Add(grpResults);
-            splitMain.Panel2.Controls.Add(grpSchedule);
             splitMain.Size = new Size(859, 791);
             splitMain.SplitterDistance = 368;
             splitMain.SplitterWidth = 5;
@@ -1080,10 +1095,12 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn colSchDate;
+        private DataGridViewTextBoxColumn colSchType;
+        private DataGridViewTextBoxColumn colSchNominal;
+        private DataGridViewTextBoxColumn colSchCumNominal;
+        private DataGridViewTextBoxColumn colSchReal;
+        private DataGridViewTextBoxColumn colSchCumReal;
         private DateTimePicker nudPurchase;
         private Label label1;
         private Label lblRealRepayIncomeVal;

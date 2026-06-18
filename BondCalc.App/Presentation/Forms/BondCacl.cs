@@ -139,6 +139,7 @@ namespace BondCalc.App.Presentation.Forms
             nudAmortParts.Value = 5;
             dgvCoupons.Rows.Clear();
             dgvAmortizations.Rows.Clear();
+            dgvSchedule.Rows.Clear();
             ClearResults();
             UpdateAmortAmountLabel();
         }
@@ -165,6 +166,18 @@ namespace BondCalc.App.Presentation.Forms
                 lblRealIncomeVal.Text = result.RealTotalIncome.ToString("N2");
                 lblRealYieldVal.Text = result.RealTotalYield.ToString("P2");
                 lblRealAnnualYieldVal.Text = result.RealAnnualYield.ToString("P2");
+
+                dgvSchedule.Rows.Clear();
+                foreach (var row in result.Schedule)
+                {
+                    dgvSchedule.Rows.Add(
+                        row.Date.ToString("dd.MM.yyyy"),
+                        row.Type,
+                        row.NominalAmount.ToString("N2"),
+                        row.CumulativeIncome.ToString("N2"),
+                        row.RealAmount.ToString("N2"),
+                        row.CumulativeRealIncome.ToString("N2"));
+                }
             }
             catch (Exception ex)
             {
@@ -184,6 +197,8 @@ namespace BondCalc.App.Presentation.Forms
             lblTotalIncomeVal.Text = "-";
             lblTotalYieldVal.Text = "-";
             lblAnnualYieldVal.Text = "-";
+            lblRealRepayIncomeVal.Text = "-";
+            lblRealCouponIncomeVal.Text = "-";
             lblRealIncomeVal.Text = "-";
             lblRealYieldVal.Text = "-";
             lblRealAnnualYieldVal.Text = "-";
