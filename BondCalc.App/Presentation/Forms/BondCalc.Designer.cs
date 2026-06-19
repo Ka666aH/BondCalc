@@ -97,7 +97,6 @@
             lblNominalHeader = new Label();
             grpSchedule = new GroupBox();
             dgvSchedule = new DataGridView();
-            chartSchedule = new Chart();
             colSchDate = new DataGridViewTextBoxColumn();
             colSchType = new DataGridViewTextBoxColumn();
             colSchNominal = new DataGridViewTextBoxColumn();
@@ -105,6 +104,10 @@
             colSchReal = new DataGridViewTextBoxColumn();
             colSchCumReal = new DataGridViewTextBoxColumn();
             splitMain = new SplitContainer();
+            menuStrip = new MenuStrip();
+            toolsMenuItem = new ToolStripMenuItem();
+            englishItem = new ToolStripMenuItem();
+            russianItem = new ToolStripMenuItem();
             grpParameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudInflation).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).BeginInit();
@@ -122,11 +125,11 @@
             grpOutput.SuspendLayout();
             grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartSchedule).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitMain).BeginInit();
             splitMain.Panel1.SuspendLayout();
             splitMain.Panel2.SuspendLayout();
             splitMain.SuspendLayout();
+            menuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // grpParameters
@@ -609,7 +612,7 @@
             // 
             btnCalculate.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnCalculate.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            btnCalculate.Location = new Point(8, 728);
+            btnCalculate.Location = new Point(8, 724);
             btnCalculate.Name = "btnCalculate";
             btnCalculate.Size = new Size(285, 60);
             btnCalculate.TabIndex = 3;
@@ -621,7 +624,7 @@
             // 
             btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             btnReset.Font = new Font("Segoe UI", 24F);
-            btnReset.Location = new Point(299, 728);
+            btnReset.Location = new Point(299, 724);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(60, 60);
             btnReset.TabIndex = 14;
@@ -710,7 +713,7 @@
             grpOutput.Dock = DockStyle.Top;
             grpOutput.Location = new Point(0, 0);
             grpOutput.Name = "grpOutput";
-            grpOutput.Size = new Size(486, 200);
+            grpOutput.Size = new Size(487, 200);
             grpOutput.TabIndex = 2;
             grpOutput.TabStop = false;
             grpOutput.Text = "Results";
@@ -946,12 +949,11 @@
             // 
             // grpSchedule
             // 
-            grpSchedule.Controls.Add(chartSchedule);
             grpSchedule.Controls.Add(dgvSchedule);
             grpSchedule.Dock = DockStyle.Fill;
             grpSchedule.Location = new Point(0, 200);
             grpSchedule.Name = "grpSchedule";
-            grpSchedule.Size = new Size(486, 591);
+            grpSchedule.Size = new Size(487, 591);
             grpSchedule.TabIndex = 1;
             grpSchedule.TabStop = false;
             grpSchedule.Text = "Coupon Schedule";
@@ -968,39 +970,8 @@
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.ReadOnly = true;
             dgvSchedule.RowHeadersVisible = false;
-            dgvSchedule.Size = new Size(480, 250);
+            dgvSchedule.Size = new Size(481, 250);
             dgvSchedule.TabIndex = 0;
-            // 
-            // chartSchedule
-            // 
-            chartSchedule.BackColor = SystemColors.Control;
-            chartSchedule.Dock = DockStyle.Fill;
-            chartSchedule.Location = new Point(3, 269);
-            chartSchedule.Name = "chartSchedule";
-            chartSchedule.Size = new Size(480, 319);
-            chartSchedule.TabIndex = 1;
-            var chartArea = new ChartArea("Default");
-            chartArea.BackColor = Color.Transparent;
-            chartArea.Position.Auto = false;
-            chartArea.Position = new ElementPosition(0, 0, 100, 100);
-            chartArea.InnerPlotPosition = new ElementPosition(10, 5, 90, 70);
-            //chartArea.AxisY.Title = "Yield";
-            //chartArea.AxisY.TitleFont = new Font(Font.FontFamily, 8);
-            //chartArea.AxisX.Title = "Date";
-            //chartArea.AxisX.TitleFont = new Font(Font.FontFamily, 8);
-            chartArea.AxisX.LabelStyle.Format = "dd.MM.yy";
-            chartArea.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
-            chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
-            chartArea.AxisY.LabelStyle.Format = "{0:F1}%";
-            chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
-            chartArea.AxisX.IsMarginVisible = false;
-            chartArea.AxisY.IsMarginVisible = false;
-            chartSchedule.ChartAreas.Add(chartArea);
-            var legend = new Legend();
-            legend.BackColor = Color.Transparent;
-            legend.Docking = Docking.Bottom;
-            legend.Alignment = StringAlignment.Center;
-            chartSchedule.Legends.Add(legend);
             // 
             // colSchDate
             // 
@@ -1040,8 +1011,8 @@
             // 
             // splitMain
             // 
-            splitMain.Dock = DockStyle.Fill;
-            splitMain.Location = new Point(0, 0);
+            splitMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            splitMain.Location = new Point(0, 24);
             splitMain.Name = "splitMain";
             // 
             // splitMain.Panel1
@@ -1053,7 +1024,6 @@
             splitMain.Panel1.Controls.Add(grpParameters);
             splitMain.Panel1.Controls.Add(btnCalculate);
             splitMain.Panel1MinSize = 360;
-            splitMain.Panel2MinSize = 500;
             // 
             // splitMain.Panel2
             // 
@@ -1062,53 +1032,51 @@
             splitMain.Panel2.Controls.Add(grpResults);
             splitMain.Size = new Size(859, 791);
             splitMain.SplitterDistance = 368;
-            splitMain.SplitterWidth = 5;
             splitMain.TabIndex = 0;
             splitMain.TabStop = false;
             // 
             // menuStrip
             // 
-            menuStrip = new MenuStrip();
-            toolsMenuItem = new ToolStripMenuItem();
-            englishItem = new ToolStripMenuItem();
-            russianItem = new ToolStripMenuItem();
             menuStrip.Items.AddRange(new ToolStripItem[] { toolsMenuItem });
-            toolsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishItem, russianItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
+            menuStrip.Size = new Size(904, 24);
             menuStrip.TabIndex = 16;
             menuStrip.Text = "menuStrip";
             // 
             // toolsMenuItem
             // 
+            toolsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishItem, russianItem });
             toolsMenuItem.Name = "toolsMenuItem";
+            toolsMenuItem.Size = new Size(71, 20);
             toolsMenuItem.Text = "Language";
             // 
             // englishItem
             // 
             englishItem.Name = "englishItem";
+            englishItem.Size = new Size(119, 22);
             englishItem.Text = "English";
             englishItem.Click += OnLanguageEnglish;
             // 
             // russianItem
             // 
             russianItem.Name = "russianItem";
+            russianItem.Size = new Size(119, 22);
             russianItem.Text = "Русский";
             russianItem.Click += OnLanguageRussian;
             // 
-            // BondCacl
+            // BondCalc
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(859, 815);
+            ClientSize = new Size(904, 815);
             Controls.Add(menuStrip);
             Controls.Add(splitMain);
             MainMenuStrip = menuStrip;
             MinimumSize = new Size(920, 844);
-            Name = "BondCacl";
+            Name = "BondCalc";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BondCalc - Inflation-Adjusted Bond Yield Calculator";
-            Icon = new Icon("bondCalc.ico");
             grpParameters.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudInflation).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).EndInit();
@@ -1126,11 +1094,12 @@
             grpOutput.ResumeLayout(false);
             grpSchedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartSchedule).EndInit();
             splitMain.Panel1.ResumeLayout(false);
             splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitMain).EndInit();
             splitMain.ResumeLayout(false);
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
