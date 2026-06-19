@@ -131,6 +131,8 @@ namespace BondCalc.App.Presentation.Forms
             englishItem.Text = t("MenuEnglish");
             russianItem.Text = t("MenuRussian");
 
+            RefreshScheduleTypes();
+            RefreshScheduleFormats();
             UpdateAmortAmountLabel();
         }
 
@@ -155,6 +157,34 @@ namespace BondCalc.App.Presentation.Forms
                 "Repayment" => Localization.GetString("TypeRepayment"),
                 _ => type
             };
+        }
+
+        private void RefreshScheduleTypes()
+        {
+            foreach (DataGridViewRow row in dgvSchedule.Rows)
+            {
+                if (row.Cells[1].Tag is string originalType)
+                {
+                    row.Cells[1].Value = TranslateType(originalType);
+                }
+            }
+        }
+
+        private void RefreshScheduleFormats()
+        {
+            foreach (DataGridViewRow row in dgvSchedule.Rows)
+            {
+                if (row.Cells[0].Tag is DateOnly date)
+                    row.Cells[0].Value = date.ToString("d");
+                if (row.Cells[2].Tag is double d2)
+                    row.Cells[2].Value = d2.ToString("N2");
+                if (row.Cells[3].Tag is double d3)
+                    row.Cells[3].Value = d3.ToString("N2");
+                if (row.Cells[4].Tag is double d4)
+                    row.Cells[4].Value = d4.ToString("N2");
+                if (row.Cells[5].Tag is double d5)
+                    row.Cells[5].Value = d5.ToString("N2");
+            }
         }
 
         private void btnAddCoupon_Click(object? sender, EventArgs e)
@@ -325,13 +355,19 @@ namespace BondCalc.App.Presentation.Forms
                 dgvSchedule.Rows.Clear();
                 foreach (var row in result.Schedule)
                 {
-                    dgvSchedule.Rows.Add(
-                        row.Date.ToString("dd.MM.yyyy"),
+                    var idx = dgvSchedule.Rows.Add(
+                        row.Date.ToString("d"),
                         TranslateType(row.Type),
                         row.NominalAmount.ToString("N2"),
                         row.CumulativeIncome.ToString("N2"),
                         row.RealAmount.ToString("N2"),
                         row.CumulativeRealIncome.ToString("N2"));
+                    dgvSchedule.Rows[idx].Cells[0].Tag = row.Date;
+                    dgvSchedule.Rows[idx].Cells[1].Tag = row.Type;
+                    dgvSchedule.Rows[idx].Cells[2].Tag = row.NominalAmount;
+                    dgvSchedule.Rows[idx].Cells[3].Tag = row.CumulativeIncome;
+                    dgvSchedule.Rows[idx].Cells[4].Tag = row.RealAmount;
+                    dgvSchedule.Rows[idx].Cells[5].Tag = row.CumulativeRealIncome;
                 }
 
                 chartSchedule.Series.Clear();
