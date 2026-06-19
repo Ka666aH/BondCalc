@@ -67,10 +67,10 @@
   <data name="GrpSchedule" xml:space="preserve"><value>Coupon Schedule</value></data>
   <data name="GrpResults" xml:space="preserve"><value>Results</value></data>
   <data name="LblNominal" xml:space="preserve"><value>Nominal Value:</value></data>
-  <data name="LblPlacement" xml:space="preserve"><value>Placement Date:</value></data>
-  <data name="LblRepayment" xml:space="preserve"><value>Repayment Date:</value></data>
+  <data name="LblPlacement" xml:space="preserve"><value>Issue Date:</value></data>
+  <data name="LblRepayment" xml:space="preserve"><value>Maturity / Offer Date:</value></data>
   <data name="LblInflation" xml:space="preserve"><value>Inflation Rate (%):</value></data>
-  <data name="LblPrice" xml:space="preserve"><value>Purchase Price:</value></data>
+  <data name="LblPrice" xml:space="preserve"><value>Clean Price:</value></data>
   <data name="LblAccrued" xml:space="preserve"><value>Accrued Interest (НКД):</value></data>
   <data name="LblPurchaseDate" xml:space="preserve"><value>Purchase Date:</value></data>
   <data name="LblFirstCoupon" xml:space="preserve"><value>First Coupon Date:</value></data>
@@ -84,8 +84,8 @@
   <data name="BtnClear" xml:space="preserve"><value>Clear</value></data>
   <data name="BtnGenerate" xml:space="preserve"><value>Generate</value></data>
   <data name="LblNominalHeader" xml:space="preserve"><value>── Nominal ──</value></data>
-  <data name="LblBuyPrice" xml:space="preserve"><value>Buy Price:</value></data>
-  <data name="LblRepayIncome" xml:space="preserve"><value>Repayment Income:</value></data>
+  <data name="LblBuyPrice" xml:space="preserve"><value>Dirty Price:</value></data>
+  <data name="LblRepayIncome" xml:space="preserve"><value>Redemption Income:</value></data>
   <data name="LblCouponIncome" xml:space="preserve"><value>Total Coupon Income:</value></data>
   <data name="LblTotalIncome" xml:space="preserve"><value>Total Income:</value></data>
   <data name="LblTotalYield" xml:space="preserve"><value>Total Yield:</value></data>
@@ -94,9 +94,9 @@
   <data name="LblRealIncome" xml:space="preserve"><value>Real Total Income:</value></data>
   <data name="LblRealYield" xml:space="preserve"><value>Real Total Yield:</value></data>
   <data name="LblRealAnnualYield" xml:space="preserve"><value>Real Annual Yield:</value></data>
-  <data name="LblRealRepayIncome" xml:space="preserve"><value>Real Repayment Income:</value></data>
+  <data name="LblRealRepayIncome" xml:space="preserve"><value>Real Redemption Income:</value></data>
   <data name="LblRealCouponIncome" xml:space="preserve"><value>Real Total Coupon Income:</value></data>
-  <data name="LblYtmLabel" xml:space="preserve"><value>Inflation-Adjusted YTM:</value></data>
+  <data name="LblYtmLabel" xml:space="preserve"><value>Real YTM:</value></data>
   <data name="LblSellByLabel" xml:space="preserve"><value>Sell-By Date:</value></data>
   <data name="ColDate" xml:space="preserve"><value>Date</value></data>
   <data name="ColAmount" xml:space="preserve"><value>Amount</value></data>
@@ -113,7 +113,7 @@
   <data name="ChartInflation" xml:space="preserve"><value>Inflation</value></data>
   <data name="TypeCoupon" xml:space="preserve"><value>Coupon</value></data>
   <data name="TypeAmortization" xml:space="preserve"><value>Amortization</value></data>
-  <data name="TypeRepayment" xml:space="preserve"><value>Repayment</value></data>
+  <data name="TypeRepayment" xml:space="preserve"><value>Redemption</value></data>
   <data name="MsgPeriodInvalid" xml:space="preserve"><value>Period must be greater than 0.</value></data>
   <data name="MsgPeriodInvalidTitle" xml:space="preserve"><value>Invalid Input</value></data>
   <data name="MsgDateOrderInvalid" xml:space="preserve"><value>First coupon date must be before last coupon date.</value></data>
