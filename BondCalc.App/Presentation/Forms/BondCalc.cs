@@ -4,9 +4,9 @@ using BondCalc.App.Application.Services;
 using BondCalc.App.Domain.Entities;
 namespace BondCalc.App.Presentation.Forms
 {
-    public partial class BondCacl : Form
+    public partial class BondCalc : Form
     {
-        public BondCacl()
+        public BondCalc()
         {
             Localization.SetCulture("en-US");
             InitializeComponent();

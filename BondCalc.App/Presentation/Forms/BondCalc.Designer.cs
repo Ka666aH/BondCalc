@@ -2,7 +2,7 @@
 {
     using System.Windows.Forms.DataVisualization.Charting;
 
-    partial class BondCacl
+    partial class BondCalc
     {
         private System.ComponentModel.IContainer components = null;
 
