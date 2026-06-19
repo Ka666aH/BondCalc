@@ -28,7 +28,6 @@ namespace BondCalc.App.Presentation.Forms
             chartArea.Position.Auto = false;
             chartArea.Position = new ElementPosition(0, 0, 100, 100);
             chartArea.InnerPlotPosition = new ElementPosition(10, 5, 90, 70);
-            chartArea.AxisX.LabelStyle.Format = "dd.MM.yy";
             chartArea.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
             chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
             chartArea.AxisY.LabelStyle.Format = "{0:F1}%";
@@ -134,6 +133,7 @@ namespace BondCalc.App.Presentation.Forms
             RefreshScheduleTypes();
             RefreshScheduleFormats();
             RefreshResultFormats();
+            UpdateChartDateFormat();
             UpdateAmortAmountLabel();
         }
 
@@ -147,6 +147,14 @@ namespace BondCalc.App.Presentation.Forms
                     series.LegendText = Localization.GetString(key);
                 }
             }
+        }
+
+        private void UpdateChartDateFormat()
+        {
+            if (chartSchedule.ChartAreas.Count == 0) return;
+            var format = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern
+                .Replace("yyyy", "yy");
+            chartSchedule.ChartAreas[0].AxisX.LabelStyle.Format = format;
         }
 
         private static string TranslateType(string type)
