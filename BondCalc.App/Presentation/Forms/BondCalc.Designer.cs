@@ -145,7 +145,7 @@
             grpParameters.Dock = DockStyle.Top;
             grpParameters.Location = new Point(0, 0);
             grpParameters.Name = "grpParameters";
-            grpParameters.Size = new Size(368, 129);
+            grpParameters.Size = new Size(387, 129);
             grpParameters.TabIndex = 0;
             grpParameters.TabStop = false;
             grpParameters.Text = "Bond Parameters";
@@ -237,7 +237,7 @@
             grpDeal.Dock = DockStyle.Top;
             grpDeal.Location = new Point(0, 609);
             grpDeal.Name = "grpDeal";
-            grpDeal.Size = new Size(368, 110);
+            grpDeal.Size = new Size(387, 110);
             grpDeal.TabIndex = 15;
             grpDeal.TabStop = false;
             grpDeal.Text = "Deal";
@@ -318,7 +318,7 @@
             grpCoupons.Dock = DockStyle.Top;
             grpCoupons.Location = new Point(0, 129);
             grpCoupons.Name = "grpCoupons";
-            grpCoupons.Size = new Size(368, 285);
+            grpCoupons.Size = new Size(387, 285);
             grpCoupons.TabIndex = 1;
             grpCoupons.TabStop = false;
             grpCoupons.Text = "Coupons";
@@ -480,7 +480,7 @@
             dgvCoupons.Name = "dgvCoupons";
             dgvCoupons.RowHeadersVisible = false;
             dgvCoupons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCoupons.Size = new Size(351, 117);
+            dgvCoupons.Size = new Size(370, 117);
             dgvCoupons.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn3
@@ -506,7 +506,7 @@
             grpAmortizations.Dock = DockStyle.Top;
             grpAmortizations.Location = new Point(0, 414);
             grpAmortizations.Name = "grpAmortizations";
-            grpAmortizations.Size = new Size(368, 195);
+            grpAmortizations.Size = new Size(387, 195);
             grpAmortizations.TabIndex = 2;
             grpAmortizations.TabStop = false;
             grpAmortizations.Text = "Amortizations";
@@ -595,7 +595,7 @@
             dgvAmortizations.Name = "dgvAmortizations";
             dgvAmortizations.RowHeadersVisible = false;
             dgvAmortizations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAmortizations.Size = new Size(351, 110);
+            dgvAmortizations.Size = new Size(370, 110);
             dgvAmortizations.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -614,7 +614,7 @@
             btnCalculate.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             btnCalculate.Location = new Point(8, 724);
             btnCalculate.Name = "btnCalculate";
-            btnCalculate.Size = new Size(285, 60);
+            btnCalculate.Size = new Size(304, 60);
             btnCalculate.TabIndex = 3;
             btnCalculate.Text = "Calculate";
             btnCalculate.UseVisualStyleBackColor = true;
@@ -624,7 +624,7 @@
             // 
             btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             btnReset.Font = new Font("Segoe UI", 24F);
-            btnReset.Location = new Point(299, 724);
+            btnReset.Location = new Point(318, 724);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(60, 60);
             btnReset.TabIndex = 14;
@@ -713,7 +713,7 @@
             grpOutput.Dock = DockStyle.Top;
             grpOutput.Location = new Point(0, 0);
             grpOutput.Name = "grpOutput";
-            grpOutput.Size = new Size(487, 200);
+            grpOutput.Size = new Size(513, 200);
             grpOutput.TabIndex = 2;
             grpOutput.TabStop = false;
             grpOutput.Text = "Results";
@@ -953,7 +953,7 @@
             grpSchedule.Dock = DockStyle.Fill;
             grpSchedule.Location = new Point(0, 200);
             grpSchedule.Name = "grpSchedule";
-            grpSchedule.Size = new Size(487, 591);
+            grpSchedule.Size = new Size(513, 591);
             grpSchedule.TabIndex = 1;
             grpSchedule.TabStop = false;
             grpSchedule.Text = "Coupon Schedule";
@@ -970,7 +970,7 @@
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.ReadOnly = true;
             dgvSchedule.RowHeadersVisible = false;
-            dgvSchedule.Size = new Size(481, 250);
+            dgvSchedule.Size = new Size(507, 250);
             dgvSchedule.TabIndex = 0;
             // 
             // colSchDate
@@ -1030,8 +1030,8 @@
             splitMain.Panel2.Controls.Add(grpSchedule);
             splitMain.Panel2.Controls.Add(grpOutput);
             splitMain.Panel2.Controls.Add(grpResults);
-            splitMain.Size = new Size(859, 791);
-            splitMain.SplitterDistance = 368;
+            splitMain.Size = new Size(904, 791);
+            splitMain.SplitterDistance = 387;
             splitMain.TabIndex = 0;
             splitMain.TabStop = false;
             // 
