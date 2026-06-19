@@ -96,8 +96,8 @@
             lblBuyPrice = new Label();
             lblNominalHeader = new Label();
             grpSchedule = new GroupBox();
+            pnlChartContainer = new Panel();
             dgvSchedule = new DataGridView();
-            chartSchedule = new Chart();
             colSchDate = new DataGridViewTextBoxColumn();
             colSchType = new DataGridViewTextBoxColumn();
             colSchNominal = new DataGridViewTextBoxColumn();
@@ -126,7 +126,6 @@
             grpOutput.SuspendLayout();
             grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartSchedule).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitMain).BeginInit();
             splitMain.Panel1.SuspendLayout();
             splitMain.Panel2.SuspendLayout();
@@ -147,7 +146,7 @@
             grpParameters.Dock = DockStyle.Top;
             grpParameters.Location = new Point(0, 0);
             grpParameters.Name = "grpParameters";
-            grpParameters.Size = new Size(387, 129);
+            grpParameters.Size = new Size(360, 129);
             grpParameters.TabIndex = 0;
             grpParameters.TabStop = false;
             grpParameters.Text = "Bond Parameters";
@@ -239,7 +238,7 @@
             grpDeal.Dock = DockStyle.Top;
             grpDeal.Location = new Point(0, 609);
             grpDeal.Name = "grpDeal";
-            grpDeal.Size = new Size(387, 110);
+            grpDeal.Size = new Size(360, 110);
             grpDeal.TabIndex = 15;
             grpDeal.TabStop = false;
             grpDeal.Text = "Deal";
@@ -320,7 +319,7 @@
             grpCoupons.Dock = DockStyle.Top;
             grpCoupons.Location = new Point(0, 129);
             grpCoupons.Name = "grpCoupons";
-            grpCoupons.Size = new Size(387, 285);
+            grpCoupons.Size = new Size(360, 285);
             grpCoupons.TabIndex = 1;
             grpCoupons.TabStop = false;
             grpCoupons.Text = "Coupons";
@@ -482,7 +481,7 @@
             dgvCoupons.Name = "dgvCoupons";
             dgvCoupons.RowHeadersVisible = false;
             dgvCoupons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCoupons.Size = new Size(370, 117);
+            dgvCoupons.Size = new Size(343, 117);
             dgvCoupons.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn3
@@ -508,7 +507,7 @@
             grpAmortizations.Dock = DockStyle.Top;
             grpAmortizations.Location = new Point(0, 414);
             grpAmortizations.Name = "grpAmortizations";
-            grpAmortizations.Size = new Size(387, 195);
+            grpAmortizations.Size = new Size(360, 195);
             grpAmortizations.TabIndex = 2;
             grpAmortizations.TabStop = false;
             grpAmortizations.Text = "Amortizations";
@@ -597,7 +596,7 @@
             dgvAmortizations.Name = "dgvAmortizations";
             dgvAmortizations.RowHeadersVisible = false;
             dgvAmortizations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAmortizations.Size = new Size(370, 110);
+            dgvAmortizations.Size = new Size(343, 110);
             dgvAmortizations.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -616,7 +615,7 @@
             btnCalculate.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             btnCalculate.Location = new Point(8, 724);
             btnCalculate.Name = "btnCalculate";
-            btnCalculate.Size = new Size(304, 60);
+            btnCalculate.Size = new Size(277, 60);
             btnCalculate.TabIndex = 3;
             btnCalculate.Text = "Calculate";
             btnCalculate.UseVisualStyleBackColor = true;
@@ -626,7 +625,7 @@
             // 
             btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             btnReset.Font = new Font("Segoe UI", 24F);
-            btnReset.Location = new Point(318, 724);
+            btnReset.Location = new Point(291, 724);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(60, 60);
             btnReset.TabIndex = 14;
@@ -715,7 +714,7 @@
             grpOutput.Dock = DockStyle.Top;
             grpOutput.Location = new Point(0, 0);
             grpOutput.Name = "grpOutput";
-            grpOutput.Size = new Size(513, 200);
+            grpOutput.Size = new Size(540, 200);
             grpOutput.TabIndex = 2;
             grpOutput.TabStop = false;
             grpOutput.Text = "Results";
@@ -951,12 +950,12 @@
             // 
             // grpSchedule
             // 
-            grpSchedule.Controls.Add(chartSchedule);
             grpSchedule.Controls.Add(dgvSchedule);
+            grpSchedule.Controls.Add(pnlChartContainer);
             grpSchedule.Dock = DockStyle.Fill;
             grpSchedule.Location = new Point(0, 200);
             grpSchedule.Name = "grpSchedule";
-            grpSchedule.Size = new Size(513, 591);
+            grpSchedule.Size = new Size(540, 591);
             grpSchedule.TabIndex = 1;
             grpSchedule.TabStop = false;
             grpSchedule.Text = "Coupon Schedule";
@@ -973,39 +972,8 @@
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.ReadOnly = true;
             dgvSchedule.RowHeadersVisible = false;
-            dgvSchedule.Size = new Size(507, 250);
+            dgvSchedule.Size = new Size(534, 250);
             dgvSchedule.TabIndex = 0;
-            // 
-            // chartSchedule
-            // 
-            chartSchedule.BackColor = SystemColors.Control;
-            chartSchedule.Dock = DockStyle.Fill;
-            chartSchedule.Location = new Point(3, 269);
-            chartSchedule.Name = "chartSchedule";
-            chartSchedule.Size = new Size(480, 319);
-            chartSchedule.TabIndex = 1;
-            var chartArea = new ChartArea("Default");
-            chartArea.BackColor = Color.Transparent;
-            chartArea.Position.Auto = false;
-            chartArea.Position = new ElementPosition(0, 0, 100, 100);
-            chartArea.InnerPlotPosition = new ElementPosition(10, 5, 90, 70);
-            //chartArea.AxisY.Title = "Yield";
-            //chartArea.AxisY.TitleFont = new Font(Font.FontFamily, 8);
-            //chartArea.AxisX.Title = "Date";
-            //chartArea.AxisX.TitleFont = new Font(Font.FontFamily, 8);
-            chartArea.AxisX.LabelStyle.Format = "dd.MM.yy";
-            chartArea.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
-            chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
-            chartArea.AxisY.LabelStyle.Format = "{0:F1}%";
-            chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
-            chartArea.AxisX.IsMarginVisible = false;
-            chartArea.AxisY.IsMarginVisible = false;
-            chartSchedule.ChartAreas.Add(chartArea);
-            var legend = new Legend();
-            legend.BackColor = Color.Transparent;
-            legend.Docking = Docking.Bottom;
-            legend.Alignment = StringAlignment.Center;
-            chartSchedule.Legends.Add(legend);
             // 
             // colSchDate
             // 
@@ -1043,6 +1011,15 @@
             colSchCumReal.Name = "colSchCumReal";
             colSchCumReal.ReadOnly = true;
             // 
+            // 
+            // pnlChartContainer
+            // 
+            pnlChartContainer.Dock = DockStyle.Fill;
+            pnlChartContainer.Location = new Point(3, 269);
+            pnlChartContainer.Name = "pnlChartContainer";
+            pnlChartContainer.Size = new Size(534, 319);
+            pnlChartContainer.TabIndex = 1;
+            // 
             // splitMain
             // 
             splitMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -1064,8 +1041,9 @@
             splitMain.Panel2.Controls.Add(grpSchedule);
             splitMain.Panel2.Controls.Add(grpOutput);
             splitMain.Panel2.Controls.Add(grpResults);
+            splitMain.Panel2MinSize = 540;
             splitMain.Size = new Size(904, 791);
-            splitMain.SplitterDistance = 387;
+            splitMain.SplitterDistance = 360;
             splitMain.TabIndex = 0;
             splitMain.TabStop = false;
             // 
@@ -1128,7 +1106,6 @@
             grpOutput.ResumeLayout(false);
             grpSchedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartSchedule).EndInit();
             splitMain.Panel1.ResumeLayout(false);
             splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitMain).EndInit();
@@ -1206,8 +1183,8 @@
         private Label lblYtmLabel;
 
         private GroupBox grpSchedule;
+        private Panel pnlChartContainer;
         private DataGridView dgvSchedule;
-        private Chart chartSchedule;
 
         private SplitContainer splitMain;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

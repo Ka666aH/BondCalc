@@ -6,26 +6,58 @@ namespace BondCalc.App.Presentation.Forms
 {
     public partial class BondCalc : Form
     {
+        private Chart chartSchedule = null!;
+
         public BondCalc()
         {
             Localization.SetCulture("en-US");
             InitializeComponent();
+            InitializeChart();
             ApplyLanguage();
             Reset();
+        }
+        private void InitializeChart()
+        {
+            chartSchedule = new Chart();
+            chartSchedule.Dock = DockStyle.Fill;
+            chartSchedule.BackColor = SystemColors.Control;
+            chartSchedule.Name = "chartSchedule";
+
+            var chartArea = new ChartArea("Default");
+            chartArea.BackColor = Color.Transparent;
+            chartArea.Position.Auto = false;
+            chartArea.Position = new ElementPosition(0, 0, 100, 100);
+            chartArea.InnerPlotPosition = new ElementPosition(10, 5, 90, 70);
+            chartArea.AxisX.LabelStyle.Format = "dd.MM.yy";
+            chartArea.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
+            chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
+            chartArea.AxisY.LabelStyle.Format = "{0:F1}%";
+            chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
+            chartArea.AxisX.IsMarginVisible = false;
+            chartArea.AxisY.IsMarginVisible = false;
+            chartSchedule.ChartAreas.Add(chartArea);
+
+            var legend = new Legend();
+            legend.BackColor = Color.Transparent;
+            legend.Docking = Docking.Bottom;
+            legend.Alignment = StringAlignment.Center;
+            chartSchedule.Legends.Add(legend);
+
+            pnlChartContainer.Controls.Add(chartSchedule);
         }
 
         private void OnLanguageEnglish(object? sender, EventArgs e)
         {
             Localization.SetCulture("en-US");
             ApplyLanguage();
-            Reset();
+            UpdateChartSeriesLanguage();
         }
 
         private void OnLanguageRussian(object? sender, EventArgs e)
         {
             Localization.SetCulture("ru-RU");
             ApplyLanguage();
-            Reset();
+            UpdateChartSeriesLanguage();
         }
 
         private void ApplyLanguage()
@@ -100,6 +132,18 @@ namespace BondCalc.App.Presentation.Forms
             russianItem.Text = t("MenuRussian");
 
             UpdateAmortAmountLabel();
+        }
+
+        private void UpdateChartSeriesLanguage()
+        {
+            foreach (Series series in chartSchedule.Series)
+            {
+                if (series.Tag is string key)
+                {
+                    series.Name = Localization.GetString(key);
+                    series.LegendText = Localization.GetString(key);
+                }
+            }
         }
 
         private static string TranslateType(string type)
@@ -291,23 +335,29 @@ namespace BondCalc.App.Presentation.Forms
                 }
 
                 chartSchedule.Series.Clear();
-                var nominalSeries = new Series(Localization.GetString("ChartNominalYield"))
+                var nominalSeries = new Series
                 {
+                    Tag = "ChartNominalYield",
+                    Name = Localization.GetString("ChartNominalYield"),
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.Green),
                     BorderWidth = 2,
                     IsVisibleInLegend = true
                 };
-                var realSeries = new Series(Localization.GetString("ChartRealYield"))
+                var realSeries = new Series
                 {
+                    Tag = "ChartRealYield",
+                    Name = Localization.GetString("ChartRealYield"),
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.DodgerBlue),
                     BorderWidth = 2,
                     BorderDashStyle = ChartDashStyle.Dash,
                     IsVisibleInLegend = true
                 };
-                var inflationSeries = new Series(Localization.GetString("ChartInflation"))
+                var inflationSeries = new Series
                 {
+                    Tag = "ChartInflation",
+                    Name = Localization.GetString("ChartInflation"),
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.Red),
                     BorderWidth = 2,
