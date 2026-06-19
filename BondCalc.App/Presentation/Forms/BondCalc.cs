@@ -133,6 +133,7 @@ namespace BondCalc.App.Presentation.Forms
 
             RefreshScheduleTypes();
             RefreshScheduleFormats();
+            RefreshResultFormats();
             UpdateAmortAmountLabel();
         }
 
@@ -339,18 +340,17 @@ namespace BondCalc.App.Presentation.Forms
 
                 var result = new Calculator(bond, deal, inflationRate);
 
-                lblBuyPriceVal.Text = result.BuyPrice.ToString("N2");
-
-                lblRepayIncomeVal.Text = result.RepaymentIncome.ToString("N2");
-                lblCouponIncomeVal.Text = result.TotalCouponIncome.ToString("N2");
-                lblTotalIncomeVal.Text = result.TotalIncome.ToString("N2");
-                lblTotalYieldVal.Text = result.TotalYield.ToString("P2");
-                lblAnnualYieldVal.Text = result.AnnualYield.ToString("P2");
-                lblRealRepayIncomeVal.Text = result.RealRepaymentIncome.ToString("N2");
-                lblRealCouponIncomeVal.Text = result.RealTotalCouponIncome.ToString("N2");
-                lblRealIncomeVal.Text = result.RealTotalIncome.ToString("N2");
-                lblRealYieldVal.Text = result.RealTotalYield.ToString("P2");
-                lblRealAnnualYieldVal.Text = result.RealAnnualYield.ToString("P2");
+                SetResultValue(lblBuyPriceVal, result.BuyPrice, "N2");
+                SetResultValue(lblRepayIncomeVal, result.RepaymentIncome, "N2");
+                SetResultValue(lblCouponIncomeVal, result.TotalCouponIncome, "N2");
+                SetResultValue(lblTotalIncomeVal, result.TotalIncome, "N2");
+                SetResultValue(lblTotalYieldVal, result.TotalYield, "P2");
+                SetResultValue(lblAnnualYieldVal, result.AnnualYield, "P2");
+                SetResultValue(lblRealRepayIncomeVal, result.RealRepaymentIncome, "N2");
+                SetResultValue(lblRealCouponIncomeVal, result.RealTotalCouponIncome, "N2");
+                SetResultValue(lblRealIncomeVal, result.RealTotalIncome, "N2");
+                SetResultValue(lblRealYieldVal, result.RealTotalYield, "P2");
+                SetResultValue(lblRealAnnualYieldVal, result.RealAnnualYield, "P2");
 
                 dgvSchedule.Rows.Clear();
                 foreach (var row in result.Schedule)
@@ -419,19 +419,42 @@ namespace BondCalc.App.Presentation.Forms
             }
         }
 
+        private static void SetResultValue(Label label, double value, string format)
+        {
+            label.Tag = (value, format);
+            label.Text = value.ToString(format);
+        }
+
+        private void RefreshResultFormats()
+        {
+            foreach (var label in new[]
+            {
+                lblBuyPriceVal, lblRepayIncomeVal, lblCouponIncomeVal,
+                lblTotalIncomeVal, lblTotalYieldVal, lblAnnualYieldVal,
+                lblRealRepayIncomeVal, lblRealCouponIncomeVal, lblRealIncomeVal,
+                lblRealYieldVal, lblRealAnnualYieldVal
+            })
+            {
+                if (label.Tag is (double value, string format))
+                {
+                    label.Text = value.ToString(format);
+                }
+            }
+        }
+
         private void ClearResults()
         {
-            lblBuyPriceVal.Text = "-";
-            lblRepayIncomeVal.Text = "-";
-            lblCouponIncomeVal.Text = "-";
-            lblTotalIncomeVal.Text = "-";
-            lblTotalYieldVal.Text = "-";
-            lblAnnualYieldVal.Text = "-";
-            lblRealRepayIncomeVal.Text = "-";
-            lblRealCouponIncomeVal.Text = "-";
-            lblRealIncomeVal.Text = "-";
-            lblRealYieldVal.Text = "-";
-            lblRealAnnualYieldVal.Text = "-";
+            foreach (var label in new[]
+            {
+                lblBuyPriceVal, lblRepayIncomeVal, lblCouponIncomeVal,
+                lblTotalIncomeVal, lblTotalYieldVal, lblAnnualYieldVal,
+                lblRealRepayIncomeVal, lblRealCouponIncomeVal, lblRealIncomeVal,
+                lblRealYieldVal, lblRealAnnualYieldVal
+            })
+            {
+                label.Tag = null;
+                label.Text = "-";
+            }
         }
 
         private Bond BuildBond()
