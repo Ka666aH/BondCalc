@@ -97,6 +97,7 @@
             lblNominalHeader = new Label();
             grpSchedule = new GroupBox();
             dgvSchedule = new DataGridView();
+            chartSchedule = new Chart();
             colSchDate = new DataGridViewTextBoxColumn();
             colSchType = new DataGridViewTextBoxColumn();
             colSchNominal = new DataGridViewTextBoxColumn();
@@ -125,6 +126,7 @@
             grpOutput.SuspendLayout();
             grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartSchedule).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitMain).BeginInit();
             splitMain.Panel1.SuspendLayout();
             splitMain.Panel2.SuspendLayout();
@@ -949,6 +951,7 @@
             // 
             // grpSchedule
             // 
+            grpSchedule.Controls.Add(chartSchedule);
             grpSchedule.Controls.Add(dgvSchedule);
             grpSchedule.Dock = DockStyle.Fill;
             grpSchedule.Location = new Point(0, 200);
@@ -972,6 +975,37 @@
             dgvSchedule.RowHeadersVisible = false;
             dgvSchedule.Size = new Size(507, 250);
             dgvSchedule.TabIndex = 0;
+            // 
+            // chartSchedule
+            // 
+            chartSchedule.BackColor = SystemColors.Control;
+            chartSchedule.Dock = DockStyle.Fill;
+            chartSchedule.Location = new Point(3, 269);
+            chartSchedule.Name = "chartSchedule";
+            chartSchedule.Size = new Size(480, 319);
+            chartSchedule.TabIndex = 1;
+            var chartArea = new ChartArea("Default");
+            chartArea.BackColor = Color.Transparent;
+            chartArea.Position.Auto = false;
+            chartArea.Position = new ElementPosition(0, 0, 100, 100);
+            chartArea.InnerPlotPosition = new ElementPosition(10, 5, 90, 70);
+            //chartArea.AxisY.Title = "Yield";
+            //chartArea.AxisY.TitleFont = new Font(Font.FontFamily, 8);
+            //chartArea.AxisX.Title = "Date";
+            //chartArea.AxisX.TitleFont = new Font(Font.FontFamily, 8);
+            chartArea.AxisX.LabelStyle.Format = "dd.MM.yy";
+            chartArea.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
+            chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
+            chartArea.AxisY.LabelStyle.Format = "{0:F1}%";
+            chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
+            chartArea.AxisX.IsMarginVisible = false;
+            chartArea.AxisY.IsMarginVisible = false;
+            chartSchedule.ChartAreas.Add(chartArea);
+            var legend = new Legend();
+            legend.BackColor = Color.Transparent;
+            legend.Docking = Docking.Bottom;
+            legend.Alignment = StringAlignment.Center;
+            chartSchedule.Legends.Add(legend);
             // 
             // colSchDate
             // 
@@ -1094,6 +1128,7 @@
             grpOutput.ResumeLayout(false);
             grpSchedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartSchedule).EndInit();
             splitMain.Panel1.ResumeLayout(false);
             splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitMain).EndInit();
