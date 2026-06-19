@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -53,73 +112,201 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FormTitle" xml:space="preserve"><value>BondCalc - Inflation-Adjusted Bond Yield Calculator</value></data>
-  <data name="GrpParameters" xml:space="preserve"><value>Bond Parameters</value></data>
-  <data name="GrpCoupons" xml:space="preserve"><value>Coupons</value></data>
-  <data name="GrpAmortizations" xml:space="preserve"><value>Amortizations</value></data>
-  <data name="GrpDeal" xml:space="preserve"><value>Deal</value></data>
-  <data name="GrpOutput" xml:space="preserve"><value>Results</value></data>
-  <data name="GrpSchedule" xml:space="preserve"><value>Coupon Schedule</value></data>
-  <data name="GrpResults" xml:space="preserve"><value>Results</value></data>
-  <data name="LblNominal" xml:space="preserve"><value>Nominal Value:</value></data>
-  <data name="LblPlacement" xml:space="preserve"><value>Issue Date:</value></data>
-  <data name="LblRepayment" xml:space="preserve"><value>Maturity / Offer Date:</value></data>
-  <data name="LblInflation" xml:space="preserve"><value>Inflation Rate (%):</value></data>
-  <data name="LblPrice" xml:space="preserve"><value>Clean Price:</value></data>
-  <data name="LblAccrued" xml:space="preserve"><value>Accrued Interest (НКД):</value></data>
-  <data name="LblPurchaseDate" xml:space="preserve"><value>Purchase Date:</value></data>
-  <data name="LblFirstCoupon" xml:space="preserve"><value>First Coupon Date:</value></data>
-  <data name="LblLastCoupon" xml:space="preserve"><value>Last Coupon Date:</value></data>
-  <data name="LblPeriod" xml:space="preserve"><value>Period (days):</value></data>
-  <data name="LblCouponAmount" xml:space="preserve"><value>Coupon Amount:</value></data>
-  <data name="LblAmortParts" xml:space="preserve"><value>Number of Parts:</value></data>
-  <data name="BtnCalculate" xml:space="preserve"><value>Calculate</value></data>
-  <data name="BtnAdd" xml:space="preserve"><value>Add</value></data>
-  <data name="BtnRemove" xml:space="preserve"><value>Remove</value></data>
-  <data name="BtnClear" xml:space="preserve"><value>Clear</value></data>
-  <data name="BtnGenerate" xml:space="preserve"><value>Generate</value></data>
-  <data name="LblNominalHeader" xml:space="preserve"><value>── Nominal ──</value></data>
-  <data name="LblBuyPrice" xml:space="preserve"><value>Dirty Price:</value></data>
-  <data name="LblRepayIncome" xml:space="preserve"><value>Redemption Income:</value></data>
-  <data name="LblCouponIncome" xml:space="preserve"><value>Total Coupon Income:</value></data>
-  <data name="LblTotalIncome" xml:space="preserve"><value>Total Income:</value></data>
-  <data name="LblTotalYield" xml:space="preserve"><value>Total Yield:</value></data>
-  <data name="LblAnnualYield" xml:space="preserve"><value>Annual Yield:</value></data>
-  <data name="LblRealHeader" xml:space="preserve"><value>── Real (Inflation-Adjusted) ──</value></data>
-  <data name="LblRealIncome" xml:space="preserve"><value>Real Total Income:</value></data>
-  <data name="LblRealYield" xml:space="preserve"><value>Real Total Yield:</value></data>
-  <data name="LblRealAnnualYield" xml:space="preserve"><value>Real Annual Yield:</value></data>
-  <data name="LblRealRepayIncome" xml:space="preserve"><value>Real Redemption Income:</value></data>
-  <data name="LblRealCouponIncome" xml:space="preserve"><value>Real Total Coupon Income:</value></data>
-  <data name="LblYtmLabel" xml:space="preserve"><value>Real YTM:</value></data>
-  <data name="LblSellByLabel" xml:space="preserve"><value>Sell-By Date:</value></data>
-  <data name="ColDate" xml:space="preserve"><value>Date</value></data>
-  <data name="ColAmount" xml:space="preserve"><value>Amount</value></data>
-  <data name="ColType" xml:space="preserve"><value>Type</value></data>
-  <data name="ColNominalAmount" xml:space="preserve"><value>Nominal Amount</value></data>
-  <data name="ColCumIncome" xml:space="preserve"><value>Cumulative Income</value></data>
-  <data name="ColRealAmount" xml:space="preserve"><value>Real Amount</value></data>
-  <data name="ColCumRealIncome" xml:space="preserve"><value>Cumulative Real Income</value></data>
-  <data name="MenuLanguage" xml:space="preserve"><value>Language</value></data>
-  <data name="MenuEnglish" xml:space="preserve"><value>English</value></data>
-  <data name="MenuRussian" xml:space="preserve"><value>Русский</value></data>
-  <data name="ChartNominalYield" xml:space="preserve"><value>Nominal Yield</value></data>
-  <data name="ChartRealYield" xml:space="preserve"><value>Real Yield</value></data>
-  <data name="ChartInflation" xml:space="preserve"><value>Inflation</value></data>
-  <data name="TypeCoupon" xml:space="preserve"><value>Coupon</value></data>
-  <data name="TypeAmortization" xml:space="preserve"><value>Amortization</value></data>
-  <data name="TypeRepayment" xml:space="preserve"><value>Redemption</value></data>
-  <data name="MsgPeriodInvalid" xml:space="preserve"><value>Period must be greater than 0.</value></data>
-  <data name="MsgPeriodInvalidTitle" xml:space="preserve"><value>Invalid Input</value></data>
-  <data name="MsgDateOrderInvalid" xml:space="preserve"><value>First coupon date must be before last coupon date.</value></data>
-  <data name="MsgDateOrderInvalidTitle" xml:space="preserve"><value>Invalid Input</value></data>
-  <data name="MsgNoCoupons" xml:space="preserve"><value>No coupons generated. Check the date range.</value></data>
-  <data name="MsgNoCouponsTitle" xml:space="preserve"><value>Empty Result</value></data>
-  <data name="MsgCalcErrorTitle" xml:space="preserve"><value>Calculation Error</value></data>
-  <data name="AmortAmountPrefix" xml:space="preserve"><value>Amount:</value></data>
+  <data name="FormTitle" xml:space="preserve">
+    <value>BondCalc - Inflation-Adjusted Bond Yield Calculator</value>
+  </data>
+  <data name="GrpParameters" xml:space="preserve">
+    <value>Bond Parameters</value>
+  </data>
+  <data name="GrpCoupons" xml:space="preserve">
+    <value>Coupons</value>
+  </data>
+  <data name="GrpAmortizations" xml:space="preserve">
+    <value>Amortizations</value>
+  </data>
+  <data name="GrpDeal" xml:space="preserve">
+    <value>Deal</value>
+  </data>
+  <data name="GrpOutput" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="GrpSchedule" xml:space="preserve">
+    <value>Coupon Schedule</value>
+  </data>
+  <data name="GrpResults" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="LblNominal" xml:space="preserve">
+    <value>Nominal Value:</value>
+  </data>
+  <data name="LblPlacement" xml:space="preserve">
+    <value>Issue Date:</value>
+  </data>
+  <data name="LblRepayment" xml:space="preserve">
+    <value>Maturity / Offer Date:</value>
+  </data>
+  <data name="LblInflation" xml:space="preserve">
+    <value>Inflation Rate (%):</value>
+  </data>
+  <data name="LblPrice" xml:space="preserve">
+    <value>Clean Price:</value>
+  </data>
+  <data name="LblAccrued" xml:space="preserve">
+    <value>Accrued Interest:</value>
+  </data>
+  <data name="LblPurchaseDate" xml:space="preserve">
+    <value>Purchase Date:</value>
+  </data>
+  <data name="LblFirstCoupon" xml:space="preserve">
+    <value>First Coupon Date:</value>
+  </data>
+  <data name="LblLastCoupon" xml:space="preserve">
+    <value>Last Coupon Date:</value>
+  </data>
+  <data name="LblPeriod" xml:space="preserve">
+    <value>Period (days):</value>
+  </data>
+  <data name="LblCouponAmount" xml:space="preserve">
+    <value>Coupon Amount:</value>
+  </data>
+  <data name="LblAmortParts" xml:space="preserve">
+    <value>Number of Parts:</value>
+  </data>
+  <data name="BtnCalculate" xml:space="preserve">
+    <value>Calculate</value>
+  </data>
+  <data name="BtnAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="BtnRemove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="BtnClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="BtnGenerate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="LblNominalHeader" xml:space="preserve">
+    <value>── Nominal ──</value>
+  </data>
+  <data name="LblBuyPrice" xml:space="preserve">
+    <value>Dirty Price:</value>
+  </data>
+  <data name="LblRepayIncome" xml:space="preserve">
+    <value>Redemption Income:</value>
+  </data>
+  <data name="LblCouponIncome" xml:space="preserve">
+    <value>Total Coupon Income:</value>
+  </data>
+  <data name="LblTotalIncome" xml:space="preserve">
+    <value>Total Income:</value>
+  </data>
+  <data name="LblTotalYield" xml:space="preserve">
+    <value>Total Yield:</value>
+  </data>
+  <data name="LblAnnualYield" xml:space="preserve">
+    <value>Annual Yield:</value>
+  </data>
+  <data name="LblRealHeader" xml:space="preserve">
+    <value>── Real (Inflation-Adjusted) ──</value>
+  </data>
+  <data name="LblRealIncome" xml:space="preserve">
+    <value>Real Total Income:</value>
+  </data>
+  <data name="LblRealYield" xml:space="preserve">
+    <value>Real Total Yield:</value>
+  </data>
+  <data name="LblRealAnnualYield" xml:space="preserve">
+    <value>Real Annual Yield:</value>
+  </data>
+  <data name="LblRealRepayIncome" xml:space="preserve">
+    <value>Real Redemption Income:</value>
+  </data>
+  <data name="LblRealCouponIncome" xml:space="preserve">
+    <value>Real Total Coupon Income:</value>
+  </data>
+  <data name="LblYtmLabel" xml:space="preserve">
+    <value>Real YTM:</value>
+  </data>
+  <data name="LblSellByLabel" xml:space="preserve">
+    <value>Sell-By Date:</value>
+  </data>
+  <data name="ColDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="ColAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="ColType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="ColNominalAmount" xml:space="preserve">
+    <value>Nominal Amount</value>
+  </data>
+  <data name="ColCumIncome" xml:space="preserve">
+    <value>Cumulative Income</value>
+  </data>
+  <data name="ColRealAmount" xml:space="preserve">
+    <value>Real Amount</value>
+  </data>
+  <data name="ColCumRealIncome" xml:space="preserve">
+    <value>Cumulative Real Income</value>
+  </data>
+  <data name="MenuLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MenuEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="MenuRussian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="ChartNominalYield" xml:space="preserve">
+    <value>Nominal Yield</value>
+  </data>
+  <data name="ChartRealYield" xml:space="preserve">
+    <value>Real Yield</value>
+  </data>
+  <data name="ChartInflation" xml:space="preserve">
+    <value>Inflation</value>
+  </data>
+  <data name="TypeCoupon" xml:space="preserve">
+    <value>Coupon</value>
+  </data>
+  <data name="TypeAmortization" xml:space="preserve">
+    <value>Amortization</value>
+  </data>
+  <data name="TypeRepayment" xml:space="preserve">
+    <value>Redemption</value>
+  </data>
+  <data name="MsgPeriodInvalid" xml:space="preserve">
+    <value>Period must be greater than 0.</value>
+  </data>
+  <data name="MsgPeriodInvalidTitle" xml:space="preserve">
+    <value>Invalid Input</value>
+  </data>
+  <data name="MsgDateOrderInvalid" xml:space="preserve">
+    <value>First coupon date must be before last coupon date.</value>
+  </data>
+  <data name="MsgDateOrderInvalidTitle" xml:space="preserve">
+    <value>Invalid Input</value>
+  </data>
+  <data name="MsgNoCoupons" xml:space="preserve">
+    <value>No coupons generated. Check the date range.</value>
+  </data>
+  <data name="MsgNoCouponsTitle" xml:space="preserve">
+    <value>Empty Result</value>
+  </data>
+  <data name="MsgCalcErrorTitle" xml:space="preserve">
+    <value>Calculation Error</value>
+  </data>
+  <data name="AmortAmountPrefix" xml:space="preserve">
+    <value>Amount:</value>
+  </data>
 </root>
