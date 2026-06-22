@@ -91,7 +91,6 @@
             lblBuyPrice = new Label();
             lblNominalHeader = new Label();
             grpSchedule = new GroupBox();
-            pnlChartContainer = new Panel();
             dgvSchedule = new DataGridView();
             colSchDate = new DataGridViewTextBoxColumn();
             colSchType = new DataGridViewTextBoxColumn();
@@ -99,6 +98,7 @@
             colSchCumNominal = new DataGridViewTextBoxColumn();
             colSchReal = new DataGridViewTextBoxColumn();
             colSchCumReal = new DataGridViewTextBoxColumn();
+            pnlChartContainer = new Panel();
             splitMain = new SplitContainer();
             menuStrip = new MenuStrip();
             toolsMenuItem = new ToolStripMenuItem();
@@ -151,7 +151,6 @@
             nudInflation.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             nudInflation.Location = new Point(140, 100);
             nudInflation.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            nudInflation.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             nudInflation.Name = "nudInflation";
             nudInflation.Size = new Size(211, 23);
             nudInflation.TabIndex = 7;
@@ -634,8 +633,6 @@
             btnReset.UseVisualStyleBackColor = true;
             btnReset.Click += btnReset_Click;
             // 
-
-            // 
             // grpOutput
             // 
             grpOutput.Controls.Add(lblRealRepayIncomeVal);
@@ -962,10 +959,9 @@
             colSchCumReal.Name = "colSchCumReal";
             colSchCumReal.ReadOnly = true;
             // 
-            // 
             // pnlChartContainer
             // 
-            pnlChartContainer.Dock = DockStyle.Fill;
+            pnlChartContainer.Dock = DockStyle.Bottom;
             pnlChartContainer.Location = new Point(3, 269);
             pnlChartContainer.Name = "pnlChartContainer";
             pnlChartContainer.Size = new Size(534, 319);

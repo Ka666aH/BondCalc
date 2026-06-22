@@ -165,6 +165,7 @@ namespace BondCalc.App.Presentation.Forms
                     && decimal.TryParse(text, NumberStyles.Any, _oldCulture, out var val))
                 {
                     val = Math.Max(nud.Minimum, Math.Min(nud.Maximum, val));
+                    nud.Value = nud.Minimum;
                     nud.Value = val;
                 }
             }
