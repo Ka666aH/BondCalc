@@ -19,14 +19,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BondCalc));
             grpParameters = new GroupBox();
-            nudInflation = new NumericUpDown();
             nudNominal = new NumericUpDown();
             dtpRepayment = new DateTimePicker();
             dtpPlacement = new DateTimePicker();
-            lblInflation = new Label();
             lblRepayment = new Label();
             lblPlacement = new Label();
             lblNominal = new Label();
+            nudInflation = new NumericUpDown();
+            lblInflation = new Label();
             grpDeal = new GroupBox();
             nudPurchase = new DateTimePicker();
             label1 = new Label();
@@ -106,8 +106,8 @@
             englishItem = new ToolStripMenuItem();
             russianItem = new ToolStripMenuItem();
             grpParameters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudInflation).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudInflation).BeginInit();
             grpDeal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudAccrued).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudPrice).BeginInit();
@@ -130,34 +130,19 @@
             // 
             // grpParameters
             // 
-            grpParameters.Controls.Add(nudInflation);
             grpParameters.Controls.Add(nudNominal);
             grpParameters.Controls.Add(dtpRepayment);
             grpParameters.Controls.Add(dtpPlacement);
-            grpParameters.Controls.Add(lblInflation);
             grpParameters.Controls.Add(lblRepayment);
             grpParameters.Controls.Add(lblPlacement);
             grpParameters.Controls.Add(lblNominal);
             grpParameters.Dock = DockStyle.Top;
             grpParameters.Location = new Point(0, 0);
             grpParameters.Name = "grpParameters";
-            grpParameters.Size = new Size(418, 129);
+            grpParameters.Size = new Size(418, 104);
             grpParameters.TabIndex = 0;
             grpParameters.TabStop = false;
             grpParameters.Text = "Bond Parameters";
-            // 
-            // nudInflation
-            // 
-            nudInflation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            nudInflation.DecimalPlaces = 2;
-            nudInflation.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
-            nudInflation.Location = new Point(176, 100);
-            nudInflation.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            nudInflation.Name = "nudInflation";
-            nudInflation.Size = new Size(230, 23);
-            nudInflation.TabIndex = 3;
-            nudInflation.ThousandsSeparator = true;
-            nudInflation.Value = new decimal(new int[] { 15, 0, 0, 0 });
             // 
             // nudNominal
             // 
@@ -168,7 +153,7 @@
             nudNominal.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudNominal.Name = "nudNominal";
             nudNominal.Size = new Size(230, 23);
-            nudNominal.TabIndex = 0;
+            nudNominal.TabIndex = 1;
             nudNominal.ThousandsSeparator = true;
             nudNominal.Value = new decimal(new int[] { 1000, 0, 0, 0 });
             // 
@@ -179,7 +164,7 @@
             dtpRepayment.Location = new Point(176, 74);
             dtpRepayment.Name = "dtpRepayment";
             dtpRepayment.Size = new Size(230, 23);
-            dtpRepayment.TabIndex = 2;
+            dtpRepayment.TabIndex = 3;
             dtpRepayment.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
             dtpRepayment.ValueChanged += dtpRepayment_ValueChanged;
             // 
@@ -190,17 +175,8 @@
             dtpPlacement.Location = new Point(176, 48);
             dtpPlacement.Name = "dtpPlacement";
             dtpPlacement.Size = new Size(230, 23);
-            dtpPlacement.TabIndex = 1;
+            dtpPlacement.TabIndex = 2;
             dtpPlacement.Value = new DateTime(2025, 1, 1, 0, 0, 0, 0);
-            // 
-            // lblInflation
-            // 
-            lblInflation.Location = new Point(12, 102);
-            lblInflation.Name = "lblInflation";
-            lblInflation.Size = new Size(158, 20);
-            lblInflation.TabIndex = 6;
-            lblInflation.Text = "Inflation Rate (%):";
-            lblInflation.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblRepayment
             // 
@@ -229,18 +205,42 @@
             lblNominal.Text = "Nominal Value:";
             lblNominal.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // nudInflation
+            // 
+            nudInflation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            nudInflation.DecimalPlaces = 2;
+            nudInflation.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
+            nudInflation.Location = new Point(176, 102);
+            nudInflation.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            nudInflation.Name = "nudInflation";
+            nudInflation.Size = new Size(230, 23);
+            nudInflation.TabIndex = 25;
+            nudInflation.ThousandsSeparator = true;
+            nudInflation.Value = new decimal(new int[] { 15, 0, 0, 0 });
+            // 
+            // lblInflation
+            // 
+            lblInflation.Location = new Point(12, 102);
+            lblInflation.Name = "lblInflation";
+            lblInflation.Size = new Size(158, 20);
+            lblInflation.TabIndex = 6;
+            lblInflation.Text = "Inflation Rate (%):";
+            lblInflation.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // grpDeal
             // 
+            grpDeal.Controls.Add(nudInflation);
             grpDeal.Controls.Add(nudPurchase);
             grpDeal.Controls.Add(label1);
             grpDeal.Controls.Add(nudAccrued);
             grpDeal.Controls.Add(nudPrice);
             grpDeal.Controls.Add(lblAccrued);
             grpDeal.Controls.Add(lblPrice);
+            grpDeal.Controls.Add(lblInflation);
             grpDeal.Dock = DockStyle.Top;
-            grpDeal.Location = new Point(0, 609);
+            grpDeal.Location = new Point(0, 584);
             grpDeal.Name = "grpDeal";
-            grpDeal.Size = new Size(418, 110);
+            grpDeal.Size = new Size(418, 135);
             grpDeal.TabIndex = 15;
             grpDeal.TabStop = false;
             grpDeal.Text = "Deal";
@@ -324,7 +324,7 @@
             grpCoupons.Controls.Add(btnRemoveCoupon);
             grpCoupons.Controls.Add(dgvCoupons);
             grpCoupons.Dock = DockStyle.Top;
-            grpCoupons.Location = new Point(0, 129);
+            grpCoupons.Location = new Point(0, 104);
             grpCoupons.Name = "grpCoupons";
             grpCoupons.Size = new Size(418, 285);
             grpCoupons.TabIndex = 1;
@@ -517,7 +517,7 @@
             grpAmortizations.Controls.Add(btnAddAmortization);
             grpAmortizations.Controls.Add(dgvAmortizations);
             grpAmortizations.Dock = DockStyle.Top;
-            grpAmortizations.Location = new Point(0, 414);
+            grpAmortizations.Location = new Point(0, 389);
             grpAmortizations.Name = "grpAmortizations";
             grpAmortizations.Size = new Size(418, 195);
             grpAmortizations.TabIndex = 2;
@@ -1050,8 +1050,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BondCalc - Inflation-Adjusted Bond Yield Calculator";
             grpParameters.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)nudInflation).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudInflation).EndInit();
             grpDeal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudAccrued).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudPrice).EndInit();
