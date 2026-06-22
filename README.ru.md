@@ -1,4 +1,4 @@
-[Читать на английском](README.md)
+[English](README.md)
 
 # BondCalc
 
