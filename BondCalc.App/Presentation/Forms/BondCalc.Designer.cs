@@ -1039,6 +1039,7 @@
             Name = "BondCalc";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BondCalc - Inflation-Adjusted Bond Yield Calculator";
+            Icon = new Icon("bondCalc.ico");
             grpParameters.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudInflation).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).EndInit();
