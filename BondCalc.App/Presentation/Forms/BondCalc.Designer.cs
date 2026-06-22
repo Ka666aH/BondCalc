@@ -65,11 +65,6 @@
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             btnCalculate = new Button();
             btnReset = new Button();
-            grpResults = new GroupBox();
-            lblSellByValue = new Label();
-            lblSellByLabel = new Label();
-            lblYtmValue = new Label();
-            lblYtmLabel = new Label();
             grpOutput = new GroupBox();
             lblRealRepayIncomeVal = new Label();
             lblRealRepayIncome = new Label();
@@ -122,7 +117,6 @@
             grpAmortizations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudAmortParts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvAmortizations).BeginInit();
-            grpResults.SuspendLayout();
             grpOutput.SuspendLayout();
             grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
@@ -640,57 +634,7 @@
             btnReset.UseVisualStyleBackColor = true;
             btnReset.Click += btnReset_Click;
             // 
-            // grpResults
-            // 
-            grpResults.Controls.Add(lblSellByValue);
-            grpResults.Controls.Add(lblSellByLabel);
-            grpResults.Controls.Add(lblYtmValue);
-            grpResults.Controls.Add(lblYtmLabel);
-            grpResults.Location = new Point(0, 800);
-            grpResults.Name = "grpResults";
-            grpResults.Size = new Size(475, 80);
-            grpResults.TabIndex = 0;
-            grpResults.TabStop = false;
-            grpResults.Text = "Results";
-            grpResults.Visible = false;
-            // 
-            // lblSellByValue
-            // 
-            lblSellByValue.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblSellByValue.Location = new Point(200, 48);
-            lblSellByValue.Name = "lblSellByValue";
-            lblSellByValue.Size = new Size(200, 20);
-            lblSellByValue.TabIndex = 3;
-            lblSellByValue.Text = "-";
-            lblSellByValue.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblSellByLabel
-            // 
-            lblSellByLabel.Location = new Point(12, 48);
-            lblSellByLabel.Name = "lblSellByLabel";
-            lblSellByLabel.Size = new Size(180, 20);
-            lblSellByLabel.TabIndex = 2;
-            lblSellByLabel.Text = "Sell-By Date:";
-            lblSellByLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblYtmValue
-            // 
-            lblYtmValue.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblYtmValue.Location = new Point(200, 24);
-            lblYtmValue.Name = "lblYtmValue";
-            lblYtmValue.Size = new Size(200, 20);
-            lblYtmValue.TabIndex = 1;
-            lblYtmValue.Text = "-";
-            lblYtmValue.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblYtmLabel
-            // 
-            lblYtmLabel.Location = new Point(12, 24);
-            lblYtmLabel.Name = "lblYtmLabel";
-            lblYtmLabel.Size = new Size(180, 20);
-            lblYtmLabel.TabIndex = 0;
-            lblYtmLabel.Text = "Inflation-Adjusted YTM:";
-            lblYtmLabel.TextAlign = ContentAlignment.MiddleLeft;
+
             // 
             // grpOutput
             // 
@@ -1047,7 +991,6 @@
             // 
             splitMain.Panel2.Controls.Add(grpSchedule);
             splitMain.Panel2.Controls.Add(grpOutput);
-            splitMain.Panel2.Controls.Add(grpResults);
             splitMain.Panel2MinSize = 540;
             splitMain.Size = new Size(904, 791);
             splitMain.SplitterDistance = 360;
@@ -1109,7 +1052,6 @@
             grpAmortizations.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudAmortParts).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvAmortizations).EndInit();
-            grpResults.ResumeLayout(false);
             grpOutput.ResumeLayout(false);
             grpSchedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
@@ -1182,12 +1124,6 @@
 
         private Button btnCalculate;
         private Button btnReset;
-
-        private GroupBox grpResults;
-        private Label lblSellByValue;
-        private Label lblSellByLabel;
-        private Label lblYtmValue;
-        private Label lblYtmLabel;
 
         private GroupBox grpSchedule;
         private Panel pnlChartContainer;
