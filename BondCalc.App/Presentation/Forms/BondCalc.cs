@@ -49,18 +49,32 @@ namespace BondCalc.App.Presentation.Forms
 
         private void OnLanguageEnglish(object? sender, EventArgs e)
         {
-            SaveNumericTexts();
-            Localization.SetCulture("en-US");
-            ApplyLanguage();
-            UpdateChartSeriesLanguage();
+            try
+            {
+                SaveNumericTexts();
+                Localization.SetCulture("en-US");
+                ApplyLanguage();
+                UpdateChartSeriesLanguage();
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
+            }
         }
 
         private void OnLanguageRussian(object? sender, EventArgs e)
         {
-            SaveNumericTexts();
-            Localization.SetCulture("ru-RU");
-            ApplyLanguage();
-            UpdateChartSeriesLanguage();
+            try
+            {
+                SaveNumericTexts();
+                Localization.SetCulture("ru-RU");
+                ApplyLanguage();
+                UpdateChartSeriesLanguage();
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
+            }
         }
 
         private void ApplyLanguage()
@@ -75,8 +89,6 @@ namespace BondCalc.App.Presentation.Forms
             grpDeal.Text = t("GrpDeal");
             grpOutput.Text = t("GrpOutput");
             grpSchedule.Text = t("GrpSchedule");
-            grpResults.Text = t("GrpResults");
-
             lblNominal.Text = t("LblNominal");
             lblPlacement.Text = t("LblPlacement");
             lblRepayment.Text = t("LblRepayment");
@@ -116,9 +128,6 @@ namespace BondCalc.App.Presentation.Forms
             lblRealRepayIncome.Text = t("LblRealRepayIncome");
             lblRealCouponIncome.Text = t("LblRealCouponIncome");
 
-            lblYtmLabel.Text = t("LblYtmLabel");
-            lblSellByLabel.Text = t("LblSellByLabel");
-
             dataGridViewTextBoxColumn3.HeaderText = t("ColDate");
             dataGridViewTextBoxColumn4.HeaderText = t("ColAmount");
             dataGridViewTextBoxColumn1.HeaderText = t("ColDate");
@@ -155,7 +164,7 @@ namespace BondCalc.App.Presentation.Forms
                 if (_savedNudText.TryGetValue(nud.Name, out var text)
                     && decimal.TryParse(text, NumberStyles.Any, _oldCulture, out var val))
                 {
-                    nud.Value = nud.Minimum;
+                    val = Math.Max(nud.Minimum, Math.Min(nud.Maximum, val));
                     nud.Value = val;
                 }
             }
@@ -251,14 +260,32 @@ namespace BondCalc.App.Presentation.Forms
 
         private void btnAddCoupon_Click(object? sender, EventArgs e)
         {
-            dgvCoupons.Rows.Add(DateOnly.FromDateTime(DateTime.Now), (double)nudCouponAmount.Value);
+            try
+            {
+                dgvCoupons.Rows.Add(DateOnly.FromDateTime(DateTime.Now), (double)nudCouponAmount.Value);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
+            }
         }
 
         private void btnRemoveCoupon_Click(object? sender, EventArgs e)
         {
-            if (dgvCoupons.SelectedRows.Count > 0)
+            try
             {
-                dgvCoupons.Rows.RemoveAt(dgvCoupons.SelectedRows[0].Index);
+                if (dgvCoupons.SelectedRows.Count > 0)
+                {
+                    var index = dgvCoupons.SelectedRows[0].Index;
+                    if (index >= 0 && index < dgvCoupons.Rows.Count)
+                    {
+                        dgvCoupons.Rows.RemoveAt(index);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
             }
         }
 
@@ -269,55 +296,88 @@ namespace BondCalc.App.Presentation.Forms
 
         private void btnGenerateCoupons_Click(object? sender, EventArgs e)
         {
-            var first = dtpFirstCoupon.Value;
-            var last = dtpLastCoupon.Value;
-            var period = (int)nudPeriod.Value;
-            var amount = (double)nudCouponAmount.Value;
-
-            if (period <= 0)
+            try
             {
-                MessageBox.Show(Localization.GetString("MsgPeriodInvalid"), Localization.GetString("MsgPeriodInvalidTitle"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                var first = dtpFirstCoupon.Value;
+                var last = dtpLastCoupon.Value;
+                var period = (int)nudPeriod.Value;
+                var amount = (double)nudCouponAmount.Value;
+
+                if (period <= 0)
+                {
+                    MessageBox.Show(Localization.GetString("MsgPeriodInvalid"), Localization.GetString("MsgPeriodInvalidTitle"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (first > last)
+                {
+                    MessageBox.Show(Localization.GetString("MsgDateOrderInvalid"), Localization.GetString("MsgDateOrderInvalidTitle"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                for (var current = first; current <= last; current = current.AddDays(period))
+                {
+                    dgvCoupons.Rows.Add(DateOnly.FromDateTime(current), amount);
+                }
+
+                if (dgvCoupons.Rows.Count == 0)
+                {
+                    MessageBox.Show(Localization.GetString("MsgNoCoupons"), Localization.GetString("MsgNoCouponsTitle"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-
-            if (first > last)
+            catch (Exception ex)
             {
-                MessageBox.Show(Localization.GetString("MsgDateOrderInvalid"), Localization.GetString("MsgDateOrderInvalidTitle"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            for (var current = first; current <= last; current = current.AddDays(period))
-            {
-                dgvCoupons.Rows.Add(DateOnly.FromDateTime(current), amount);
-            }
-
-            if (dgvCoupons.Rows.Count == 0)
-            {
-                MessageBox.Show(Localization.GetString("MsgNoCoupons"), Localization.GetString("MsgNoCouponsTitle"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ShowError(ex);
             }
         }
 
         private void btnPeriod_Click(object? sender, EventArgs e)
         {
-            if (sender is Button btn && int.TryParse(btn.Text, out var days))
+            try
             {
-                nudPeriod.Value = days;
+                if (sender is Button btn && int.TryParse(btn.Text, out var days))
+                {
+                    days = Math.Max((int)nudPeriod.Minimum, Math.Min((int)nudPeriod.Maximum, days));
+                    nudPeriod.Value = days;
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
             }
         }
 
         private void btnAddAmortization_Click(object? sender, EventArgs e)
         {
-            dgvAmortizations.Rows.Add(DateOnly.FromDateTime(DateTime.Now), 0.0);
+            try
+            {
+                dgvAmortizations.Rows.Add(DateOnly.FromDateTime(DateTime.Now), 0.0);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
+            }
         }
 
         private void btnRemoveAmortization_Click(object? sender, EventArgs e)
         {
-            if (dgvAmortizations.SelectedRows.Count > 0)
+            try
             {
-                dgvAmortizations.Rows.RemoveAt(dgvAmortizations.SelectedRows[0].Index);
+                if (dgvAmortizations.SelectedRows.Count > 0)
+                {
+                    var index = dgvAmortizations.SelectedRows[0].Index;
+                    if (index >= 0 && index < dgvAmortizations.Rows.Count)
+                    {
+                        dgvAmortizations.Rows.RemoveAt(index);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
             }
         }
 
@@ -338,33 +398,54 @@ namespace BondCalc.App.Presentation.Forms
 
         private void UpdateAmortAmountLabel()
         {
-            var parts = (int)nudAmortParts.Value;
-            var nominal = (double)nudNominal.Value;
-            var amount = nominal / parts;
-            lblAmortAmount.Text = $"{Localization.GetString("AmortAmountPrefix")} {amount:F2}";
+            try
+            {
+                var parts = (int)nudAmortParts.Value;
+                var nominal = (double)nudNominal.Value;
+                var amount = nominal / parts;
+                lblAmortAmount.Text = $"{Localization.GetString("AmortAmountPrefix")} {amount:F2}";
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
+            }
         }
 
         private void GenerateAmortizations()
         {
-            var parts = (int)nudAmortParts.Value;
-            var first = dtpPlacement.Value;
-            var last = dtpRepayment.Value;
-
-            var nominal = (double)nudNominal.Value;
-            var amount = nominal / parts;
-            var totalDays = (last - first).Days;
-            var period = parts > 1 ? totalDays / parts : 0;
-
-            for (int i = 1; i <= parts; i++)
+            try
             {
-                var date = i == parts ? last : first.AddDays(i * period);
-                dgvAmortizations.Rows.Add(DateOnly.FromDateTime(date), amount);
+                var parts = (int)nudAmortParts.Value;
+                var first = dtpPlacement.Value;
+                var last = dtpRepayment.Value;
+
+                var nominal = (double)nudNominal.Value;
+                var amount = nominal / parts;
+                var totalDays = (last - first).Days;
+                var period = parts > 1 ? totalDays / parts : 0;
+
+                for (int i = 1; i <= parts; i++)
+                {
+                    var date = i == parts ? last : first.AddDays(i * period);
+                    dgvAmortizations.Rows.Add(DateOnly.FromDateTime(date), amount);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
             }
         }
 
         private void btnReset_Click(object? sender, EventArgs e)
         {
-            Reset();
+            try
+            {
+                Reset();
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
+            }
         }
         private void Reset()
         {
@@ -394,6 +475,16 @@ namespace BondCalc.App.Presentation.Forms
             {
                 dgvCoupons.EndEdit();
                 dgvAmortizations.EndEdit();
+
+                if (DateOnly.FromDateTime(nudPurchase.Value) >= DateOnly.FromDateTime(dtpRepayment.Value))
+                {
+                    MessageBox.Show(
+                        Localization.GetString("MsgDaysToRepaymentZero"),
+                        Localization.GetString("MsgInvalidInputTitle"),
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
 
                 var bond = BuildBond();
                 var deal = BuildDeal();
@@ -470,14 +561,38 @@ namespace BondCalc.App.Presentation.Forms
                 chartSchedule.Series.Add(realSeries);
                 chartSchedule.Series.Add(inflationSeries);
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
                 MessageBox.Show(
                     ex.Message,
                     Localization.GetString("MsgCalcErrorTitle"),
                     MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show(
+                    Localization.GetString("MsgOverflowError"),
+                    Localization.GetString("MsgCalcErrorTitle"),
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            catch (Exception ex)
+            {
+                ShowError(ex);
+            }
+        }
+
+        private static void ShowError(Exception ex)
+        {
+            var message = ex is InvalidOperationException
+                ? ex.Message
+                : string.Format(Localization.GetString("MsgUnexpectedError"), ex.Message);
+            MessageBox.Show(
+                message,
+                Localization.GetString("MsgCalcErrorTitle"),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
 
         private static void SetResultValue(Label label, double value, string format)

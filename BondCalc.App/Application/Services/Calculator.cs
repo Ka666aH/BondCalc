@@ -37,6 +37,18 @@ namespace BondCalc.App.Application.Services
             _dailyInflation = 1 + (annualInflationRate / _daysInYear);
             _daysToRepayment = _bond.Repayment.DayNumber - _deal.Date.DayNumber;
 
+            if (_daysToRepayment <= 0)
+            {
+                throw new InvalidOperationException(
+                    Localization.GetString("MsgDaysToRepaymentZero"));
+            }
+
+            if (_dailyInflation <= 0)
+            {
+                throw new InvalidOperationException(
+                    Localization.GetString("MsgInflationOutOfRange"));
+            }
+
             BuyPrice = CalculateBuyPrice();
 
             RepaymentIncome = CalculateRepaymentIncome();

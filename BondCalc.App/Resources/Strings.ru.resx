@@ -138,9 +138,6 @@
   <data name="GrpSchedule" xml:space="preserve">
     <value>График купонов</value>
   </data>
-  <data name="GrpResults" xml:space="preserve">
-    <value>Результаты</value>
-  </data>
   <data name="LblNominal" xml:space="preserve">
     <value>Номинальная стоимость:</value>
   </data>
@@ -231,12 +228,6 @@
   <data name="LblRealCouponIncome" xml:space="preserve">
     <value>Реальный купонный доход:</value>
   </data>
-  <data name="LblYtmLabel" xml:space="preserve">
-    <value>Реальная YTM:</value>
-  </data>
-  <data name="LblSellByLabel" xml:space="preserve">
-    <value>Дата продажи:</value>
-  </data>
   <data name="ColDate" xml:space="preserve">
     <value>Дата</value>
   </data>
@@ -308,5 +299,29 @@
   </data>
   <data name="AmortAmountPrefix" xml:space="preserve">
     <value>Сумма:</value>
+  </data>
+  <data name="MsgInvalidInputTitle" xml:space="preserve">
+    <value>Неверный ввод</value>
+  </data>
+  <data name="MsgInflationOutOfRange" xml:space="preserve">
+    <value>Значение ставки инфляции выходит за допустимый диапазон. Дефляция более 365,25% годовых не поддерживается.</value>
+  </data>
+  <data name="MsgDateFormatError" xml:space="preserve">
+    <value>Неверный формат даты в таблице. Проверьте формат.</value>
+  </data>
+  <data name="MsgNumberFormatError" xml:space="preserve">
+    <value>Неверное числовое значение в таблице.</value>
+  </data>
+  <data name="MsgDaysToRepaymentZero" xml:space="preserve">
+    <value>Дата покупки должна быть раньше даты погашения.</value>
+  </data>
+  <data name="MsgCalcError" xml:space="preserve">
+    <value>Произошла ошибка расчёта: {0}</value>
+  </data>
+  <data name="MsgUnexpectedError" xml:space="preserve">
+    <value>Произошла неожиданная ошибка: {0}</value>
+  </data>
+  <data name="MsgOverflowError" xml:space="preserve">
+    <value>Числовое переполнение. Слишком высокая ставка инфляции.</value>
   </data>
 </root>

@@ -138,9 +138,6 @@
   <data name="GrpSchedule" xml:space="preserve">
     <value>Coupon Schedule</value>
   </data>
-  <data name="GrpResults" xml:space="preserve">
-    <value>Results</value>
-  </data>
   <data name="LblNominal" xml:space="preserve">
     <value>Nominal Value:</value>
   </data>
@@ -231,12 +228,6 @@
   <data name="LblRealCouponIncome" xml:space="preserve">
     <value>Real Total Coupon Income:</value>
   </data>
-  <data name="LblYtmLabel" xml:space="preserve">
-    <value>Real YTM:</value>
-  </data>
-  <data name="LblSellByLabel" xml:space="preserve">
-    <value>Sell-By Date:</value>
-  </data>
   <data name="ColDate" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -308,5 +299,29 @@
   </data>
   <data name="AmortAmountPrefix" xml:space="preserve">
     <value>Amount:</value>
+  </data>
+  <data name="MsgInvalidInputTitle" xml:space="preserve">
+    <value>Invalid Input</value>
+  </data>
+  <data name="MsgInflationOutOfRange" xml:space="preserve">
+    <value>Inflation rate value is out of the allowed range. Deflation exceeding 365.25% per year is not supported.</value>
+  </data>
+  <data name="MsgDateFormatError" xml:space="preserve">
+    <value>Invalid date value in the table. Check the format.</value>
+  </data>
+  <data name="MsgNumberFormatError" xml:space="preserve">
+    <value>Invalid numeric value in the table.</value>
+  </data>
+  <data name="MsgDaysToRepaymentZero" xml:space="preserve">
+    <value>Purchase date must be before the repayment date.</value>
+  </data>
+  <data name="MsgCalcError" xml:space="preserve">
+    <value>A calculation error occurred: {0}</value>
+  </data>
+  <data name="MsgUnexpectedError" xml:space="preserve">
+    <value>An unexpected error occurred: {0}</value>
+  </data>
+  <data name="MsgOverflowError" xml:space="preserve">
+    <value>Numeric overflow. Inflation rate is too high.</value>
   </data>
 </root>

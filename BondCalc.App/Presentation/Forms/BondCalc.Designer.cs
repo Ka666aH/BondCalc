@@ -156,6 +156,8 @@
             nudInflation.DecimalPlaces = 2;
             nudInflation.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             nudInflation.Location = new Point(140, 100);
+            nudInflation.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            nudInflation.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             nudInflation.Name = "nudInflation";
             nudInflation.Size = new Size(211, 23);
             nudInflation.TabIndex = 7;
