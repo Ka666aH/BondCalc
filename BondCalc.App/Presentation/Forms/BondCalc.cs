@@ -172,6 +172,7 @@ namespace BondCalc.App.Presentation.Forms
                 {
                     val = Math.Max(nud.Minimum, Math.Min(nud.Maximum, val));
                     nud.Value = nud.Minimum;
+                    nud.Value = nud.Maximum;
                     nud.Value = val;
                 }
             }

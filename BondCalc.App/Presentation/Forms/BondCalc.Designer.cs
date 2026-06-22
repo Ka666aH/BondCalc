@@ -148,44 +148,48 @@
             // 
             // nudInflation
             // 
+            nudInflation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nudInflation.DecimalPlaces = 2;
             nudInflation.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             nudInflation.Location = new Point(176, 100);
             nudInflation.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nudInflation.Name = "nudInflation";
-            nudInflation.Size = new Size(175, 23);
+            nudInflation.Size = new Size(233, 23);
             nudInflation.TabIndex = 7;
             nudInflation.ThousandsSeparator = true;
             nudInflation.Value = new decimal(new int[] { 15, 0, 0, 0 });
             // 
             // nudNominal
             // 
+            nudNominal.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nudNominal.DecimalPlaces = 2;
             nudNominal.Location = new Point(176, 22);
             nudNominal.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudNominal.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudNominal.Name = "nudNominal";
-            nudNominal.Size = new Size(175, 23);
+            nudNominal.Size = new Size(233, 23);
             nudNominal.TabIndex = 1;
             nudNominal.ThousandsSeparator = true;
             nudNominal.Value = new decimal(new int[] { 1000, 0, 0, 0 });
             // 
             // dtpRepayment
             // 
+            dtpRepayment.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dtpRepayment.Format = DateTimePickerFormat.Short;
             dtpRepayment.Location = new Point(176, 74);
             dtpRepayment.Name = "dtpRepayment";
-            dtpRepayment.Size = new Size(175, 23);
+            dtpRepayment.Size = new Size(233, 23);
             dtpRepayment.TabIndex = 5;
             dtpRepayment.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
             dtpRepayment.ValueChanged += dtpRepayment_ValueChanged;
             // 
             // dtpPlacement
             // 
+            dtpPlacement.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dtpPlacement.Format = DateTimePickerFormat.Short;
             dtpPlacement.Location = new Point(176, 48);
             dtpPlacement.Name = "dtpPlacement";
-            dtpPlacement.Size = new Size(175, 23);
+            dtpPlacement.Size = new Size(233, 23);
             dtpPlacement.TabIndex = 3;
             dtpPlacement.Value = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             // 
@@ -243,10 +247,11 @@
             // 
             // nudPurchase
             // 
+            nudPurchase.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nudPurchase.Format = DateTimePickerFormat.Short;
             nudPurchase.Location = new Point(176, 74);
             nudPurchase.Name = "nudPurchase";
-            nudPurchase.Size = new Size(175, 23);
+            nudPurchase.Size = new Size(233, 23);
             nudPurchase.TabIndex = 13;
             // 
             // label1
@@ -260,22 +265,24 @@
             // 
             // nudAccrued
             // 
+            nudAccrued.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nudAccrued.DecimalPlaces = 2;
             nudAccrued.Location = new Point(176, 48);
             nudAccrued.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudAccrued.Name = "nudAccrued";
-            nudAccrued.Size = new Size(175, 23);
+            nudAccrued.Size = new Size(233, 23);
             nudAccrued.TabIndex = 11;
             nudAccrued.ThousandsSeparator = true;
             // 
             // nudPrice
             // 
+            nudPrice.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nudPrice.DecimalPlaces = 2;
             nudPrice.Location = new Point(176, 22);
             nudPrice.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudPrice.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudPrice.Name = "nudPrice";
-            nudPrice.Size = new Size(175, 23);
+            nudPrice.Size = new Size(233, 23);
             nudPrice.TabIndex = 9;
             nudPrice.ThousandsSeparator = true;
             nudPrice.Value = new decimal(new int[] { 1000, 0, 0, 0 });
@@ -326,27 +333,30 @@
             // 
             // dtpLastCoupon
             // 
+            dtpLastCoupon.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dtpLastCoupon.Format = DateTimePickerFormat.Short;
             dtpLastCoupon.Location = new Point(176, 48);
             dtpLastCoupon.Name = "dtpLastCoupon";
-            dtpLastCoupon.Size = new Size(175, 23);
+            dtpLastCoupon.Size = new Size(233, 23);
             dtpLastCoupon.TabIndex = 9;
             // 
             // dtpFirstCoupon
             // 
+            dtpFirstCoupon.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dtpFirstCoupon.Format = DateTimePickerFormat.Short;
             dtpFirstCoupon.Location = new Point(176, 22);
             dtpFirstCoupon.Name = "dtpFirstCoupon";
-            dtpFirstCoupon.Size = new Size(175, 23);
+            dtpFirstCoupon.Size = new Size(233, 23);
             dtpFirstCoupon.TabIndex = 7;
             // 
             // nudPeriod
             // 
+            nudPeriod.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nudPeriod.Location = new Point(279, 74);
             nudPeriod.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             nudPeriod.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudPeriod.Name = "nudPeriod";
-            nudPeriod.Size = new Size(72, 23);
+            nudPeriod.Size = new Size(130, 23);
             nudPeriod.TabIndex = 10;
             nudPeriod.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
@@ -382,10 +392,10 @@
             // 
             // btnGenerate
             // 
-            btnGenerate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnGenerate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnGenerate.Location = new Point(8, 252);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(115, 23);
+            btnGenerate.Size = new Size(173, 23);
             btnGenerate.TabIndex = 11;
             btnGenerate.Text = "Generate";
             btnGenerate.UseVisualStyleBackColor = true;
@@ -411,8 +421,8 @@
             // 
             // btnClearCoupons
             // 
-            btnClearCoupons.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnClearCoupons.Location = new Point(281, 252);
+            btnClearCoupons.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnClearCoupons.Location = new Point(339, 252);
             btnClearCoupons.Name = "btnClearCoupons";
             btnClearCoupons.Size = new Size(70, 23);
             btnClearCoupons.TabIndex = 12;
@@ -431,11 +441,12 @@
             // 
             // nudCouponAmount
             // 
+            nudCouponAmount.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nudCouponAmount.DecimalPlaces = 2;
             nudCouponAmount.Location = new Point(176, 100);
             nudCouponAmount.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudCouponAmount.Name = "nudCouponAmount";
-            nudCouponAmount.Size = new Size(175, 23);
+            nudCouponAmount.Size = new Size(233, 23);
             nudCouponAmount.TabIndex = 20;
             nudCouponAmount.ThousandsSeparator = true;
             // 
@@ -450,8 +461,8 @@
             // 
             // btnAddCoupon
             // 
-            btnAddCoupon.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAddCoupon.Location = new Point(129, 252);
+            btnAddCoupon.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAddCoupon.Location = new Point(187, 252);
             btnAddCoupon.Name = "btnAddCoupon";
             btnAddCoupon.Size = new Size(70, 23);
             btnAddCoupon.TabIndex = 1;
@@ -461,8 +472,8 @@
             // 
             // btnRemoveCoupon
             // 
-            btnRemoveCoupon.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRemoveCoupon.Location = new Point(205, 252);
+            btnRemoveCoupon.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnRemoveCoupon.Location = new Point(263, 252);
             btnRemoveCoupon.Name = "btnRemoveCoupon";
             btnRemoveCoupon.Size = new Size(70, 23);
             btnRemoveCoupon.TabIndex = 2;
@@ -543,10 +554,10 @@
             // 
             // btnGenerateAmort
             // 
-            btnGenerateAmort.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnGenerateAmort.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnGenerateAmort.Location = new Point(8, 164);
             btnGenerateAmort.Name = "btnGenerateAmort";
-            btnGenerateAmort.Size = new Size(115, 23);
+            btnGenerateAmort.Size = new Size(173, 23);
             btnGenerateAmort.TabIndex = 11;
             btnGenerateAmort.Text = "Generate";
             btnGenerateAmort.UseVisualStyleBackColor = true;
@@ -554,8 +565,8 @@
             // 
             // btnClearAmortizations
             // 
-            btnClearAmortizations.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnClearAmortizations.Location = new Point(281, 164);
+            btnClearAmortizations.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnClearAmortizations.Location = new Point(339, 166);
             btnClearAmortizations.Name = "btnClearAmortizations";
             btnClearAmortizations.Size = new Size(70, 23);
             btnClearAmortizations.TabIndex = 13;
@@ -565,8 +576,8 @@
             // 
             // btnRemoveAmortization
             // 
-            btnRemoveAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRemoveAmortization.Location = new Point(205, 164);
+            btnRemoveAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnRemoveAmortization.Location = new Point(263, 166);
             btnRemoveAmortization.Name = "btnRemoveAmortization";
             btnRemoveAmortization.Size = new Size(70, 23);
             btnRemoveAmortization.TabIndex = 2;
@@ -576,8 +587,8 @@
             // 
             // btnAddAmortization
             // 
-            btnAddAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAddAmortization.Location = new Point(129, 164);
+            btnAddAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAddAmortization.Location = new Point(187, 166);
             btnAddAmortization.Name = "btnAddAmortization";
             btnAddAmortization.Size = new Size(70, 23);
             btnAddAmortization.TabIndex = 1;
@@ -871,9 +882,9 @@
             // lblBuyPriceVal
             // 
             lblBuyPriceVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblBuyPriceVal.Location = new Point(137, 19);
+            lblBuyPriceVal.Location = new Point(190, 19);
             lblBuyPriceVal.Name = "lblBuyPriceVal";
-            lblBuyPriceVal.Size = new Size(120, 20);
+            lblBuyPriceVal.Size = new Size(100, 20);
             lblBuyPriceVal.TabIndex = 2;
             lblBuyPriceVal.Text = "-";
             lblBuyPriceVal.TextAlign = ContentAlignment.MiddleLeft;
