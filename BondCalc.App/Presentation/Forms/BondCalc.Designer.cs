@@ -17,6 +17,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BondCalc));
             grpParameters = new GroupBox();
             nudInflation = new NumericUpDown();
             nudNominal = new NumericUpDown();
@@ -140,7 +141,7 @@
             grpParameters.Dock = DockStyle.Top;
             grpParameters.Location = new Point(0, 0);
             grpParameters.Name = "grpParameters";
-            grpParameters.Size = new Size(360, 129);
+            grpParameters.Size = new Size(418, 129);
             grpParameters.TabIndex = 0;
             grpParameters.TabStop = false;
             grpParameters.Text = "Bond Parameters";
@@ -149,10 +150,10 @@
             // 
             nudInflation.DecimalPlaces = 2;
             nudInflation.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
-            nudInflation.Location = new Point(140, 100);
+            nudInflation.Location = new Point(176, 100);
             nudInflation.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nudInflation.Name = "nudInflation";
-            nudInflation.Size = new Size(211, 23);
+            nudInflation.Size = new Size(175, 23);
             nudInflation.TabIndex = 7;
             nudInflation.ThousandsSeparator = true;
             nudInflation.Value = new decimal(new int[] { 15, 0, 0, 0 });
@@ -160,11 +161,11 @@
             // nudNominal
             // 
             nudNominal.DecimalPlaces = 2;
-            nudNominal.Location = new Point(140, 22);
+            nudNominal.Location = new Point(176, 22);
             nudNominal.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudNominal.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudNominal.Name = "nudNominal";
-            nudNominal.Size = new Size(211, 23);
+            nudNominal.Size = new Size(175, 23);
             nudNominal.TabIndex = 1;
             nudNominal.ThousandsSeparator = true;
             nudNominal.Value = new decimal(new int[] { 1000, 0, 0, 0 });
@@ -172,9 +173,9 @@
             // dtpRepayment
             // 
             dtpRepayment.Format = DateTimePickerFormat.Short;
-            dtpRepayment.Location = new Point(140, 74);
+            dtpRepayment.Location = new Point(176, 74);
             dtpRepayment.Name = "dtpRepayment";
-            dtpRepayment.Size = new Size(211, 23);
+            dtpRepayment.Size = new Size(175, 23);
             dtpRepayment.TabIndex = 5;
             dtpRepayment.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
             dtpRepayment.ValueChanged += dtpRepayment_ValueChanged;
@@ -182,9 +183,9 @@
             // dtpPlacement
             // 
             dtpPlacement.Format = DateTimePickerFormat.Short;
-            dtpPlacement.Location = new Point(140, 48);
+            dtpPlacement.Location = new Point(176, 48);
             dtpPlacement.Name = "dtpPlacement";
-            dtpPlacement.Size = new Size(211, 23);
+            dtpPlacement.Size = new Size(175, 23);
             dtpPlacement.TabIndex = 3;
             dtpPlacement.Value = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             // 
@@ -192,7 +193,7 @@
             // 
             lblInflation.Location = new Point(12, 102);
             lblInflation.Name = "lblInflation";
-            lblInflation.Size = new Size(120, 20);
+            lblInflation.Size = new Size(158, 20);
             lblInflation.TabIndex = 6;
             lblInflation.Text = "Inflation Rate (%):";
             lblInflation.TextAlign = ContentAlignment.MiddleLeft;
@@ -201,7 +202,7 @@
             // 
             lblRepayment.Location = new Point(12, 76);
             lblRepayment.Name = "lblRepayment";
-            lblRepayment.Size = new Size(120, 20);
+            lblRepayment.Size = new Size(158, 20);
             lblRepayment.TabIndex = 4;
             lblRepayment.Text = "Repayment Date:";
             lblRepayment.TextAlign = ContentAlignment.MiddleLeft;
@@ -210,7 +211,7 @@
             // 
             lblPlacement.Location = new Point(12, 50);
             lblPlacement.Name = "lblPlacement";
-            lblPlacement.Size = new Size(120, 20);
+            lblPlacement.Size = new Size(158, 20);
             lblPlacement.TabIndex = 2;
             lblPlacement.Text = "Placement Date:";
             lblPlacement.TextAlign = ContentAlignment.MiddleLeft;
@@ -219,7 +220,7 @@
             // 
             lblNominal.Location = new Point(12, 24);
             lblNominal.Name = "lblNominal";
-            lblNominal.Size = new Size(120, 20);
+            lblNominal.Size = new Size(158, 20);
             lblNominal.TabIndex = 0;
             lblNominal.Text = "Nominal Value:";
             lblNominal.TextAlign = ContentAlignment.MiddleLeft;
@@ -235,7 +236,7 @@
             grpDeal.Dock = DockStyle.Top;
             grpDeal.Location = new Point(0, 609);
             grpDeal.Name = "grpDeal";
-            grpDeal.Size = new Size(360, 110);
+            grpDeal.Size = new Size(418, 110);
             grpDeal.TabIndex = 15;
             grpDeal.TabStop = false;
             grpDeal.Text = "Deal";
@@ -243,16 +244,16 @@
             // nudPurchase
             // 
             nudPurchase.Format = DateTimePickerFormat.Short;
-            nudPurchase.Location = new Point(140, 74);
+            nudPurchase.Location = new Point(176, 74);
             nudPurchase.Name = "nudPurchase";
-            nudPurchase.Size = new Size(211, 23);
+            nudPurchase.Size = new Size(175, 23);
             nudPurchase.TabIndex = 13;
             // 
             // label1
             // 
             label1.Location = new Point(12, 76);
             label1.Name = "label1";
-            label1.Size = new Size(120, 20);
+            label1.Size = new Size(158, 20);
             label1.TabIndex = 12;
             label1.Text = "Purchase Date:";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -260,21 +261,21 @@
             // nudAccrued
             // 
             nudAccrued.DecimalPlaces = 2;
-            nudAccrued.Location = new Point(140, 48);
+            nudAccrued.Location = new Point(176, 48);
             nudAccrued.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudAccrued.Name = "nudAccrued";
-            nudAccrued.Size = new Size(211, 23);
+            nudAccrued.Size = new Size(175, 23);
             nudAccrued.TabIndex = 11;
             nudAccrued.ThousandsSeparator = true;
             // 
             // nudPrice
             // 
             nudPrice.DecimalPlaces = 2;
-            nudPrice.Location = new Point(140, 22);
+            nudPrice.Location = new Point(176, 22);
             nudPrice.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudPrice.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudPrice.Name = "nudPrice";
-            nudPrice.Size = new Size(211, 23);
+            nudPrice.Size = new Size(175, 23);
             nudPrice.TabIndex = 9;
             nudPrice.ThousandsSeparator = true;
             nudPrice.Value = new decimal(new int[] { 1000, 0, 0, 0 });
@@ -283,16 +284,16 @@
             // 
             lblAccrued.Location = new Point(12, 50);
             lblAccrued.Name = "lblAccrued";
-            lblAccrued.Size = new Size(120, 20);
+            lblAccrued.Size = new Size(158, 20);
             lblAccrued.TabIndex = 10;
-            lblAccrued.Text = "Accrued Interest (НКД):";
+            lblAccrued.Text = "Accrued Interest:";
             lblAccrued.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblPrice
             // 
             lblPrice.Location = new Point(12, 24);
             lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(120, 20);
+            lblPrice.Size = new Size(158, 20);
             lblPrice.TabIndex = 8;
             lblPrice.Text = "Purchase Price:";
             lblPrice.TextAlign = ContentAlignment.MiddleLeft;
@@ -318,7 +319,7 @@
             grpCoupons.Dock = DockStyle.Top;
             grpCoupons.Location = new Point(0, 129);
             grpCoupons.Name = "grpCoupons";
-            grpCoupons.Size = new Size(360, 285);
+            grpCoupons.Size = new Size(418, 285);
             grpCoupons.TabIndex = 1;
             grpCoupons.TabStop = false;
             grpCoupons.Text = "Coupons";
@@ -326,32 +327,32 @@
             // dtpLastCoupon
             // 
             dtpLastCoupon.Format = DateTimePickerFormat.Short;
-            dtpLastCoupon.Location = new Point(140, 48);
+            dtpLastCoupon.Location = new Point(176, 48);
             dtpLastCoupon.Name = "dtpLastCoupon";
-            dtpLastCoupon.Size = new Size(211, 23);
+            dtpLastCoupon.Size = new Size(175, 23);
             dtpLastCoupon.TabIndex = 9;
             // 
             // dtpFirstCoupon
             // 
             dtpFirstCoupon.Format = DateTimePickerFormat.Short;
-            dtpFirstCoupon.Location = new Point(140, 22);
+            dtpFirstCoupon.Location = new Point(176, 22);
             dtpFirstCoupon.Name = "dtpFirstCoupon";
-            dtpFirstCoupon.Size = new Size(211, 23);
+            dtpFirstCoupon.Size = new Size(175, 23);
             dtpFirstCoupon.TabIndex = 7;
             // 
             // nudPeriod
             // 
-            nudPeriod.Location = new Point(241, 74);
+            nudPeriod.Location = new Point(279, 74);
             nudPeriod.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             nudPeriod.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudPeriod.Name = "nudPeriod";
-            nudPeriod.Size = new Size(110, 23);
+            nudPeriod.Size = new Size(72, 23);
             nudPeriod.TabIndex = 10;
             nudPeriod.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
             // btnPeriod30
             // 
-            btnPeriod30.Location = new Point(140, 74);
+            btnPeriod30.Location = new Point(176, 74);
             btnPeriod30.Name = "btnPeriod30";
             btnPeriod30.Size = new Size(30, 23);
             btnPeriod30.TabIndex = 22;
@@ -361,7 +362,7 @@
             // 
             // btnPeriod90
             // 
-            btnPeriod90.Location = new Point(172, 74);
+            btnPeriod90.Location = new Point(208, 74);
             btnPeriod90.Name = "btnPeriod90";
             btnPeriod90.Size = new Size(30, 23);
             btnPeriod90.TabIndex = 23;
@@ -371,7 +372,7 @@
             // 
             // btnPeriod180
             // 
-            btnPeriod180.Location = new Point(204, 74);
+            btnPeriod180.Location = new Point(240, 74);
             btnPeriod180.Name = "btnPeriod180";
             btnPeriod180.Size = new Size(35, 23);
             btnPeriod180.TabIndex = 24;
@@ -384,7 +385,7 @@
             btnGenerate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnGenerate.Location = new Point(8, 252);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(93, 23);
+            btnGenerate.Size = new Size(115, 23);
             btnGenerate.TabIndex = 11;
             btnGenerate.Text = "Generate";
             btnGenerate.UseVisualStyleBackColor = true;
@@ -394,7 +395,7 @@
             // 
             lblLastCoupon.Location = new Point(12, 50);
             lblLastCoupon.Name = "lblLastCoupon";
-            lblLastCoupon.Size = new Size(120, 20);
+            lblLastCoupon.Size = new Size(158, 20);
             lblLastCoupon.TabIndex = 8;
             lblLastCoupon.Text = "Last Coupon Date:";
             lblLastCoupon.TextAlign = ContentAlignment.MiddleLeft;
@@ -403,7 +404,7 @@
             // 
             lblFirstCoupon.Location = new Point(12, 24);
             lblFirstCoupon.Name = "lblFirstCoupon";
-            lblFirstCoupon.Size = new Size(120, 20);
+            lblFirstCoupon.Size = new Size(158, 20);
             lblFirstCoupon.TabIndex = 6;
             lblFirstCoupon.Text = "First Coupon Date:";
             lblFirstCoupon.TextAlign = ContentAlignment.MiddleLeft;
@@ -411,9 +412,9 @@
             // btnClearCoupons
             // 
             btnClearCoupons.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnClearCoupons.Location = new Point(279, 252);
+            btnClearCoupons.Location = new Point(281, 252);
             btnClearCoupons.Name = "btnClearCoupons";
-            btnClearCoupons.Size = new Size(80, 23);
+            btnClearCoupons.Size = new Size(70, 23);
             btnClearCoupons.TabIndex = 12;
             btnClearCoupons.Text = "Clear";
             btnClearCoupons.UseVisualStyleBackColor = true;
@@ -423,7 +424,7 @@
             // 
             lblPeriod.Location = new Point(12, 76);
             lblPeriod.Name = "lblPeriod";
-            lblPeriod.Size = new Size(120, 20);
+            lblPeriod.Size = new Size(158, 20);
             lblPeriod.TabIndex = 9;
             lblPeriod.Text = "Period (days):";
             lblPeriod.TextAlign = ContentAlignment.MiddleLeft;
@@ -431,10 +432,10 @@
             // nudCouponAmount
             // 
             nudCouponAmount.DecimalPlaces = 2;
-            nudCouponAmount.Location = new Point(140, 100);
+            nudCouponAmount.Location = new Point(176, 100);
             nudCouponAmount.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudCouponAmount.Name = "nudCouponAmount";
-            nudCouponAmount.Size = new Size(211, 23);
+            nudCouponAmount.Size = new Size(175, 23);
             nudCouponAmount.TabIndex = 20;
             nudCouponAmount.ThousandsSeparator = true;
             // 
@@ -442,7 +443,7 @@
             // 
             lblCouponAmount.Location = new Point(12, 102);
             lblCouponAmount.Name = "lblCouponAmount";
-            lblCouponAmount.Size = new Size(120, 20);
+            lblCouponAmount.Size = new Size(158, 20);
             lblCouponAmount.TabIndex = 21;
             lblCouponAmount.Text = "Coupon Amount:";
             lblCouponAmount.TextAlign = ContentAlignment.MiddleLeft;
@@ -450,9 +451,9 @@
             // btnAddCoupon
             // 
             btnAddCoupon.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAddCoupon.Location = new Point(107, 252);
+            btnAddCoupon.Location = new Point(129, 252);
             btnAddCoupon.Name = "btnAddCoupon";
-            btnAddCoupon.Size = new Size(80, 23);
+            btnAddCoupon.Size = new Size(70, 23);
             btnAddCoupon.TabIndex = 1;
             btnAddCoupon.Text = "Add";
             btnAddCoupon.UseVisualStyleBackColor = true;
@@ -461,9 +462,9 @@
             // btnRemoveCoupon
             // 
             btnRemoveCoupon.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRemoveCoupon.Location = new Point(193, 252);
+            btnRemoveCoupon.Location = new Point(205, 252);
             btnRemoveCoupon.Name = "btnRemoveCoupon";
-            btnRemoveCoupon.Size = new Size(80, 23);
+            btnRemoveCoupon.Size = new Size(70, 23);
             btnRemoveCoupon.TabIndex = 2;
             btnRemoveCoupon.Text = "Remove";
             btnRemoveCoupon.UseVisualStyleBackColor = true;
@@ -481,7 +482,7 @@
             dgvCoupons.Name = "dgvCoupons";
             dgvCoupons.RowHeadersVisible = false;
             dgvCoupons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCoupons.Size = new Size(343, 117);
+            dgvCoupons.Size = new Size(401, 117);
             dgvCoupons.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn3
@@ -507,16 +508,16 @@
             grpAmortizations.Dock = DockStyle.Top;
             grpAmortizations.Location = new Point(0, 414);
             grpAmortizations.Name = "grpAmortizations";
-            grpAmortizations.Size = new Size(360, 195);
+            grpAmortizations.Size = new Size(418, 195);
             grpAmortizations.TabIndex = 2;
             grpAmortizations.TabStop = false;
             grpAmortizations.Text = "Amortizations";
             // 
             // lblAmortAmount
             // 
-            lblAmortAmount.Location = new Point(230, 24);
+            lblAmortAmount.Location = new Point(205, 24);
             lblAmortAmount.Name = "lblAmortAmount";
-            lblAmortAmount.Size = new Size(129, 20);
+            lblAmortAmount.Size = new Size(146, 20);
             lblAmortAmount.TabIndex = 12;
             lblAmortAmount.Text = "Amount: -";
             lblAmortAmount.TextAlign = ContentAlignment.MiddleLeft;
@@ -526,7 +527,7 @@
             nudAmortParts.Location = new Point(140, 22);
             nudAmortParts.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
             nudAmortParts.Name = "nudAmortParts";
-            nudAmortParts.Size = new Size(80, 23);
+            nudAmortParts.Size = new Size(59, 23);
             nudAmortParts.TabIndex = 10;
             nudAmortParts.Value = new decimal(new int[] { 5, 0, 0, 0 });
             nudAmortParts.ValueChanged += nudAmortParts_ValueChanged;
@@ -545,7 +546,7 @@
             btnGenerateAmort.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnGenerateAmort.Location = new Point(8, 164);
             btnGenerateAmort.Name = "btnGenerateAmort";
-            btnGenerateAmort.Size = new Size(93, 23);
+            btnGenerateAmort.Size = new Size(115, 23);
             btnGenerateAmort.TabIndex = 11;
             btnGenerateAmort.Text = "Generate";
             btnGenerateAmort.UseVisualStyleBackColor = true;
@@ -554,9 +555,9 @@
             // btnClearAmortizations
             // 
             btnClearAmortizations.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnClearAmortizations.Location = new Point(279, 164);
+            btnClearAmortizations.Location = new Point(281, 164);
             btnClearAmortizations.Name = "btnClearAmortizations";
-            btnClearAmortizations.Size = new Size(80, 23);
+            btnClearAmortizations.Size = new Size(70, 23);
             btnClearAmortizations.TabIndex = 13;
             btnClearAmortizations.Text = "Clear";
             btnClearAmortizations.UseVisualStyleBackColor = true;
@@ -565,9 +566,9 @@
             // btnRemoveAmortization
             // 
             btnRemoveAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRemoveAmortization.Location = new Point(193, 164);
+            btnRemoveAmortization.Location = new Point(205, 164);
             btnRemoveAmortization.Name = "btnRemoveAmortization";
-            btnRemoveAmortization.Size = new Size(80, 23);
+            btnRemoveAmortization.Size = new Size(70, 23);
             btnRemoveAmortization.TabIndex = 2;
             btnRemoveAmortization.Text = "Remove";
             btnRemoveAmortization.UseVisualStyleBackColor = true;
@@ -576,9 +577,9 @@
             // btnAddAmortization
             // 
             btnAddAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAddAmortization.Location = new Point(107, 164);
+            btnAddAmortization.Location = new Point(129, 164);
             btnAddAmortization.Name = "btnAddAmortization";
-            btnAddAmortization.Size = new Size(80, 23);
+            btnAddAmortization.Size = new Size(70, 23);
             btnAddAmortization.TabIndex = 1;
             btnAddAmortization.Text = "Add";
             btnAddAmortization.UseVisualStyleBackColor = true;
@@ -596,7 +597,7 @@
             dgvAmortizations.Name = "dgvAmortizations";
             dgvAmortizations.RowHeadersVisible = false;
             dgvAmortizations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAmortizations.Size = new Size(343, 110);
+            dgvAmortizations.Size = new Size(401, 110);
             dgvAmortizations.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -615,7 +616,7 @@
             btnCalculate.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             btnCalculate.Location = new Point(8, 724);
             btnCalculate.Name = "btnCalculate";
-            btnCalculate.Size = new Size(277, 60);
+            btnCalculate.Size = new Size(335, 60);
             btnCalculate.TabIndex = 3;
             btnCalculate.Text = "Calculate";
             btnCalculate.UseVisualStyleBackColor = true;
@@ -625,7 +626,7 @@
             // 
             btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             btnReset.Font = new Font("Segoe UI", 24F);
-            btnReset.Location = new Point(291, 724);
+            btnReset.Location = new Point(349, 724);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(60, 60);
             btnReset.TabIndex = 14;
@@ -662,7 +663,7 @@
             grpOutput.Dock = DockStyle.Top;
             grpOutput.Location = new Point(0, 0);
             grpOutput.Name = "grpOutput";
-            grpOutput.Size = new Size(540, 200);
+            grpOutput.Size = new Size(632, 200);
             grpOutput.TabIndex = 2;
             grpOutput.TabStop = false;
             grpOutput.Text = "Results";
@@ -670,18 +671,18 @@
             // lblRealRepayIncomeVal
             // 
             lblRealRepayIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRealRepayIncomeVal.Location = new Point(367, 68);
+            lblRealRepayIncomeVal.Location = new Point(528, 68);
             lblRealRepayIncomeVal.Name = "lblRealRepayIncomeVal";
-            lblRealRepayIncomeVal.Size = new Size(120, 20);
+            lblRealRepayIncomeVal.Size = new Size(100, 20);
             lblRealRepayIncomeVal.TabIndex = 23;
             lblRealRepayIncomeVal.Text = "-";
             lblRealRepayIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblRealRepayIncome
             // 
-            lblRealRepayIncome.Location = new Point(218, 68);
+            lblRealRepayIncome.Location = new Point(296, 68);
             lblRealRepayIncome.Name = "lblRealRepayIncome";
-            lblRealRepayIncome.Size = new Size(158, 20);
+            lblRealRepayIncome.Size = new Size(241, 20);
             lblRealRepayIncome.TabIndex = 22;
             lblRealRepayIncome.Text = "Real Repayment Income:";
             lblRealRepayIncome.TextAlign = ContentAlignment.MiddleLeft;
@@ -689,18 +690,18 @@
             // lblRealCouponIncomeVal
             // 
             lblRealCouponIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRealCouponIncomeVal.Location = new Point(367, 88);
+            lblRealCouponIncomeVal.Location = new Point(528, 88);
             lblRealCouponIncomeVal.Name = "lblRealCouponIncomeVal";
-            lblRealCouponIncomeVal.Size = new Size(120, 20);
+            lblRealCouponIncomeVal.Size = new Size(100, 20);
             lblRealCouponIncomeVal.TabIndex = 21;
             lblRealCouponIncomeVal.Text = "-";
             lblRealCouponIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblRealCouponIncome
             // 
-            lblRealCouponIncome.Location = new Point(218, 88);
+            lblRealCouponIncome.Location = new Point(296, 88);
             lblRealCouponIncome.Name = "lblRealCouponIncome";
-            lblRealCouponIncome.Size = new Size(158, 20);
+            lblRealCouponIncome.Size = new Size(241, 20);
             lblRealCouponIncome.TabIndex = 20;
             lblRealCouponIncome.Text = "Real Total Coupon Income:";
             lblRealCouponIncome.TextAlign = ContentAlignment.MiddleLeft;
@@ -708,18 +709,18 @@
             // lblRealAnnualYieldVal
             // 
             lblRealAnnualYieldVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRealAnnualYieldVal.Location = new Point(367, 154);
+            lblRealAnnualYieldVal.Location = new Point(528, 154);
             lblRealAnnualYieldVal.Name = "lblRealAnnualYieldVal";
-            lblRealAnnualYieldVal.Size = new Size(120, 20);
+            lblRealAnnualYieldVal.Size = new Size(100, 20);
             lblRealAnnualYieldVal.TabIndex = 19;
             lblRealAnnualYieldVal.Text = "-";
             lblRealAnnualYieldVal.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblRealAnnualYield
             // 
-            lblRealAnnualYield.Location = new Point(218, 154);
+            lblRealAnnualYield.Location = new Point(296, 154);
             lblRealAnnualYield.Name = "lblRealAnnualYield";
-            lblRealAnnualYield.Size = new Size(158, 20);
+            lblRealAnnualYield.Size = new Size(241, 20);
             lblRealAnnualYield.TabIndex = 18;
             lblRealAnnualYield.Text = "Real Annual Yield:";
             lblRealAnnualYield.TextAlign = ContentAlignment.MiddleLeft;
@@ -727,18 +728,18 @@
             // lblRealYieldVal
             // 
             lblRealYieldVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRealYieldVal.Location = new Point(367, 132);
+            lblRealYieldVal.Location = new Point(528, 132);
             lblRealYieldVal.Name = "lblRealYieldVal";
-            lblRealYieldVal.Size = new Size(120, 20);
+            lblRealYieldVal.Size = new Size(100, 20);
             lblRealYieldVal.TabIndex = 17;
             lblRealYieldVal.Text = "-";
             lblRealYieldVal.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblRealYield
             // 
-            lblRealYield.Location = new Point(218, 132);
+            lblRealYield.Location = new Point(296, 132);
             lblRealYield.Name = "lblRealYield";
-            lblRealYield.Size = new Size(158, 20);
+            lblRealYield.Size = new Size(241, 20);
             lblRealYield.TabIndex = 16;
             lblRealYield.Text = "Real Total Yield:";
             lblRealYield.TextAlign = ContentAlignment.MiddleLeft;
@@ -746,18 +747,18 @@
             // lblRealIncomeVal
             // 
             lblRealIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRealIncomeVal.Location = new Point(367, 110);
+            lblRealIncomeVal.Location = new Point(528, 110);
             lblRealIncomeVal.Name = "lblRealIncomeVal";
-            lblRealIncomeVal.Size = new Size(120, 20);
+            lblRealIncomeVal.Size = new Size(100, 20);
             lblRealIncomeVal.TabIndex = 15;
             lblRealIncomeVal.Text = "-";
             lblRealIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblRealIncome
             // 
-            lblRealIncome.Location = new Point(218, 110);
+            lblRealIncome.Location = new Point(296, 110);
             lblRealIncome.Name = "lblRealIncome";
-            lblRealIncome.Size = new Size(158, 20);
+            lblRealIncome.Size = new Size(241, 20);
             lblRealIncome.TabIndex = 14;
             lblRealIncome.Text = "Real Total Income:";
             lblRealIncome.TextAlign = ContentAlignment.MiddleLeft;
@@ -766,18 +767,18 @@
             // 
             lblRealHeader.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblRealHeader.ForeColor = Color.DimGray;
-            lblRealHeader.Location = new Point(218, 48);
+            lblRealHeader.Location = new Point(296, 48);
             lblRealHeader.Name = "lblRealHeader";
-            lblRealHeader.Size = new Size(185, 16);
+            lblRealHeader.Size = new Size(324, 16);
             lblRealHeader.TabIndex = 13;
             lblRealHeader.Text = "── Real (Inflation-Adjusted) ──";
             // 
             // lblAnnualYieldVal
             // 
             lblAnnualYieldVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblAnnualYieldVal.Location = new Point(137, 156);
+            lblAnnualYieldVal.Location = new Point(190, 156);
             lblAnnualYieldVal.Name = "lblAnnualYieldVal";
-            lblAnnualYieldVal.Size = new Size(120, 20);
+            lblAnnualYieldVal.Size = new Size(100, 20);
             lblAnnualYieldVal.TabIndex = 12;
             lblAnnualYieldVal.Text = "-";
             lblAnnualYieldVal.TextAlign = ContentAlignment.MiddleLeft;
@@ -786,7 +787,7 @@
             // 
             lblAnnualYield.Location = new Point(12, 156);
             lblAnnualYield.Name = "lblAnnualYield";
-            lblAnnualYield.Size = new Size(140, 20);
+            lblAnnualYield.Size = new Size(195, 20);
             lblAnnualYield.TabIndex = 11;
             lblAnnualYield.Text = "Annual Yield:";
             lblAnnualYield.TextAlign = ContentAlignment.MiddleLeft;
@@ -794,9 +795,9 @@
             // lblTotalYieldVal
             // 
             lblTotalYieldVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblTotalYieldVal.Location = new Point(137, 134);
+            lblTotalYieldVal.Location = new Point(190, 134);
             lblTotalYieldVal.Name = "lblTotalYieldVal";
-            lblTotalYieldVal.Size = new Size(120, 20);
+            lblTotalYieldVal.Size = new Size(100, 20);
             lblTotalYieldVal.TabIndex = 10;
             lblTotalYieldVal.Text = "-";
             lblTotalYieldVal.TextAlign = ContentAlignment.MiddleLeft;
@@ -805,7 +806,7 @@
             // 
             lblTotalYield.Location = new Point(12, 134);
             lblTotalYield.Name = "lblTotalYield";
-            lblTotalYield.Size = new Size(140, 20);
+            lblTotalYield.Size = new Size(195, 20);
             lblTotalYield.TabIndex = 9;
             lblTotalYield.Text = "Total Yield:";
             lblTotalYield.TextAlign = ContentAlignment.MiddleLeft;
@@ -813,9 +814,9 @@
             // lblTotalIncomeVal
             // 
             lblTotalIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblTotalIncomeVal.Location = new Point(137, 112);
+            lblTotalIncomeVal.Location = new Point(190, 112);
             lblTotalIncomeVal.Name = "lblTotalIncomeVal";
-            lblTotalIncomeVal.Size = new Size(120, 20);
+            lblTotalIncomeVal.Size = new Size(100, 20);
             lblTotalIncomeVal.TabIndex = 8;
             lblTotalIncomeVal.Text = "-";
             lblTotalIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
@@ -824,7 +825,7 @@
             // 
             lblTotalIncome.Location = new Point(12, 112);
             lblTotalIncome.Name = "lblTotalIncome";
-            lblTotalIncome.Size = new Size(140, 20);
+            lblTotalIncome.Size = new Size(195, 20);
             lblTotalIncome.TabIndex = 7;
             lblTotalIncome.Text = "Total Income:";
             lblTotalIncome.TextAlign = ContentAlignment.MiddleLeft;
@@ -832,9 +833,9 @@
             // lblCouponIncomeVal
             // 
             lblCouponIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblCouponIncomeVal.Location = new Point(137, 90);
+            lblCouponIncomeVal.Location = new Point(190, 90);
             lblCouponIncomeVal.Name = "lblCouponIncomeVal";
-            lblCouponIncomeVal.Size = new Size(120, 20);
+            lblCouponIncomeVal.Size = new Size(100, 20);
             lblCouponIncomeVal.TabIndex = 6;
             lblCouponIncomeVal.Text = "-";
             lblCouponIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
@@ -843,7 +844,7 @@
             // 
             lblCouponIncome.Location = new Point(12, 90);
             lblCouponIncome.Name = "lblCouponIncome";
-            lblCouponIncome.Size = new Size(140, 20);
+            lblCouponIncome.Size = new Size(195, 20);
             lblCouponIncome.TabIndex = 5;
             lblCouponIncome.Text = "Total Coupon Income:";
             lblCouponIncome.TextAlign = ContentAlignment.MiddleLeft;
@@ -851,9 +852,9 @@
             // lblRepayIncomeVal
             // 
             lblRepayIncomeVal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRepayIncomeVal.Location = new Point(137, 68);
+            lblRepayIncomeVal.Location = new Point(190, 68);
             lblRepayIncomeVal.Name = "lblRepayIncomeVal";
-            lblRepayIncomeVal.Size = new Size(120, 20);
+            lblRepayIncomeVal.Size = new Size(100, 20);
             lblRepayIncomeVal.TabIndex = 4;
             lblRepayIncomeVal.Text = "-";
             lblRepayIncomeVal.TextAlign = ContentAlignment.MiddleLeft;
@@ -862,7 +863,7 @@
             // 
             lblRepayIncome.Location = new Point(12, 68);
             lblRepayIncome.Name = "lblRepayIncome";
-            lblRepayIncome.Size = new Size(140, 20);
+            lblRepayIncome.Size = new Size(195, 20);
             lblRepayIncome.TabIndex = 3;
             lblRepayIncome.Text = "Repayment Income:";
             lblRepayIncome.TextAlign = ContentAlignment.MiddleLeft;
@@ -892,7 +893,7 @@
             lblNominalHeader.ForeColor = Color.DimGray;
             lblNominalHeader.Location = new Point(12, 48);
             lblNominalHeader.Name = "lblNominalHeader";
-            lblNominalHeader.Size = new Size(200, 16);
+            lblNominalHeader.Size = new Size(278, 16);
             lblNominalHeader.TabIndex = 0;
             lblNominalHeader.Text = "── Nominal ──";
             // 
@@ -903,7 +904,7 @@
             grpSchedule.Dock = DockStyle.Fill;
             grpSchedule.Location = new Point(0, 200);
             grpSchedule.Name = "grpSchedule";
-            grpSchedule.Size = new Size(540, 591);
+            grpSchedule.Size = new Size(632, 591);
             grpSchedule.TabIndex = 1;
             grpSchedule.TabStop = false;
             grpSchedule.Text = "Coupon Schedule";
@@ -920,7 +921,7 @@
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.ReadOnly = true;
             dgvSchedule.RowHeadersVisible = false;
-            dgvSchedule.Size = new Size(534, 250);
+            dgvSchedule.Size = new Size(626, 250);
             dgvSchedule.TabIndex = 0;
             // 
             // colSchDate
@@ -964,7 +965,7 @@
             pnlChartContainer.Dock = DockStyle.Bottom;
             pnlChartContainer.Location = new Point(3, 269);
             pnlChartContainer.Name = "pnlChartContainer";
-            pnlChartContainer.Size = new Size(534, 319);
+            pnlChartContainer.Size = new Size(626, 319);
             pnlChartContainer.TabIndex = 1;
             // 
             // splitMain
@@ -988,8 +989,8 @@
             splitMain.Panel2.Controls.Add(grpSchedule);
             splitMain.Panel2.Controls.Add(grpOutput);
             splitMain.Panel2MinSize = 540;
-            splitMain.Size = new Size(904, 791);
-            splitMain.SplitterDistance = 360;
+            splitMain.Size = new Size(1054, 791);
+            splitMain.SplitterDistance = 418;
             splitMain.TabIndex = 0;
             splitMain.TabStop = false;
             // 
@@ -998,7 +999,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { toolsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(904, 24);
+            menuStrip.Size = new Size(1054, 24);
             menuStrip.TabIndex = 16;
             menuStrip.Text = "menuStrip";
             // 
@@ -1027,15 +1028,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(904, 815);
+            ClientSize = new Size(1054, 815);
             Controls.Add(menuStrip);
             Controls.Add(splitMain);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip;
-            MinimumSize = new Size(920, 844);
+            MinimumSize = new Size(1070, 844);
             Name = "BondCalc";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BondCalc - Inflation-Adjusted Bond Yield Calculator";
-            Icon = new Icon("bondCalc.ico");
             grpParameters.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudInflation).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNominal).EndInit();
