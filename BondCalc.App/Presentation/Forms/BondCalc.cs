@@ -12,7 +12,9 @@ namespace BondCalc.App.Presentation.Forms
 
         public BondCalc()
         {
-            Localization.SetCulture("en-US");
+            var saved = Properties.Settings.Default.Localization;
+            Localization.SetCulture(saved is "ru-RU" or "en-US" ? saved : "en-US");
+
             InitializeComponent();
             InitializeChart();
             ApplyLanguage();
@@ -55,6 +57,8 @@ namespace BondCalc.App.Presentation.Forms
                 Localization.SetCulture("en-US");
                 ApplyLanguage();
                 UpdateChartSeriesLanguage();
+                Properties.Settings.Default.Localization = "en-US";
+                Properties.Settings.Default.Save();
             }
             catch (Exception ex)
             {
@@ -70,6 +74,8 @@ namespace BondCalc.App.Presentation.Forms
                 Localization.SetCulture("ru-RU");
                 ApplyLanguage();
                 UpdateChartSeriesLanguage();
+                Properties.Settings.Default.Localization = "ru-RU";
+                Properties.Settings.Default.Save();
             }
             catch (Exception ex)
             {
