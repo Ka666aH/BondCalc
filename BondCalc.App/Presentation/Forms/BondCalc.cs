@@ -537,7 +537,7 @@ namespace BondCalc.App.Presentation.Forms
                     Name = Localization.GetString("ChartNominalYield"),
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.Green),
-                    BorderWidth = 2,
+                    BorderWidth = 1,
                     IsVisibleInLegend = true
                 };
                 var realSeries = new Series
@@ -546,7 +546,7 @@ namespace BondCalc.App.Presentation.Forms
                     Name = Localization.GetString("ChartRealYield"),
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.DodgerBlue),
-                    BorderWidth = 2,
+                    BorderWidth = 1,
                     BorderDashStyle = ChartDashStyle.Dash,
                     IsVisibleInLegend = true
                 };
@@ -556,7 +556,7 @@ namespace BondCalc.App.Presentation.Forms
                     Name = Localization.GetString("ChartInflation"),
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.Red),
-                    BorderWidth = 2,
+                    BorderWidth = 1,
                     IsVisibleInLegend = true
                 };
                 foreach (var p in result.NominalYieldSeries)
