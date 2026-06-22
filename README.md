@@ -1,3 +1,5 @@
+[Read in Russian](README.ru.md)
+
 # BondCalc
 
 **Inflation-adjusted bond yield calculator** — a Windows Forms desktop application for computing real (inflation-adjusted) yield-to-maturity on bonds with coupon and amortization schedules.
