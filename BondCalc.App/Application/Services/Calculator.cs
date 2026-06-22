@@ -27,9 +27,9 @@ namespace BondCalc.App.Application.Services
 
         public List<ScheduleRow> Schedule { get; }
 
-        public List<ChartPoint> NominalYieldSeries { get; }
-        public List<ChartPoint> RealYieldSeries { get; }
-        public List<ChartPoint> InflationSeries { get; }
+        public List<ChartPoint> NominalYieldSeries { get; private set; }
+        public List<ChartPoint> RealYieldSeries { get; private set; }
+        public List<ChartPoint> InflationSeries { get; private set; }
         public Calculator(Bond bond, Deal deal, double annualInflationRate)
         {
             _bond = bond;
@@ -65,9 +65,7 @@ namespace BondCalc.App.Application.Services
 
             Schedule = CalculateSchedule();
 
-            NominalYieldSeries = CalculateNominalYieldSeries();
-            RealYieldSeries = CalculateRealYieldSeries();
-            InflationSeries = CalculateInflationSeries();
+            CalculateChartSeries();
         }
         private double CalculateBuyPrice() => _deal.Price + _deal.ACI;
         private double CalculateRepaymentIncome() => _bond.Value - _deal.Price;
@@ -151,34 +149,87 @@ namespace BondCalc.App.Application.Services
 
             return [.. rows.OrderBy(r => r.Date)];
         }
-        public List<ChartPoint> CalculateNominalYieldSeries()
+        private void CalculateChartSeries()
         {
-            var points = new List<ChartPoint> { new(_deal.Date, 0) };
-            foreach (var row in Schedule)
+            int capacity = _daysToRepayment + 1;
+            var nominalPoints = new List<ChartPoint>(capacity) { new(_deal.Date, 0) };
+            var realPoints = new List<ChartPoint>(capacity) { new(_deal.Date, 0) };
+            var inflPoints = new List<ChartPoint>(capacity) { new(_deal.Date, 0) };
+
+            double cashNominal = 0;
+            double cashReal = 0;
+            double amortSum = 0;
+            int couponIdx = 0;
+            int amortIdx = 0;
+
+            double totalAmort = _bond.Amortizations.Sum(a => a.Amount);
+            double finalRemaining = _bond.Value - totalAmort;
+
+            for (int offset = 1; offset <= _daysToRepayment; offset++)
             {
-                points.Add(new(row.Date, row.CumulativeIncome / BuyPrice * 100));
+                var date = _deal.Date.AddDays(offset);
+                int todayDays = date.DayNumber - _deal.Date.DayNumber;
+
+                while (couponIdx < _bond.Coupons.Count
+                    && _bond.Coupons[couponIdx].Date == date)
+                {
+                    var c = _bond.Coupons[couponIdx];
+                    int d = c.Date.DayNumber - _deal.Date.DayNumber;
+                    double infl = Math.Pow(_dailyInflation, d);
+                    cashNominal += c.Amount;
+                    cashReal += c.Amount / infl;
+                    couponIdx++;
+                }
+
+                while (amortIdx < _bond.Amortizations.Count
+                    && _bond.Amortizations[amortIdx].Date == date)
+                {
+                    var a = _bond.Amortizations[amortIdx];
+                    int d = a.Date.DayNumber - _deal.Date.DayNumber;
+                    double infl = Math.Pow(_dailyInflation, d);
+                    cashNominal += a.Amount;
+                    cashReal += a.Amount / infl;
+                    amortSum += a.Amount;
+                    amortIdx++;
+                }
+
+                double t = (double)offset / _daysToRepayment;
+                double currentCleanPrice = _deal.Price
+                    + (finalRemaining - _deal.Price) * t;
+
+                double inflForDay = Math.Pow(_dailyInflation, todayDays);
+
+                double nominalWealth = cashNominal + currentCleanPrice;
+                double realWealth = cashReal + currentCleanPrice / inflForDay;
+
+                if (couponIdx < _bond.Coupons.Count)
+                {
+                    var nextCoupon = _bond.Coupons[couponIdx];
+                    DateOnly prevDate = couponIdx > 0
+                        ? _bond.Coupons[couponIdx - 1].Date
+                        : _bond.Placement;
+                    int period = nextCoupon.Date.DayNumber - prevDate.DayNumber;
+                    int sincePrev = date.DayNumber - prevDate.DayNumber;
+                    if (period > 0 && sincePrev > 0)
+                    {
+                        double frac = (double)sincePrev / period;
+                        double accrued = nextCoupon.Amount * frac;
+                        nominalWealth += accrued;
+                        int d = nextCoupon.Date.DayNumber - _deal.Date.DayNumber;
+                        realWealth += accrued / Math.Pow(_dailyInflation, d);
+                    }
+                }
+
+                nominalPoints.Add(new(date,
+                    (nominalWealth - BuyPrice) / BuyPrice * 100));
+                realPoints.Add(new(date,
+                    (realWealth - BuyPrice) / BuyPrice * 100));
+                inflPoints.Add(new(date, (inflForDay - 1) * 100));
             }
-            return points;
-        }
-        public List<ChartPoint> CalculateRealYieldSeries()
-        {
-            var points = new List<ChartPoint> { new(_deal.Date, 0) };
-            foreach (var row in Schedule)
-            {
-                points.Add(new(row.Date, row.CumulativeRealIncome / BuyPrice * 100));
-            }
-            return points;
-        }
-        public List<ChartPoint> CalculateInflationSeries()
-        {
-            var points = new List<ChartPoint> { new(_deal.Date, 0) };
-            foreach (var row in Schedule)
-            {
-                int days = row.Date.DayNumber - _deal.Date.DayNumber;
-                double value = (Math.Pow(_dailyInflation, days) - 1) * 100;
-                points.Add(new(row.Date, value));
-            }
-            return points;
+
+            NominalYieldSeries = nominalPoints;
+            RealYieldSeries = realPoints;
+            InflationSeries = inflPoints;
         }
     }
 }
