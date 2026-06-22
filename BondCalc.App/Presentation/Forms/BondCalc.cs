@@ -7,6 +7,8 @@ namespace BondCalc.App.Presentation.Forms
     public partial class BondCalc : Form
     {
         private Chart chartSchedule = null!;
+        private readonly Dictionary<string, string> _savedNudText = new();
+        private CultureInfo? _oldCulture;
 
         public BondCalc()
         {
@@ -47,6 +49,7 @@ namespace BondCalc.App.Presentation.Forms
 
         private void OnLanguageEnglish(object? sender, EventArgs e)
         {
+            SaveNumericTexts();
             Localization.SetCulture("en-US");
             ApplyLanguage();
             UpdateChartSeriesLanguage();
@@ -54,6 +57,7 @@ namespace BondCalc.App.Presentation.Forms
 
         private void OnLanguageRussian(object? sender, EventArgs e)
         {
+            SaveNumericTexts();
             Localization.SetCulture("ru-RU");
             ApplyLanguage();
             UpdateChartSeriesLanguage();
@@ -135,6 +139,55 @@ namespace BondCalc.App.Presentation.Forms
             RefreshResultFormats();
             UpdateChartDateFormat();
             UpdateAmortAmountLabel();
+            RefreshNumericFormats();
+            RefreshDatePickerFormats();
+        }
+
+        private void RefreshNumericFormats()
+        {
+            if (_oldCulture == null) return;
+            foreach (var nud in new NumericUpDown[]
+            {
+                nudNominal, nudInflation, nudPrice, nudAccrued, nudCouponAmount,
+                nudPeriod, nudAmortParts
+            })
+            {
+                if (_savedNudText.TryGetValue(nud.Name, out var text)
+                    && decimal.TryParse(text, NumberStyles.Any, _oldCulture, out var val))
+                {
+                    nud.Value = nud.Minimum;
+                    nud.Value = val;
+                }
+            }
+        }
+
+        private void SaveNumericTexts()
+        {
+            _oldCulture = CultureInfo.CurrentCulture;
+            _savedNudText.Clear();
+            foreach (var nud in new NumericUpDown[]
+            {
+                nudNominal, nudInflation, nudPrice, nudAccrued, nudCouponAmount,
+                nudPeriod, nudAmortParts
+            })
+            {
+                _savedNudText[nud.Name] = nud.Text;
+            }
+        }
+
+        private void RefreshDatePickerFormats()
+        {
+            var pattern = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
+            dtpRepayment.ValueChanged -= dtpRepayment_ValueChanged;
+            foreach (var dtp in new[]
+            {
+                dtpPlacement, dtpRepayment, dtpFirstCoupon, dtpLastCoupon, nudPurchase
+            })
+            {
+                dtp.Format = DateTimePickerFormat.Custom;
+                dtp.CustomFormat = pattern;
+            }
+            dtpRepayment.ValueChanged += dtpRepayment_ValueChanged;
         }
 
         private void UpdateChartSeriesLanguage()
@@ -545,7 +598,7 @@ namespace BondCalc.App.Presentation.Forms
             return new Deal(price, aci, DateOnly.FromDateTime(date));
         }
 
-        private void dtpRepayment_ValueChanged(object sender, EventArgs e)
+        private void dtpRepayment_ValueChanged(object? sender, EventArgs e)
         {
             dtpLastCoupon.Value = dtpRepayment.Value;
         }

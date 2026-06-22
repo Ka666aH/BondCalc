@@ -159,6 +159,7 @@
             nudInflation.Name = "nudInflation";
             nudInflation.Size = new Size(211, 23);
             nudInflation.TabIndex = 7;
+            nudInflation.ThousandsSeparator = true;
             nudInflation.Value = new decimal(new int[] { 15, 0, 0, 0 });
             // 
             // nudNominal
@@ -170,6 +171,7 @@
             nudNominal.Name = "nudNominal";
             nudNominal.Size = new Size(211, 23);
             nudNominal.TabIndex = 1;
+            nudNominal.ThousandsSeparator = true;
             nudNominal.Value = new decimal(new int[] { 1000, 0, 0, 0 });
             // 
             // dtpRepayment
@@ -268,6 +270,7 @@
             nudAccrued.Name = "nudAccrued";
             nudAccrued.Size = new Size(211, 23);
             nudAccrued.TabIndex = 11;
+            nudAccrued.ThousandsSeparator = true;
             // 
             // nudPrice
             // 
@@ -278,6 +281,7 @@
             nudPrice.Name = "nudPrice";
             nudPrice.Size = new Size(211, 23);
             nudPrice.TabIndex = 9;
+            nudPrice.ThousandsSeparator = true;
             nudPrice.Value = new decimal(new int[] { 1000, 0, 0, 0 });
             // 
             // lblAccrued
@@ -437,6 +441,7 @@
             nudCouponAmount.Name = "nudCouponAmount";
             nudCouponAmount.Size = new Size(211, 23);
             nudCouponAmount.TabIndex = 20;
+            nudCouponAmount.ThousandsSeparator = true;
             // 
             // lblCouponAmount
             // 
