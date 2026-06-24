@@ -89,7 +89,7 @@ namespace BondCalc.App.Application.Services
                 double realRepaymentIncome = (_bond.Value - amortizationSum) / totalInflation;
                 result += realRepaymentIncome;
             }
-            return result - _deal.Price;
+            return result - BuyPrice;
         }
         private double CalculateRealTotalCouponIncome()
         {
