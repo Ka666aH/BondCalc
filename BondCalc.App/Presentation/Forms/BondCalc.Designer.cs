@@ -46,8 +46,12 @@
             lblFirstCoupon = new Label();
             btnClearCoupons = new Button();
             lblPeriod = new Label();
+            nudCouponRate = new NumericUpDown();
+            lblRateSuffix = new Label();
+            lblSep = new Label();
             nudCouponAmount = new NumericUpDown();
-            lblCouponAmount = new Label();
+            lblAmountSuffix = new Label();
+            lblCoupon = new Label();
             btnAddCoupon = new Button();
             btnRemoveCoupon = new Button();
             dgvCoupons = new DataGridView();
@@ -102,10 +106,10 @@
             pnlChartContainer = new Panel();
             splitMain = new SplitContainer();
             menuStrip = new MenuStrip();
+            aboutMenuItem = new ToolStripMenuItem();
             toolsMenuItem = new ToolStripMenuItem();
             englishItem = new ToolStripMenuItem();
             russianItem = new ToolStripMenuItem();
-            aboutMenuItem = new ToolStripMenuItem();
             grpParameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudNominal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudInflation).BeginInit();
@@ -114,6 +118,7 @@
             ((System.ComponentModel.ISupportInitialize)nudPrice).BeginInit();
             grpCoupons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPeriod).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudCouponRate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudCouponAmount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCoupons).BeginInit();
             grpAmortizations.SuspendLayout();
@@ -319,8 +324,12 @@
             grpCoupons.Controls.Add(lblFirstCoupon);
             grpCoupons.Controls.Add(btnClearCoupons);
             grpCoupons.Controls.Add(lblPeriod);
+            grpCoupons.Controls.Add(nudCouponRate);
+            grpCoupons.Controls.Add(lblRateSuffix);
+            grpCoupons.Controls.Add(lblSep);
             grpCoupons.Controls.Add(nudCouponAmount);
-            grpCoupons.Controls.Add(lblCouponAmount);
+            grpCoupons.Controls.Add(lblAmountSuffix);
+            grpCoupons.Controls.Add(lblCoupon);
             grpCoupons.Controls.Add(btnAddCoupon);
             grpCoupons.Controls.Add(btnRemoveCoupon);
             grpCoupons.Controls.Add(dgvCoupons);
@@ -353,11 +362,11 @@
             // nudPeriod
             // 
             nudPeriod.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            nudPeriod.Location = new Point(279, 74);
+            nudPeriod.Location = new Point(298, 74);
             nudPeriod.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             nudPeriod.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudPeriod.Name = "nudPeriod";
-            nudPeriod.Size = new Size(127, 23);
+            nudPeriod.Size = new Size(108, 23);
             nudPeriod.TabIndex = 9;
             nudPeriod.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
@@ -365,7 +374,7 @@
             // 
             btnPeriod30.Location = new Point(176, 74);
             btnPeriod30.Name = "btnPeriod30";
-            btnPeriod30.Size = new Size(30, 23);
+            btnPeriod30.Size = new Size(35, 23);
             btnPeriod30.TabIndex = 6;
             btnPeriod30.Text = "30";
             btnPeriod30.UseVisualStyleBackColor = true;
@@ -373,9 +382,9 @@
             // 
             // btnPeriod90
             // 
-            btnPeriod90.Location = new Point(208, 74);
+            btnPeriod90.Location = new Point(217, 74);
             btnPeriod90.Name = "btnPeriod90";
-            btnPeriod90.Size = new Size(30, 23);
+            btnPeriod90.Size = new Size(35, 23);
             btnPeriod90.TabIndex = 7;
             btnPeriod90.Text = "90";
             btnPeriod90.UseVisualStyleBackColor = true;
@@ -383,7 +392,7 @@
             // 
             // btnPeriod180
             // 
-            btnPeriod180.Location = new Point(240, 74);
+            btnPeriod180.Location = new Point(258, 74);
             btnPeriod180.Name = "btnPeriod180";
             btnPeriod180.Size = new Size(35, 23);
             btnPeriod180.TabIndex = 8;
@@ -440,25 +449,61 @@
             lblPeriod.Text = "Period (days):";
             lblPeriod.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // nudCouponRate
+            // 
+            nudCouponRate.DecimalPlaces = 4;
+            nudCouponRate.Location = new Point(176, 100);
+            nudCouponRate.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            nudCouponRate.Name = "nudCouponRate";
+            nudCouponRate.Size = new Size(76, 23);
+            nudCouponRate.TabIndex = 10;
+            // 
+            // lblRateSuffix
+            // 
+            lblRateSuffix.Location = new Point(249, 102);
+            lblRateSuffix.Name = "lblRateSuffix";
+            lblRateSuffix.Size = new Size(15, 20);
+            lblRateSuffix.TabIndex = 21;
+            lblRateSuffix.Text = "%";
+            lblRateSuffix.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblSep
+            // 
+            lblSep.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblSep.Location = new Point(272, 102);
+            lblSep.Name = "lblSep";
+            lblSep.Size = new Size(12, 20);
+            lblSep.TabIndex = 22;
+            lblSep.Text = "=";
+            lblSep.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // nudCouponAmount
             // 
-            nudCouponAmount.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nudCouponAmount.DecimalPlaces = 2;
-            nudCouponAmount.Location = new Point(176, 100);
+            nudCouponAmount.Location = new Point(298, 100);
             nudCouponAmount.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudCouponAmount.Name = "nudCouponAmount";
-            nudCouponAmount.Size = new Size(230, 23);
-            nudCouponAmount.TabIndex = 10;
+            nudCouponAmount.Size = new Size(53, 23);
+            nudCouponAmount.TabIndex = 20;
             nudCouponAmount.ThousandsSeparator = true;
             // 
-            // lblCouponAmount
+            // lblAmountSuffix
             // 
-            lblCouponAmount.Location = new Point(12, 102);
-            lblCouponAmount.Name = "lblCouponAmount";
-            lblCouponAmount.Size = new Size(158, 20);
-            lblCouponAmount.TabIndex = 21;
-            lblCouponAmount.Text = "Coupon Amount:";
-            lblCouponAmount.TextAlign = ContentAlignment.MiddleLeft;
+            lblAmountSuffix.Location = new Point(347, 102);
+            lblAmountSuffix.Name = "lblAmountSuffix";
+            lblAmountSuffix.Size = new Size(59, 20);
+            lblAmountSuffix.TabIndex = 23;
+            lblAmountSuffix.Text = "Amount";
+            lblAmountSuffix.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblCoupon
+            // 
+            lblCoupon.Location = new Point(12, 102);
+            lblCoupon.Name = "lblCoupon";
+            lblCoupon.Size = new Size(55, 20);
+            lblCoupon.TabIndex = 19;
+            lblCoupon.Text = "Coupon:";
+            lblCoupon.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnAddCoupon
             // 
@@ -1065,6 +1110,7 @@
             ((System.ComponentModel.ISupportInitialize)nudPrice).EndInit();
             grpCoupons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudPeriod).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudCouponRate).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudCouponAmount).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvCoupons).EndInit();
             grpAmortizations.ResumeLayout(false);
@@ -1128,7 +1174,11 @@
         private Button btnAddCoupon;
         private DataGridView dgvCoupons;
         private NumericUpDown nudCouponAmount;
-        private Label lblCouponAmount;
+        private NumericUpDown nudCouponRate;
+        private Label lblCoupon;
+        private Label lblRateSuffix;
+        private Label lblSep;
+        private Label lblAmountSuffix;
 
         private GroupBox grpAmortizations;
         private Label lblAmortAmount;

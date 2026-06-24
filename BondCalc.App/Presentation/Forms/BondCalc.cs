@@ -10,6 +10,7 @@ namespace BondCalc.App.Presentation.Forms
         private Chart chartSchedule = null!;
         private readonly Dictionary<string, string> _savedNudText = new();
         private CultureInfo? _oldCulture;
+        private bool _updatingCoupon;
 
         public BondCalc()
         {
@@ -18,6 +19,7 @@ namespace BondCalc.App.Presentation.Forms
 
             InitializeComponent();
             InitializeChart();
+            WireCouponSync();
             ApplyLanguage();
             Reset();
         }
@@ -108,6 +110,56 @@ namespace BondCalc.App.Presentation.Forms
             }
         }
 
+        private void WireCouponSync()
+        {
+            nudCouponRate.ValueChanged += OnCouponRateChanged;
+            nudCouponAmount.ValueChanged += OnCouponAmountChanged;
+            nudPeriod.ValueChanged += OnCouponParameterChanged;
+            nudNominal.ValueChanged += OnCouponParameterChanged;
+        }
+
+        private void OnCouponRateChanged(object? sender, EventArgs e)
+        {
+            if (_updatingCoupon) return;
+            _updatingCoupon = true;
+            try
+            {
+                double rate = (double)nudCouponRate.Value;
+                double nominal = (double)nudNominal.Value;
+                double period = (double)nudPeriod.Value;
+                if (period > 0 && nominal > 0)
+                {
+                    double amount = rate / 100.0 * nominal * (period / 365.25);
+                    nudCouponAmount.Value = Math.Min((decimal)amount, nudCouponAmount.Maximum);
+                }
+            }
+            finally { _updatingCoupon = false; }
+        }
+
+        private void OnCouponAmountChanged(object? sender, EventArgs e)
+        {
+            if (_updatingCoupon) return;
+            _updatingCoupon = true;
+            try
+            {
+                double amount = (double)nudCouponAmount.Value;
+                double nominal = (double)nudNominal.Value;
+                double period = (double)nudPeriod.Value;
+                if (period > 0 && nominal > 0)
+                {
+                    double rate = amount / nominal / (period / 365.25) * 100;
+                    nudCouponRate.Value = Math.Min((decimal)rate, nudCouponRate.Maximum);
+                }
+            }
+            finally { _updatingCoupon = false; }
+        }
+
+        private void OnCouponParameterChanged(object? sender, EventArgs e)
+        {
+            if (_updatingCoupon) return;
+            OnCouponRateChanged(sender, e);
+        }
+
         private void ApplyLanguage()
         {
             var t = Localization.GetString;
@@ -131,7 +183,8 @@ namespace BondCalc.App.Presentation.Forms
             lblFirstCoupon.Text = t("LblFirstCoupon");
             lblLastCoupon.Text = t("LblLastCoupon");
             lblPeriod.Text = t("LblPeriod");
-            lblCouponAmount.Text = t("LblCouponAmount");
+            lblCoupon.Text = t("LblCoupon");
+            lblAmountSuffix.Text = t("LblAmountSuffix");
 
             lblAmortParts.Text = t("LblAmortParts");
 
@@ -190,7 +243,7 @@ namespace BondCalc.App.Presentation.Forms
             foreach (var nud in new NumericUpDown[]
             {
                 nudNominal, nudInflation, nudPrice, nudAccrued, nudCouponAmount,
-                nudPeriod, nudAmortParts
+                nudPeriod, nudAmortParts, nudCouponRate
             })
             {
                 if (_savedNudText.TryGetValue(nud.Name, out var text)
@@ -211,7 +264,7 @@ namespace BondCalc.App.Presentation.Forms
             foreach (var nud in new NumericUpDown[]
             {
                 nudNominal, nudInflation, nudPrice, nudAccrued, nudCouponAmount,
-                nudPeriod, nudAmortParts
+                nudPeriod, nudAmortParts, nudCouponRate
             })
             {
                 _savedNudText[nud.Name] = nud.Text;
@@ -494,6 +547,7 @@ namespace BondCalc.App.Presentation.Forms
             dtpLastCoupon.Value = DateTime.Now.AddYears(5);
             nudPeriod.Value = 30;
             nudCouponAmount.Value = 0;
+            nudCouponRate.Value = 0;
             nudAmortParts.Value = 5;
             dgvCoupons.Rows.Clear();
             dgvAmortizations.Rows.Clear();

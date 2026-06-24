@@ -168,8 +168,11 @@
   <data name="LblPeriod" xml:space="preserve">
     <value>Период (дней):</value>
   </data>
-  <data name="LblCouponAmount" xml:space="preserve">
-    <value>Сумма купона:</value>
+  <data name="LblCoupon" xml:space="preserve">
+    <value>Купон:</value>
+  </data>
+  <data name="LblAmountSuffix" xml:space="preserve">
+    <value>Сумма</value>
   </data>
   <data name="LblAmortParts" xml:space="preserve">
     <value>Количество частей:</value>
