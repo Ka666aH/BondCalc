@@ -10,7 +10,7 @@ BondCalc is a Windows Forms desktop application that calculates **inflation-adju
 
 - **Goal**: Input bond parameters, get inflation-adjusted yield
 - **Scope**: Personal portfolio project + GitHub portfolio piece
-- **Timeline**: 2-day delivery — keep it simple, avoid overengineering
+- **Timeline**: Evolving project — keep it simple, avoid overengineering
 - **User**: Single user, manual data input, no API/persistence
 - **UI**: Windows Forms (no web, no MVC)
 
@@ -23,7 +23,6 @@ The user enters bond details manually and the app computes:
 - **Full yield-to-maturity** adjusted for inflation rate
 - **Coupon schedule table** with columns: date, coupon amount, inflation-adjusted coupon amount, running cumulative yield
 - **Cumulative yield chart** comparing nominal yield, real (inflation-adjusted) yield, and inflation curve
-- **Sell-by date** — the earliest date when cumulative inflation-adjusted return falls below the inflation curve (bond no longer beats inflation) (UI exists, not yet implemented)
 
 Calculation logic lives in `Application/Services`. The domain entities (`Bond`, `Coupon`, `Amortization`, `Deal`) hold the raw data; services perform the math.
 
@@ -37,7 +36,7 @@ Calculation logic lives in `Application/Services`. The domain entities (`Bond`, 
 | Runtime | .NET 10 |
 | UI | Windows Forms (`net10.0-windows`) |
 | SDK | Microsoft.NET.Sdk |
-| NuGet | `System.Windows.Forms.DataVisualization` (chart), `System.Data.SqlClient` |
+| NuGet | `System.Windows.Forms.DataVisualization` (chart), `System.Data.SqlClient` (unused, legacy) |
 
 Do **not** add new NuGet packages unless the user explicitly requests it.
 
@@ -69,7 +68,8 @@ No repositories, no data access, no external APIs. No tests unless requested.
 BondCalc/
 ├── BondCalc.slnx                  # Solution file (SLNX format)
 ├── CONTEXT.md                     # This file
-├── README.md                      # GitHub readme (placeholder)
+├── README.md                      # GitHub readme (English)
+├── README.ru.md                   # GitHub readme (Russian)
 ├── LICENSE.txt                    # MIT license (unfilled)
 ├── .gitattributes                 # Git line-ending config
 ├── .gitignore                     # VS gitignore
@@ -79,6 +79,11 @@ BondCalc/
     ├── BondCalc.App.csproj.user   # VS user settings
     ├── Program.cs                 # Entry point, launches BondCalc form
     ├── bondCalc.ico               # Application icon
+    ├── App.config                 # App config (Settings)
+    │
+    ├── Properties/
+    │   ├── Settings.settings      # User settings (persists Localization)
+    │   └── Settings.Designer.cs   # Auto-generated settings accessor
     │
     ├── Domain/
     │   └── Entities/
@@ -95,8 +100,8 @@ BondCalc/
     │       └── Localization.cs    # Static localization helper (ResourceManager)
     │
     ├── Resources/
-    │   ├── Strings.resx           # English resources (43 strings)
-    │   └── Strings.ru.resx        # Russian resources (43 strings)
+    │   ├── Strings.resx           # English resources (~50 strings)
+    │   └── Strings.ru.resx        # Russian resources (~50 strings)
     │
     └── Presentation/
         └── Forms/
@@ -112,7 +117,7 @@ BondCalc/
 ### Bond
 - `Value` (double) — face value
 - `Placement` (DateOnly) — issue/placement date
-- `Repayment` (DateOnly) — maturity date
+- `Repayment` (DateOnly) — maturity date (also used for put/offer)
 - `Coupons` (List\<Coupon\>) — coupon schedule
 - `Amortizations` (List\<Amortization\>) — principal repayment schedule
 
@@ -146,34 +151,45 @@ BondCalc/
 - Amortization schedule with manual add/remove/generate (split nominal into N equal parts)
 - Three period presets: 30, 90, 180 days
 - Dynamic amortization amount preview
-- Results display: Buy Price, Repayment Income, Coupon Income, Total Income, Total/Annual Yield (nominal + real)
+- Coupon entry via rate (%) or amount — two-way sync
+- Coupon generation considers amortizations (reducing nominal for future coupons)
+- Results: Dirty Price, Redemption Income, Coupon Income, Total Income, Total/Annual Yield (nominal + real)
 - Schedule table (read-only DataGridView): Date, Type, Nominal, Cumulative, Real, Cumulative Real
-- Chart with 3 series: Nominal Yield (green line), Real Yield (blue dashed), Inflation (red line)
+- Chart with 3 series: Nominal Yield (green spline), Real Yield (blue line), Inflation (red spline)
+- Dynamic Y-axis scaling based on data range
 - Localization: English (default) and Russian, switchable via Language menu
+- User setting persists selected language across sessions
+- Date formats, number formats, and chart formats adapt to culture
+- About dialog with GitHub project link
+- Typo `Name = "BondCacl"` fixed → `Name = "BondCalc"`
 - Application icon
+- README in English and Russian
+
+### Calculation details
+- `BuyPrice` = Clean Price + Accrued Interest
+- `RepaymentIncome` = Face Value − Clean Price
+- `RealRepaymentIncome` = amortizations and remaining face discounted individually by daily inflation from each payment date back to purchase date, minus BuyPrice
+- `RealTotalCouponIncome` = each coupon discounted individually
+- Daily compounding formula: `(1 + annualRate / 365.25)^days`
+- Annual yield = total yield / days to repayment × 365.25
+- Chart series calculated as daily wealth: cash received + clean price + accrued interest, relative to BuyPrice
+- Inflation series: `(dailyInflation^days − 1) × 100`
 
 ### What exists but is incomplete
-- **Sell-By Date / Inflation-Adjusted YTM**: UI labels exist in `grpResults` (Visible=false) but no calculation logic
-- **Chart smoothing**: lines are raw step-like; spline not yet applied
+- **Export functionality**: Not yet implemented (About dialog suggests possible future feature)
 
 ### Known issues / technical debt
-- Some Designer hardcoded texts may not go through localization
-- Chart axis titles are commented out in Designer
+- Resource files contain unused keys: `GrpResults`, `LblYtmLabel`, `LblSellByLabel` (UI was removed)
+- `System.Data.SqlClient` package is referenced but unused
 - `Application/Interfaces/` removal artifacts in csproj (Compile/EmbeddedResource/None Remove)
+- Chart axis titles are commented out in the chart code
 
 ---
 
 ## 8. Planned Work (TODO)
 
-1. **Remove hidden unused UI elements** — delete `grpResults`, `lblYtmLabel`, `lblYtmValue`, `lblSellByLabel`, `lblSellByValue` (Visible=false, no calculation logic)
-2. **Complete localization adaptation** — ensure all UI texts resolve through `ApplyLanguage()`, not hardcoded in Designer
-3. **Verify localization texts and cultures** — audit all resource strings, ensure proper culture handling (date/number formats)
-4. **Smooth chart** — change line rendering from raw line to spline interpolation for all three series
-5. **Add Help menu** — About dialog with GitHub link; possibly export functionality
-6. **Keyboard navigation** — verify Tab order, add keyboard shortcuts, ensure accessibility
-7. **Variable coupon support** — coupons can have different amounts (already supported by manual entry, but UX may need improvement)
-8. **Persist localization setting** — save selected language (en/ru) between app sessions (e.g., via `Settings.settings` or `Properties.Settings.Default`)
-9. **Coupon input as percent** — allow coupon amount entry either as a fixed currency value or as a percentage of the remaining nominal (considering amortizations)
+1. **Remove dead resource keys** — delete `GrpResults`, `LblYtmLabel`, `LblSellByLabel` from both `Strings.resx` and `Strings.ru.resx`
+2. **Add Export functionality** — export schedule table and/or chart to TXT/CSV
 
 ---
 
