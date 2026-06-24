@@ -388,7 +388,7 @@ namespace BondCalc.App.Presentation.Forms
                 var first = dtpFirstCoupon.Value;
                 var last = dtpLastCoupon.Value;
                 var period = (int)nudPeriod.Value;
-                var amount = Math.Round((double)nudCouponAmount.Value, 2);
+                var rate = (double)nudCouponRate.Value;
 
                 if (period <= 0)
                 {
@@ -404,9 +404,61 @@ namespace BondCalc.App.Presentation.Forms
                     return;
                 }
 
+                if (rate <= 0)
+                {
+                    MessageBox.Show(Localization.GetString("MsgRateZero"), Localization.GetString("MsgPeriodInvalidTitle"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var amortizations = new List<(DateOnly Date, double Amount)>();
+                foreach (DataGridViewRow row in dgvAmortizations.Rows)
+                {
+                    if (TryGetDate(row.Cells[0], out var date)
+                        && TryGetDouble(row.Cells[1], out var amt)
+                        && amt > 0)
+                    {
+                        amortizations.Add((date, amt));
+                    }
+                }
+                amortizations.Sort((a, b) => a.Date.CompareTo(b.Date));
+
+                var couponDates = new List<DateOnly>();
                 for (var current = first; current <= last; current = current.AddDays(period))
                 {
-                    dgvCoupons.Rows.Add(DateOnly.FromDateTime(current), amount);
+                    couponDates.Add(DateOnly.FromDateTime(current));
+                }
+
+                if (couponDates.Count == 0)
+                {
+                    MessageBox.Show(Localization.GetString("MsgNoCoupons"), Localization.GetString("MsgNoCouponsTitle"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                double remainingNominal = (double)nudNominal.Value;
+                int amortIdx = 0;
+                dgvCoupons.Rows.Clear();
+
+                foreach (var cDate in couponDates)
+                {
+                    while (amortIdx < amortizations.Count && amortizations[amortIdx].Date < cDate)
+                    {
+                        remainingNominal -= amortizations[amortIdx].Amount;
+                        amortIdx++;
+                    }
+
+                    if (remainingNominal <= 0)
+                        break;
+
+                    double amount = Math.Round(remainingNominal * (rate / 100.0) * (period / 365.25), 2);
+                    dgvCoupons.Rows.Add(cDate, amount);
+
+                    while (amortIdx < amortizations.Count && amortizations[amortIdx].Date == cDate)
+                    {
+                        remainingNominal -= amortizations[amortIdx].Amount;
+                        amortIdx++;
+                    }
                 }
 
                 if (dgvCoupons.Rows.Count == 0)
