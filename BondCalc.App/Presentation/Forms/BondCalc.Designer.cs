@@ -1036,8 +1036,8 @@
             // 
             splitMain.Panel1.Controls.Add(btnReset);
             splitMain.Panel1.Controls.Add(grpDeal);
-            splitMain.Panel1.Controls.Add(grpAmortizations);
             splitMain.Panel1.Controls.Add(grpCoupons);
+            splitMain.Panel1.Controls.Add(grpAmortizations);
             splitMain.Panel1.Controls.Add(grpParameters);
             splitMain.Panel1.Controls.Add(btnCalculate);
             splitMain.Panel1MinSize = 360;
