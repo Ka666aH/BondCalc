@@ -94,11 +94,10 @@ namespace BondCalc.App.Presentation.Forms
 
         private void OnAboutClick(object? sender, EventArgs e)
         {
-            var result = MessageBox.Show(
-                Localization.GetString("AboutText"),
-                Localization.GetString("AboutTitle"),
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Information);
+            var t = Localization.GetString;
+            var result = MessageBox.Show(t("AboutText"), t("AboutTitle"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button2);
             if (result == DialogResult.Yes)
             {
                 try
@@ -566,7 +565,7 @@ namespace BondCalc.App.Presentation.Forms
                 for (int i = 1; i <= parts; i++)
                 {
                     var date = i == parts ? last : first.AddDays(i * period);
-                    dgvAmortizations.Rows.Add(DateOnly.FromDateTime(date), amount);
+                    dgvAmortizations.Rows.Add(DateOnly.FromDateTime(date), Math.Round(amount, 2));
                 }
             }
             catch (Exception ex)
@@ -591,7 +590,7 @@ namespace BondCalc.App.Presentation.Forms
             nudNominal.Value = 1000;
             nudPrice.Value = 1000;
             nudPurchase.Value = DateTime.Now;
-            nudInflation.Value = 15;
+            nudInflation.Value = 0;
             nudAccrued.Value = 0;
             dtpPlacement.Value = DateTime.Now;
             dtpRepayment.Value = DateTime.Now.AddYears(5);

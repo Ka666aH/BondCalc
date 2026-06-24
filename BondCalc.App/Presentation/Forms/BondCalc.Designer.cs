@@ -171,7 +171,7 @@
             dtpRepayment.Name = "dtpRepayment";
             dtpRepayment.Size = new Size(230, 23);
             dtpRepayment.TabIndex = 3;
-            dtpRepayment.Value = new DateTime(2030, 1, 1, 0, 0, 0, 0);
+            dtpRepayment.Value = new DateTime(2031, 1, 1, 0, 0, 0, 0);
             dtpRepayment.ValueChanged += dtpRepayment_ValueChanged;
             // 
             // dtpPlacement
@@ -182,7 +182,7 @@
             dtpPlacement.Name = "dtpPlacement";
             dtpPlacement.Size = new Size(230, 23);
             dtpPlacement.TabIndex = 2;
-            dtpPlacement.Value = new DateTime(2025, 1, 1, 0, 0, 0, 0);
+            dtpPlacement.Value = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             // 
             // lblRepayment
             // 
@@ -222,7 +222,6 @@
             nudInflation.Size = new Size(230, 23);
             nudInflation.TabIndex = 25;
             nudInflation.ThousandsSeparator = true;
-            nudInflation.Value = new decimal(new int[] { 15, 0, 0, 0 });
             // 
             // lblInflation
             // 
