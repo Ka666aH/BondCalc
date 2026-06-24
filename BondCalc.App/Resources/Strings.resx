@@ -258,6 +258,19 @@
   <data name="MenuRussian" xml:space="preserve">
     <value>Русский</value>
   </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>About BondCalc</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>BondCalc — inflation-adjusted bond yield calculator.
+
+Computes full yield-to-maturity adjusted for inflation rate, generates coupon schedule with nominal and real values, and charts cumulative yield curves (nominal, real, inflation).
+
+Open the project page in your browser?</value>
+  </data>
   <data name="ChartNominalYield" xml:space="preserve">
     <value>Nominal Yield</value>
   </data>

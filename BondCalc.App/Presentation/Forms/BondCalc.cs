@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Windows.Forms.DataVisualization.Charting;
 using BondCalc.App.Application.Services;
 using BondCalc.App.Domain.Entities;
@@ -83,6 +84,24 @@ namespace BondCalc.App.Presentation.Forms
             }
         }
 
+        private void OnAboutClick(object? sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+                Localization.GetString("AboutText"),
+                Localization.GetString("AboutTitle"),
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    Process.Start(new ProcessStartInfo("https://github.com/Ka666aH/BondCalc")
+                        { UseShellExecute = true });
+                }
+                catch { }
+            }
+        }
+
         private void ApplyLanguage()
         {
             var t = Localization.GetString;
@@ -148,6 +167,7 @@ namespace BondCalc.App.Presentation.Forms
             toolsMenuItem.Text = t("MenuLanguage");
             englishItem.Text = t("MenuEnglish");
             russianItem.Text = t("MenuRussian");
+            aboutMenuItem.Text = t("MenuAbout");
 
             RefreshScheduleTypes();
             RefreshScheduleFormats();

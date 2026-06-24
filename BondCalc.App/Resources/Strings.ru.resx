@@ -258,6 +258,19 @@
   <data name="MenuRussian" xml:space="preserve">
     <value>Русский</value>
   </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>BondCalc — калькулятор доходности облигаций с учётом инфляции.
+
+Вычисляет полную доходность к погашению с учётом инфляции, строит график купонных выплат (номинальные и реальные суммы), а также отображает кривые накопленной доходности (номинальная, реальная, инфляция).
+
+Открыть страницу проекта в браузере?</value>
+  </data>
   <data name="ChartNominalYield" xml:space="preserve">
     <value>Номинальная доходность</value>
   </data>

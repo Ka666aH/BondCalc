@@ -105,6 +105,7 @@
             toolsMenuItem = new ToolStripMenuItem();
             englishItem = new ToolStripMenuItem();
             russianItem = new ToolStripMenuItem();
+            aboutMenuItem = new ToolStripMenuItem();
             grpParameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudNominal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudInflation).BeginInit();
@@ -1008,12 +1009,19 @@
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { toolsMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { aboutMenuItem, toolsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(1054, 24);
             menuStrip.TabIndex = 16;
             menuStrip.Text = "menuStrip";
+            // 
+            // aboutMenuItem
+            // 
+            aboutMenuItem.Name = "aboutMenuItem";
+            aboutMenuItem.Size = new Size(52, 20);
+            aboutMenuItem.Text = "About";
+            aboutMenuItem.Click += OnAboutClick;
             // 
             // toolsMenuItem
             // 
@@ -1160,5 +1168,6 @@
         private ToolStripMenuItem toolsMenuItem;
         private ToolStripMenuItem englishItem;
         private ToolStripMenuItem russianItem;
+        private ToolStripMenuItem aboutMenuItem;
     }
 }
