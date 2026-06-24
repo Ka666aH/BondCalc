@@ -165,17 +165,15 @@ namespace BondCalc.App.Application.Services
             double totalAmort = _bond.Amortizations.Sum(a => a.Amount);
             double finalRemaining = _bond.Value - totalAmort;
 
-            for (int offset = 1; offset <= _daysToRepayment; offset++)
+            for (int offset = 0; offset <= _daysToRepayment; offset++)
             {
                 var date = _deal.Date.AddDays(offset);
-                int todayDays = date.DayNumber - _deal.Date.DayNumber;
 
                 while (couponIdx < _bond.Coupons.Count
                     && _bond.Coupons[couponIdx].Date == date)
                 {
                     var c = _bond.Coupons[couponIdx];
-                    int d = c.Date.DayNumber - _deal.Date.DayNumber;
-                    double infl = Math.Pow(_dailyInflation, d);
+                    double infl = Math.Pow(_dailyInflation, offset);
                     cashNominal += c.Amount;
                     cashReal += c.Amount / infl;
                     couponIdx++;
@@ -185,8 +183,7 @@ namespace BondCalc.App.Application.Services
                     && _bond.Amortizations[amortIdx].Date == date)
                 {
                     var a = _bond.Amortizations[amortIdx];
-                    int d = a.Date.DayNumber - _deal.Date.DayNumber;
-                    double infl = Math.Pow(_dailyInflation, d);
+                    double infl = Math.Pow(_dailyInflation, offset);
                     cashNominal += a.Amount;
                     cashReal += a.Amount / infl;
                     amortSum += a.Amount;
@@ -197,34 +194,16 @@ namespace BondCalc.App.Application.Services
                 double currentCleanPrice = _deal.Price
                     + (finalRemaining - _deal.Price) * t;
 
-                double inflForDay = Math.Pow(_dailyInflation, todayDays);
+                double inflFactor = Math.Pow(_dailyInflation, offset);
 
                 double nominalWealth = cashNominal + currentCleanPrice;
-                double realWealth = cashReal + currentCleanPrice / inflForDay;
-
-                if (couponIdx < _bond.Coupons.Count)
-                {
-                    var nextCoupon = _bond.Coupons[couponIdx];
-                    DateOnly prevDate = couponIdx > 0
-                        ? _bond.Coupons[couponIdx - 1].Date
-                        : _bond.Placement;
-                    int period = nextCoupon.Date.DayNumber - prevDate.DayNumber;
-                    int sincePrev = date.DayNumber - prevDate.DayNumber;
-                    if (period > 0 && sincePrev > 0)
-                    {
-                        double frac = (double)sincePrev / period;
-                        double accrued = nextCoupon.Amount * frac;
-                        nominalWealth += accrued;
-                        int d = nextCoupon.Date.DayNumber - _deal.Date.DayNumber;
-                        realWealth += accrued / Math.Pow(_dailyInflation, d);
-                    }
-                }
+                double realWealth = cashReal + currentCleanPrice / inflFactor;
 
                 nominalPoints.Add(new(date,
                     (nominalWealth - BuyPrice) / BuyPrice * 100));
                 realPoints.Add(new(date,
                     (realWealth - BuyPrice) / BuyPrice * 100));
-                inflPoints.Add(new(date, (inflForDay - 1) * 100));
+                inflPoints.Add(new(date, (inflFactor - 1) * 100));
             }
 
             return (nominalPoints, realPoints, inflPoints);
