@@ -151,16 +151,13 @@ namespace BondCalc.App.Application.Services
         }
         private (List<ChartPoint>, List<ChartPoint>, List<ChartPoint>) CalculateChartSeries()
         {
-            int capacity = _daysToRepayment + 1;
-            var nominalPoints = new List<ChartPoint>(capacity) { new(_deal.Date, 0) };
-            var realPoints = new List<ChartPoint>(capacity) { new(_deal.Date, 0) };
-            var inflPoints = new List<ChartPoint>(capacity) { new(_deal.Date, 0) };
+            var nominalPoints = new List<ChartPoint>(_daysToRepayment + 1);
+            var realPoints = new List<ChartPoint>(_daysToRepayment + 1);
+            var inflPoints = new List<ChartPoint>(_daysToRepayment + 1);
 
             double cashNominal = 0;
             double cashReal = 0;
             double amortSum = 0;
-            int couponIdx = 0;
-            int amortIdx = 0;
 
             double totalAmort = _bond.Amortizations.Sum(a => a.Amount);
             double finalRemaining = _bond.Value - totalAmort;
@@ -169,25 +166,19 @@ namespace BondCalc.App.Application.Services
             {
                 var date = _deal.Date.AddDays(offset);
 
-                while (couponIdx < _bond.Coupons.Count
-                    && _bond.Coupons[couponIdx].Date == date)
+                foreach (var coupon in _bond.Coupons.Where(c => c.Date == date))
                 {
-                    var c = _bond.Coupons[couponIdx];
                     double infl = Math.Pow(_dailyInflation, offset);
-                    cashNominal += c.Amount;
-                    cashReal += c.Amount / infl;
-                    couponIdx++;
+                    cashNominal += coupon.Amount;
+                    cashReal += coupon.Amount / infl;
                 }
 
-                while (amortIdx < _bond.Amortizations.Count
-                    && _bond.Amortizations[amortIdx].Date == date)
+                foreach (var amort in _bond.Amortizations.Where(a => a.Date == date))
                 {
-                    var a = _bond.Amortizations[amortIdx];
                     double infl = Math.Pow(_dailyInflation, offset);
-                    cashNominal += a.Amount;
-                    cashReal += a.Amount / infl;
-                    amortSum += a.Amount;
-                    amortIdx++;
+                    cashNominal += amort.Amount;
+                    cashReal += amort.Amount / infl;
+                    amortSum += amort.Amount;
                 }
 
                 double t = (double)offset / _daysToRepayment;
