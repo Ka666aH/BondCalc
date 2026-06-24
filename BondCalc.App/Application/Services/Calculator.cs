@@ -65,7 +65,7 @@ namespace BondCalc.App.Application.Services
 
             Schedule = CalculateSchedule();
 
-            CalculateChartSeries();
+            (NominalYieldSeries, RealYieldSeries, InflationSeries) = CalculateChartSeries();
         }
         private double CalculateBuyPrice() => _deal.Price + _deal.ACI;
         private double CalculateRepaymentIncome() => _bond.Value - _deal.Price;
@@ -149,7 +149,7 @@ namespace BondCalc.App.Application.Services
 
             return [.. rows.OrderBy(r => r.Date)];
         }
-        private void CalculateChartSeries()
+        private (List<ChartPoint>, List<ChartPoint>, List<ChartPoint>) CalculateChartSeries()
         {
             int capacity = _daysToRepayment + 1;
             var nominalPoints = new List<ChartPoint>(capacity) { new(_deal.Date, 0) };
@@ -227,9 +227,7 @@ namespace BondCalc.App.Application.Services
                 inflPoints.Add(new(date, (inflForDay - 1) * 100));
             }
 
-            NominalYieldSeries = nominalPoints;
-            RealYieldSeries = realPoints;
-            InflationSeries = inflPoints;
+            return (nominalPoints, realPoints, inflPoints);
         }
     }
 }
