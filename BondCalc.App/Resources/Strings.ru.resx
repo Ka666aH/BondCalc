@@ -177,6 +177,24 @@
   <data name="MsgRateZero" xml:space="preserve">
     <value>Ставка купона должна быть больше 0.</value>
   </data>
+  <data name="MenuExport" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="MenuExportTxt" xml:space="preserve">
+    <value>Как TXT</value>
+  </data>
+  <data name="ExportDialogTitle" xml:space="preserve">
+    <value>Экспорт графика</value>
+  </data>
+  <data name="ExportSuccessTitle" xml:space="preserve">
+    <value>Экспорт завершён</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>График экспортирован в {0}</value>
+  </data>
+  <data name="ExportNoData" xml:space="preserve">
+    <value>Нет данных для экспорта. Сначала выполните расчёт.</value>
+  </data>
   <data name="LblAmortParts" xml:space="preserve">
     <value>Количество частей:</value>
   </data>

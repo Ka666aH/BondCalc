@@ -11,6 +11,7 @@ namespace BondCalc.App.Presentation.Forms
         private readonly Dictionary<string, string> _savedNudText = new();
         private CultureInfo? _oldCulture;
         private bool _updatingCoupon;
+        private Calculator? _lastResult;
 
         public BondCalc()
         {
@@ -106,6 +107,45 @@ namespace BondCalc.App.Presentation.Forms
                         { UseShellExecute = true });
                 }
                 catch { }
+            }
+        }
+
+        private void OnExportTxt(object? sender, EventArgs e)
+        {
+            try
+            {
+                if (_lastResult == null || dgvSchedule.Rows.Count == 0)
+                {
+                    MessageBox.Show(Localization.GetString("ExportNoData"),
+                        Localization.GetString("ExportDialogTitle"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                using var dialog = new SaveFileDialog
+                {
+                    Title = Localization.GetString("ExportDialogTitle"),
+                    Filter = "Text files (*.txt)|*.txt",
+                    DefaultExt = "txt"
+                };
+
+                if (dialog.ShowDialog(this) != DialogResult.OK) return;
+
+                var bond = BuildBond();
+                var deal = BuildDeal();
+                var inflationRate = (double)nudInflation.Value;
+
+                var export = new Export(bond, deal, inflationRate, _lastResult);
+                export.ToTxt(dialog.FileName);
+
+                MessageBox.Show(
+                    string.Format(Localization.GetString("ExportSuccess"), dialog.FileName),
+                    Localization.GetString("ExportSuccessTitle"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
             }
         }
 
@@ -226,6 +266,8 @@ namespace BondCalc.App.Presentation.Forms
             englishItem.Text = t("MenuEnglish");
             russianItem.Text = t("MenuRussian");
             aboutMenuItem.Text = t("MenuAbout");
+            exportMenuItem.Text = t("MenuExport");
+            exportTxtMenuItem.Text = t("MenuExportTxt");
 
             RefreshScheduleTypes();
             RefreshScheduleFormats();
@@ -605,6 +647,7 @@ namespace BondCalc.App.Presentation.Forms
             dgvSchedule.Rows.Clear();
             chartSchedule.Series.Clear();
             ClearResults();
+            _lastResult = null;
             UpdateAmortAmountLabel();
         }
 
@@ -630,6 +673,7 @@ namespace BondCalc.App.Presentation.Forms
                 var inflationRate = (double)nudInflation.Value / 100.0;
 
                 var result = new Calculator(bond, deal, inflationRate);
+                _lastResult = result;
 
                 SetResultValue(lblBuyPriceVal, result.BuyPrice, "N2");
                 SetResultValue(lblRepayIncomeVal, result.RepaymentIncome, "N2");

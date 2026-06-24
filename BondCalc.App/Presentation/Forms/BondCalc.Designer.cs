@@ -107,6 +107,8 @@
             splitMain = new SplitContainer();
             menuStrip = new MenuStrip();
             aboutMenuItem = new ToolStripMenuItem();
+            exportMenuItem = new ToolStripMenuItem();
+            exportTxtMenuItem = new ToolStripMenuItem();
             toolsMenuItem = new ToolStripMenuItem();
             englishItem = new ToolStripMenuItem();
             russianItem = new ToolStripMenuItem();
@@ -1054,7 +1056,7 @@
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { aboutMenuItem, toolsMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { aboutMenuItem, exportMenuItem, toolsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(1054, 24);
@@ -1088,6 +1090,20 @@
             russianItem.Size = new Size(119, 22);
             russianItem.Text = "Русский";
             russianItem.Click += OnLanguageRussian;
+            // 
+            // exportMenuItem
+            // 
+            exportMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exportTxtMenuItem });
+            exportMenuItem.Name = "exportMenuItem";
+            exportMenuItem.Size = new Size(57, 20);
+            exportMenuItem.Text = "Export";
+            // 
+            // exportTxtMenuItem
+            // 
+            exportTxtMenuItem.Name = "exportTxtMenuItem";
+            exportTxtMenuItem.Size = new Size(120, 22);
+            exportTxtMenuItem.Text = "As TXT";
+            exportTxtMenuItem.Click += OnExportTxt;
             // 
             // BondCalc
             // 
@@ -1219,5 +1235,7 @@
         private ToolStripMenuItem englishItem;
         private ToolStripMenuItem russianItem;
         private ToolStripMenuItem aboutMenuItem;
+        private ToolStripMenuItem exportMenuItem;
+        private ToolStripMenuItem exportTxtMenuItem;
     }
 }

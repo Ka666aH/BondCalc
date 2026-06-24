@@ -177,6 +177,24 @@
   <data name="MsgRateZero" xml:space="preserve">
     <value>Coupon rate must be greater than 0.</value>
   </data>
+  <data name="MenuExport" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="MenuExportTxt" xml:space="preserve">
+    <value>As TXT</value>
+  </data>
+  <data name="ExportDialogTitle" xml:space="preserve">
+    <value>Export Schedule</value>
+  </data>
+  <data name="ExportSuccessTitle" xml:space="preserve">
+    <value>Export Complete</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>Schedule exported to {0}</value>
+  </data>
+  <data name="ExportNoData" xml:space="preserve">
+    <value>No data to export. Calculate first.</value>
+  </data>
   <data name="LblAmortParts" xml:space="preserve">
     <value>Number of Parts:</value>
   </data>
