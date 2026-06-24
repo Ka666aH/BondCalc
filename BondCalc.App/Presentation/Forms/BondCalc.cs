@@ -32,13 +32,19 @@ namespace BondCalc.App.Presentation.Forms
             chartArea.BackColor = Color.Transparent;
             chartArea.Position.Auto = false;
             chartArea.Position = new ElementPosition(0, 0, 100, 100);
-            chartArea.InnerPlotPosition = new ElementPosition(10, 5, 90, 70);
+            chartArea.InnerPlotPosition = new ElementPosition(7.5f, 5, 95, 90);
             chartArea.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
             chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
             chartArea.AxisY.LabelStyle.Format = "{0:F1}%";
             chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(210, 210, 210);
             chartArea.AxisX.IsMarginVisible = false;
             chartArea.AxisY.IsMarginVisible = false;
+            chartArea.AxisX.IsLabelAutoFit = false;
+            chartArea.AxisY.IsLabelAutoFit = false;
+            chartArea.AxisX.LabelStyle.Angle = 0;
+            chartArea.AxisY.LabelStyle.Angle = 0;
+            chartArea.AxisX.LabelStyle.Font = new Font(Font.FontFamily, 7);
+            chartArea.AxisY.LabelStyle.Font = new Font(Font.FontFamily, 7);
             chartSchedule.ChartAreas.Add(chartArea);
 
             var legend = new Legend();
@@ -567,7 +573,7 @@ namespace BondCalc.App.Presentation.Forms
                     ChartType = SeriesChartType.Line,
                     Color = Color.FromArgb(180, Color.DodgerBlue),
                     BorderWidth = 1,
-                    BorderDashStyle = ChartDashStyle.Dash,
+                    //BorderDashStyle = ChartDashStyle.Dash,
                     IsVisibleInLegend = true
                 };
                 var inflationSeries = new Series
@@ -588,6 +594,25 @@ namespace BondCalc.App.Presentation.Forms
                 chartSchedule.Series.Add(nominalSeries);
                 chartSchedule.Series.Add(realSeries);
                 chartSchedule.Series.Add(inflationSeries);
+
+                double yMin = double.MaxValue, yMax = double.MinValue;
+                foreach (var s in new[] { nominalSeries, realSeries, inflationSeries })
+                {
+                    foreach (var pt in s.Points)
+                    {
+                        double v = pt.YValues[0];
+                        yMin = Math.Min(yMin, v);
+                        yMax = Math.Max(yMax, v);
+                    }
+                }
+                double lo = Math.Min(yMin, 0);
+                double hi = Math.Max(yMax, 0);
+                double range = hi - lo;
+                double target = range <= 3 ? 0.5 : range <= 8 ? 1 : range <= 20 ? 2 : range <= 50 ? 5 : 10;
+                var axis = chartSchedule.ChartAreas[0].AxisY;
+                axis.Minimum = Math.Floor(lo / target) * target;
+                axis.Maximum = Math.Ceiling(hi / target) * target;
+                axis.Interval = target;
             }
             catch (InvalidOperationException ex)
             {
