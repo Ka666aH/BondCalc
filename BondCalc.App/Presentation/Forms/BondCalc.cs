@@ -349,7 +349,7 @@ namespace BondCalc.App.Presentation.Forms
         {
             try
             {
-                dgvCoupons.Rows.Add(DateOnly.FromDateTime(DateTime.Now), (double)nudCouponAmount.Value);
+                dgvCoupons.Rows.Add(DateOnly.FromDateTime(DateTime.Now), Math.Round((double)nudCouponAmount.Value, 2));
             }
             catch (Exception ex)
             {
@@ -388,7 +388,7 @@ namespace BondCalc.App.Presentation.Forms
                 var first = dtpFirstCoupon.Value;
                 var last = dtpLastCoupon.Value;
                 var period = (int)nudPeriod.Value;
-                var amount = (double)nudCouponAmount.Value;
+                var amount = Math.Round((double)nudCouponAmount.Value, 2);
 
                 if (period <= 0)
                 {

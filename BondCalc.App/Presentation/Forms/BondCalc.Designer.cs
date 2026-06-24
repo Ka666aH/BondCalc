@@ -334,7 +334,7 @@
             grpCoupons.Controls.Add(btnRemoveCoupon);
             grpCoupons.Controls.Add(dgvCoupons);
             grpCoupons.Dock = DockStyle.Top;
-            grpCoupons.Location = new Point(0, 104);
+            grpCoupons.Location = new Point(0, 299);
             grpCoupons.Name = "grpCoupons";
             grpCoupons.Size = new Size(418, 285);
             grpCoupons.TabIndex = 1;
@@ -480,6 +480,7 @@
             // nudCouponAmount
             // 
             nudCouponAmount.DecimalPlaces = 2;
+            nudCouponAmount.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
             nudCouponAmount.Location = new Point(298, 100);
             nudCouponAmount.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudCouponAmount.Name = "nudCouponAmount";
@@ -563,7 +564,7 @@
             grpAmortizations.Controls.Add(btnAddAmortization);
             grpAmortizations.Controls.Add(dgvAmortizations);
             grpAmortizations.Dock = DockStyle.Top;
-            grpAmortizations.Location = new Point(0, 389);
+            grpAmortizations.Location = new Point(0, 104);
             grpAmortizations.Name = "grpAmortizations";
             grpAmortizations.Size = new Size(418, 195);
             grpAmortizations.TabIndex = 2;
