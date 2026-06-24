@@ -111,43 +111,35 @@ namespace BondCalc.App.Application.Services
 
         private List<ScheduleRow> CalculateSchedule()
         {
-            var rows = new List<ScheduleRow>();
+            var events = new List<(DateOnly Date, string Type, double Amount)>();
+
+            foreach (var c in _bond.Coupons)
+                events.Add((c.Date, "Coupon", c.Amount));
+            foreach (var a in _bond.Amortizations)
+                events.Add((a.Date, "Amortization", a.Amount));
+
+            double totalAmort = _bond.Amortizations.Sum(a => a.Amount);
+            double remaining = _bond.Value - totalAmort;
+            if (remaining > 0)
+                events.Add((_bond.Repayment, "Repayment", remaining));
+
+            events.Sort((a, b) => a.Date.CompareTo(b.Date));
+
+            var rows = new List<ScheduleRow>(events.Count);
             double cumulativeNominal = 0;
             double cumulativeReal = 0;
 
-            foreach (var coupon in _bond.Coupons)
+            foreach (var (date, type, amount) in events)
             {
-                int days = coupon.Date.DayNumber - _deal.Date.DayNumber;
+                int days = date.DayNumber - _deal.Date.DayNumber;
                 double infl = Math.Pow(_dailyInflation, days);
-                double real = coupon.Amount / infl;
-                cumulativeNominal += coupon.Amount;
+                double real = amount / infl;
+                cumulativeNominal += amount;
                 cumulativeReal += real;
-                rows.Add(new(coupon.Date, "Coupon", coupon.Amount, cumulativeNominal, real, cumulativeReal));
+                rows.Add(new(date, type, amount, cumulativeNominal, real, cumulativeReal));
             }
 
-            double amortSum = 0;
-            foreach (var amort in _bond.Amortizations)
-            {
-                amortSum += amort.Amount;
-                int days = amort.Date.DayNumber - _deal.Date.DayNumber;
-                double infl = Math.Pow(_dailyInflation, days);
-                double real = amort.Amount / infl;
-                cumulativeNominal += amort.Amount;
-                cumulativeReal += real;
-                rows.Add(new(amort.Date, "Amortization", amort.Amount, cumulativeNominal, real, cumulativeReal));
-            }
-
-            double remaining = _bond.Value - amortSum;
-            if (remaining > 0)
-            {
-                double infl = Math.Pow(_dailyInflation, _daysToRepayment);
-                double real = remaining / infl;
-                cumulativeNominal += remaining;
-                cumulativeReal += real;
-                rows.Add(new(_bond.Repayment, "Repayment", remaining, cumulativeNominal, real, cumulativeReal));
-            }
-
-            return [.. rows.OrderBy(r => r.Date)];
+            return rows;
         }
         private (List<ChartPoint>, List<ChartPoint>, List<ChartPoint>) CalculateChartSeries()
         {
@@ -159,36 +151,66 @@ namespace BondCalc.App.Application.Services
             double cashReal = 0;
             double amortSum = 0;
 
-            double totalAmort = _bond.Amortizations.Sum(a => a.Amount);
-            double finalRemaining = _bond.Value - totalAmort;
+            double priceDiff = _deal.Price - _bond.Value;
 
             for (int offset = 0; offset <= _daysToRepayment; offset++)
             {
                 var date = _deal.Date.AddDays(offset);
+                double lifeProgress = (double)offset / _daysToRepayment;
+                double inflFactor = Math.Pow(_dailyInflation, offset);
 
                 foreach (var coupon in _bond.Coupons.Where(c => c.Date == date))
                 {
-                    double infl = Math.Pow(_dailyInflation, offset);
                     cashNominal += coupon.Amount;
-                    cashReal += coupon.Amount / infl;
+                    cashReal += coupon.Amount / inflFactor;
                 }
 
                 foreach (var amort in _bond.Amortizations.Where(a => a.Date == date))
                 {
-                    double infl = Math.Pow(_dailyInflation, offset);
                     cashNominal += amort.Amount;
-                    cashReal += amort.Amount / infl;
+                    cashReal += amort.Amount / inflFactor;
                     amortSum += amort.Amount;
                 }
 
-                double t = (double)offset / _daysToRepayment;
-                double currentCleanPrice = _deal.Price
-                    + (finalRemaining - _deal.Price) * t;
+                double remainingFace = _bond.Value - amortSum;
+                double cleanPrice = remainingFace + priceDiff * (1 - lifeProgress);
 
-                double inflFactor = Math.Pow(_dailyInflation, offset);
+                double accruedNominal = 0;
+                var nextCoupon = _bond.Coupons.FirstOrDefault(c => c.Date >= date);
+                if (nextCoupon != null && nextCoupon.Date > date)
+                {
+                    DateOnly prevDate = _deal.Date;
+                    double baseAccrued = _deal.ACI;
 
-                double nominalWealth = cashNominal + currentCleanPrice;
-                double realWealth = cashReal + currentCleanPrice / inflFactor;
+                    var lastPaid = _bond.Coupons
+                        .Where(c => c.Date < nextCoupon.Date && c.Date < date)
+                        .OrderByDescending(c => c.Date)
+                        .FirstOrDefault();
+                    if (lastPaid != null)
+                    {
+                        prevDate = lastPaid.Date;
+                        baseAccrued = 0;
+                    }
+
+                    int period = nextCoupon.Date.DayNumber - prevDate.DayNumber;
+                    int sincePrev = date.DayNumber - prevDate.DayNumber;
+                    if (period > 0 && sincePrev > 0)
+                    {
+                        accruedNominal = baseAccrued
+                            + (nextCoupon.Amount - baseAccrued) * (double)sincePrev / period;
+                    }
+                    else if (sincePrev == 0)
+                    {
+                        accruedNominal = baseAccrued;
+                    }
+                }
+                else if (nextCoupon != null && nextCoupon.Date == date)
+                {
+                    accruedNominal = 0;
+                }
+
+                double nominalWealth = cashNominal + cleanPrice + accruedNominal;
+                double realWealth = cashReal + cleanPrice / inflFactor + accruedNominal / inflFactor;
 
                 nominalPoints.Add(new(date,
                     (nominalWealth - BuyPrice) / BuyPrice * 100));
