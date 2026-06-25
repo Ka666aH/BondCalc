@@ -540,6 +540,7 @@
             dgvCoupons.Location = new Point(8, 129);
             dgvCoupons.Name = "dgvCoupons";
             dgvCoupons.RowHeadersVisible = false;
+            dgvCoupons.MultiSelect = true;
             dgvCoupons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCoupons.Size = new Size(398, 117);
             dgvCoupons.TabIndex = 11;
@@ -655,6 +656,7 @@
             dgvAmortizations.Location = new Point(8, 48);
             dgvAmortizations.Name = "dgvAmortizations";
             dgvAmortizations.RowHeadersVisible = false;
+            dgvAmortizations.MultiSelect = true;
             dgvAmortizations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAmortizations.Size = new Size(398, 110);
             dgvAmortizations.TabIndex = 17;

@@ -402,13 +402,13 @@ namespace BondCalc.App.Presentation.Forms
         {
             try
             {
-                if (dgvCoupons.SelectedRows.Count > 0)
+                var rows = dgvCoupons.SelectedRows
+                    .Cast<DataGridViewRow>()
+                    .OrderByDescending(r => r.Index)
+                    .ToList();
+                foreach (var row in rows)
                 {
-                    var index = dgvCoupons.SelectedRows[0].Index;
-                    if (index >= 0 && index < dgvCoupons.Rows.Count)
-                    {
-                        dgvCoupons.Rows.RemoveAt(index);
-                    }
+                    dgvCoupons.Rows.RemoveAt(row.Index);
                 }
             }
             catch (Exception ex)
@@ -546,13 +546,13 @@ namespace BondCalc.App.Presentation.Forms
         {
             try
             {
-                if (dgvAmortizations.SelectedRows.Count > 0)
+                var rows = dgvAmortizations.SelectedRows
+                    .Cast<DataGridViewRow>()
+                    .OrderByDescending(r => r.Index)
+                    .ToList();
+                foreach (var row in rows)
                 {
-                    var index = dgvAmortizations.SelectedRows[0].Index;
-                    if (index >= 0 && index < dgvAmortizations.Rows.Count)
-                    {
-                        dgvAmortizations.Rows.RemoveAt(index);
-                    }
+                    dgvAmortizations.Rows.RemoveAt(row.Index);
                 }
             }
             catch (Exception ex)
