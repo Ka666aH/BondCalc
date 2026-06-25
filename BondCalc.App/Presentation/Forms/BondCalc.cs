@@ -212,7 +212,7 @@ namespace BondCalc.App.Presentation.Forms
                 double period = (double)nudPeriod.Value;
                 if (period > 0 && nominal > 0)
                 {
-                    double amount = rate / 100.0 * nominal * (period / 365.25);
+                    double amount = rate / 100.0 * nominal * (period / 365); //не 365.25
                     nudCouponAmount.Value = Math.Min((decimal)amount, nudCouponAmount.Maximum);
                 }
             }
@@ -230,7 +230,7 @@ namespace BondCalc.App.Presentation.Forms
                 double period = (double)nudPeriod.Value;
                 if (period > 0 && nominal > 0)
                 {
-                    double rate = amount / nominal / (period / 365.25) * 100;
+                    double rate = amount / nominal / (period / 365) * 100; //не 365.25
                     nudCouponRate.Value = Math.Min((decimal)rate, nudCouponRate.Maximum);
                 }
             }
@@ -536,7 +536,7 @@ namespace BondCalc.App.Presentation.Forms
                     if (remainingNominal <= 0)
                         break;
 
-                    double amount = Math.Round(remainingNominal * (rate / 100.0) * (period / 365.25), 2);
+                    double amount = Math.Round(remainingNominal * (rate / 100.0) * (period / 365), 2); //не 365.25
                     dgvCoupons.Rows.Add(cDate, amount);
 
                     while (amortIdx < amortizations.Count && amortizations[amortIdx].Date == cDate)
