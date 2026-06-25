@@ -11,6 +11,7 @@ namespace BondCalc.App.Presentation.Forms
         private readonly Dictionary<string, string> _savedNudText = new();
         private CultureInfo? _oldCulture;
         private bool _updatingCoupon;
+        private bool _updatingMulti;
         private Calculator? _lastResult;
 
         public BondCalc()
@@ -21,6 +22,8 @@ namespace BondCalc.App.Presentation.Forms
             InitializeComponent();
             InitializeChart();
             WireCouponSync();
+            dgvCoupons.CellEndEdit += OnCouponCellEndEdit;
+            dgvAmortizations.CellEndEdit += OnAmortCellEndEdit;
             ApplyLanguage();
             Reset();
         }
@@ -155,6 +158,46 @@ namespace BondCalc.App.Presentation.Forms
             nudCouponAmount.ValueChanged += OnCouponAmountChanged;
             nudPeriod.ValueChanged += OnCouponParameterChanged;
             nudNominal.ValueChanged += OnCouponParameterChanged;
+        }
+
+        private void OnCouponCellEndEdit(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (_updatingMulti) return;
+            var selected = dgvCoupons.SelectedRows;
+            if (selected.Count <= 1) return;
+            _updatingMulti = true;
+            try
+            {
+                var edited = dgvCoupons.Rows[e.RowIndex];
+                if (edited.IsNewRow) return;
+
+                foreach (DataGridViewRow row in selected)
+                {
+                    if (row.Index == e.RowIndex || row.IsNewRow) continue;
+                    row.Cells[1].Value = edited.Cells[1].Value;
+                }
+            }
+            finally { _updatingMulti = false; }
+        }
+
+        private void OnAmortCellEndEdit(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (_updatingMulti) return;
+            var selected = dgvAmortizations.SelectedRows;
+            if (selected.Count <= 1) return;
+            _updatingMulti = true;
+            try
+            {
+                var edited = dgvAmortizations.Rows[e.RowIndex];
+                if (edited.IsNewRow) return;
+
+                foreach (DataGridViewRow row in selected)
+                {
+                    if (row.Index == e.RowIndex || row.IsNewRow) continue;
+                    row.Cells[1].Value = edited.Cells[1].Value;
+                }
+            }
+            finally { _updatingMulti = false; }
         }
 
         private void OnCouponRateChanged(object? sender, EventArgs e)
