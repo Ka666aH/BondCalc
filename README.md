@@ -10,7 +10,7 @@
 
 - **Bond parameters**: face value, issue date, maturity date
 - **Amortization schedule**: manual add/remove/clear, or auto-generate by splitting nominal into N equal parts with dynamic amount preview
-- **Coupon schedule**: manual add/remove/clear, or auto-generate by period (30/90/180 day presets); generation respects amortizations (reducing nominal); rate (%) and amount two-way sync
+- **Coupon schedule**: manual add/remove/clear, or auto-generate by period (30/91/182 day presets); generation respects amortizations (reducing nominal); rate (%) and amount two-way sync
 - **Deal entry**: clean price, accrued interest (ACI), purchase date, annual inflation rate
 - **Results** — nominal (left) and real/inflation-adjusted (right):
   - Dirty Price, Redemption Income, Coupon Income, Total Income, Total Yield, Annual Yield

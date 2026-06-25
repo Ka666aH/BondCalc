@@ -387,7 +387,7 @@
             btnPeriod90.Name = "btnPeriod90";
             btnPeriod90.Size = new Size(35, 23);
             btnPeriod90.TabIndex = 13;
-            btnPeriod90.Text = "90";
+            btnPeriod90.Text = "91";
             btnPeriod90.UseVisualStyleBackColor = true;
             btnPeriod90.Click += btnPeriod_Click;
             // 
@@ -397,7 +397,7 @@
             btnPeriod180.Name = "btnPeriod180";
             btnPeriod180.Size = new Size(35, 23);
             btnPeriod180.TabIndex = 14;
-            btnPeriod180.Text = "180";
+            btnPeriod180.Text = "182";
             btnPeriod180.UseVisualStyleBackColor = true;
             btnPeriod180.Click += btnPeriod_Click;
             // 
@@ -1067,7 +1067,6 @@
             // 
             aboutMenuItem.Name = "aboutMenuItem";
             aboutMenuItem.ShortcutKeys = Keys.Control | Keys.A;
-            aboutMenuItem.ShowShortcutKeys = true;
             aboutMenuItem.Size = new Size(52, 20);
             aboutMenuItem.Text = "About";
             aboutMenuItem.Click += OnAboutClick;
