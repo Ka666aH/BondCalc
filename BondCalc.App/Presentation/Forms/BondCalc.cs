@@ -52,7 +52,7 @@ namespace BondCalc.App.Presentation.Forms
 
             var legend = new Legend();
             legend.BackColor = Color.Transparent;
-            legend.Docking = Docking.Bottom;
+            legend.Docking = Docking.Top;
             legend.Alignment = StringAlignment.Center;
             chartSchedule.Legends.Add(legend);
 
