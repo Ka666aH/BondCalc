@@ -33,6 +33,7 @@ namespace BondCalc.App.Presentation.Forms
             chartSchedule.Dock = DockStyle.Fill;
             chartSchedule.BackColor = SystemColors.Control;
             chartSchedule.Name = "chartSchedule";
+            chartSchedule.TabStop = false;
 
             var chartArea = new ChartArea("Default");
             chartArea.BackColor = Color.Transparent;

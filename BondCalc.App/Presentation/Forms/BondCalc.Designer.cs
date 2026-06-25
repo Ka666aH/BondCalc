@@ -222,7 +222,7 @@
             nudInflation.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nudInflation.Name = "nudInflation";
             nudInflation.Size = new Size(230, 23);
-            nudInflation.TabIndex = 25;
+            nudInflation.TabIndex = 26;
             nudInflation.ThousandsSeparator = true;
             // 
             // lblInflation
@@ -259,7 +259,7 @@
             nudPurchase.Location = new Point(176, 74);
             nudPurchase.Name = "nudPurchase";
             nudPurchase.Size = new Size(230, 23);
-            nudPurchase.TabIndex = 24;
+            nudPurchase.TabIndex = 25;
             // 
             // label1
             // 
@@ -278,7 +278,7 @@
             nudAccrued.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudAccrued.Name = "nudAccrued";
             nudAccrued.Size = new Size(230, 23);
-            nudAccrued.TabIndex = 23;
+            nudAccrued.TabIndex = 24;
             nudAccrued.ThousandsSeparator = true;
             // 
             // nudPrice
@@ -290,7 +290,7 @@
             nudPrice.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudPrice.Name = "nudPrice";
             nudPrice.Size = new Size(230, 23);
-            nudPrice.TabIndex = 22;
+            nudPrice.TabIndex = 23;
             nudPrice.ThousandsSeparator = true;
             nudPrice.Value = new decimal(new int[] { 1000, 0, 0, 0 });
             // 
@@ -338,7 +338,7 @@
             grpCoupons.Location = new Point(0, 299);
             grpCoupons.Name = "grpCoupons";
             grpCoupons.Size = new Size(418, 285);
-            grpCoupons.TabIndex = 1;
+            grpCoupons.TabIndex = 2;
             grpCoupons.TabStop = false;
             grpCoupons.Text = "Coupons";
             // 
@@ -349,7 +349,7 @@
             dtpLastCoupon.Location = new Point(176, 48);
             dtpLastCoupon.Name = "dtpLastCoupon";
             dtpLastCoupon.Size = new Size(230, 23);
-            dtpLastCoupon.TabIndex = 5;
+            dtpLastCoupon.TabIndex = 11;
             // 
             // dtpFirstCoupon
             // 
@@ -358,7 +358,7 @@
             dtpFirstCoupon.Location = new Point(176, 22);
             dtpFirstCoupon.Name = "dtpFirstCoupon";
             dtpFirstCoupon.Size = new Size(230, 23);
-            dtpFirstCoupon.TabIndex = 4;
+            dtpFirstCoupon.TabIndex = 10;
             // 
             // nudPeriod
             // 
@@ -368,7 +368,7 @@
             nudPeriod.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudPeriod.Name = "nudPeriod";
             nudPeriod.Size = new Size(108, 23);
-            nudPeriod.TabIndex = 9;
+            nudPeriod.TabIndex = 15;
             nudPeriod.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
             // btnPeriod30
@@ -376,7 +376,7 @@
             btnPeriod30.Location = new Point(176, 74);
             btnPeriod30.Name = "btnPeriod30";
             btnPeriod30.Size = new Size(35, 23);
-            btnPeriod30.TabIndex = 6;
+            btnPeriod30.TabIndex = 12;
             btnPeriod30.Text = "30";
             btnPeriod30.UseVisualStyleBackColor = true;
             btnPeriod30.Click += btnPeriod_Click;
@@ -386,7 +386,7 @@
             btnPeriod90.Location = new Point(217, 74);
             btnPeriod90.Name = "btnPeriod90";
             btnPeriod90.Size = new Size(35, 23);
-            btnPeriod90.TabIndex = 7;
+            btnPeriod90.TabIndex = 13;
             btnPeriod90.Text = "90";
             btnPeriod90.UseVisualStyleBackColor = true;
             btnPeriod90.Click += btnPeriod_Click;
@@ -396,7 +396,7 @@
             btnPeriod180.Location = new Point(258, 74);
             btnPeriod180.Name = "btnPeriod180";
             btnPeriod180.Size = new Size(35, 23);
-            btnPeriod180.TabIndex = 8;
+            btnPeriod180.TabIndex = 14;
             btnPeriod180.Text = "180";
             btnPeriod180.UseVisualStyleBackColor = true;
             btnPeriod180.Click += btnPeriod_Click;
@@ -407,7 +407,7 @@
             btnGenerate.Location = new Point(8, 252);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(170, 23);
-            btnGenerate.TabIndex = 12;
+            btnGenerate.TabIndex = 19;
             btnGenerate.Text = "Generate";
             btnGenerate.UseVisualStyleBackColor = true;
             btnGenerate.Click += btnGenerateCoupons_Click;
@@ -436,7 +436,7 @@
             btnClearCoupons.Location = new Point(336, 252);
             btnClearCoupons.Name = "btnClearCoupons";
             btnClearCoupons.Size = new Size(70, 23);
-            btnClearCoupons.TabIndex = 15;
+            btnClearCoupons.TabIndex = 22;
             btnClearCoupons.Text = "Clear";
             btnClearCoupons.UseVisualStyleBackColor = true;
             btnClearCoupons.Click += btnClearCoupons_Click;
@@ -457,7 +457,7 @@
             nudCouponRate.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             nudCouponRate.Name = "nudCouponRate";
             nudCouponRate.Size = new Size(76, 23);
-            nudCouponRate.TabIndex = 10;
+            nudCouponRate.TabIndex = 16;
             // 
             // lblRateSuffix
             // 
@@ -486,7 +486,7 @@
             nudCouponAmount.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudCouponAmount.Name = "nudCouponAmount";
             nudCouponAmount.Size = new Size(53, 23);
-            nudCouponAmount.TabIndex = 20;
+            nudCouponAmount.TabIndex = 17;
             nudCouponAmount.ThousandsSeparator = true;
             // 
             // lblAmountSuffix
@@ -513,7 +513,7 @@
             btnAddCoupon.Location = new Point(184, 252);
             btnAddCoupon.Name = "btnAddCoupon";
             btnAddCoupon.Size = new Size(70, 23);
-            btnAddCoupon.TabIndex = 13;
+            btnAddCoupon.TabIndex = 20;
             btnAddCoupon.Text = "Add";
             btnAddCoupon.UseVisualStyleBackColor = true;
             btnAddCoupon.Click += btnAddCoupon_Click;
@@ -524,7 +524,7 @@
             btnRemoveCoupon.Location = new Point(260, 252);
             btnRemoveCoupon.Name = "btnRemoveCoupon";
             btnRemoveCoupon.Size = new Size(70, 23);
-            btnRemoveCoupon.TabIndex = 14;
+            btnRemoveCoupon.TabIndex = 21;
             btnRemoveCoupon.Text = "Remove";
             btnRemoveCoupon.UseVisualStyleBackColor = true;
             btnRemoveCoupon.Click += btnRemoveCoupon_Click;
@@ -540,10 +540,9 @@
             dgvCoupons.Location = new Point(8, 129);
             dgvCoupons.Name = "dgvCoupons";
             dgvCoupons.RowHeadersVisible = false;
-            dgvCoupons.MultiSelect = true;
             dgvCoupons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCoupons.Size = new Size(398, 117);
-            dgvCoupons.TabIndex = 11;
+            dgvCoupons.TabIndex = 18;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -569,7 +568,7 @@
             grpAmortizations.Location = new Point(0, 104);
             grpAmortizations.Name = "grpAmortizations";
             grpAmortizations.Size = new Size(418, 195);
-            grpAmortizations.TabIndex = 2;
+            grpAmortizations.TabIndex = 1;
             grpAmortizations.TabStop = false;
             grpAmortizations.Text = "Amortizations";
             // 
@@ -588,7 +587,7 @@
             nudAmortParts.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
             nudAmortParts.Name = "nudAmortParts";
             nudAmortParts.Size = new Size(59, 23);
-            nudAmortParts.TabIndex = 16;
+            nudAmortParts.TabIndex = 4;
             nudAmortParts.Value = new decimal(new int[] { 5, 0, 0, 0 });
             nudAmortParts.ValueChanged += nudAmortParts_ValueChanged;
             // 
@@ -607,7 +606,7 @@
             btnGenerateAmort.Location = new Point(8, 164);
             btnGenerateAmort.Name = "btnGenerateAmort";
             btnGenerateAmort.Size = new Size(170, 23);
-            btnGenerateAmort.TabIndex = 18;
+            btnGenerateAmort.TabIndex = 6;
             btnGenerateAmort.Text = "Generate";
             btnGenerateAmort.UseVisualStyleBackColor = true;
             btnGenerateAmort.Click += btnGenerateAmort_Click;
@@ -618,7 +617,7 @@
             btnClearAmortizations.Location = new Point(336, 166);
             btnClearAmortizations.Name = "btnClearAmortizations";
             btnClearAmortizations.Size = new Size(70, 23);
-            btnClearAmortizations.TabIndex = 21;
+            btnClearAmortizations.TabIndex = 9;
             btnClearAmortizations.Text = "Clear";
             btnClearAmortizations.UseVisualStyleBackColor = true;
             btnClearAmortizations.Click += btnClearAmortizations_Click;
@@ -629,7 +628,7 @@
             btnRemoveAmortization.Location = new Point(260, 166);
             btnRemoveAmortization.Name = "btnRemoveAmortization";
             btnRemoveAmortization.Size = new Size(70, 23);
-            btnRemoveAmortization.TabIndex = 20;
+            btnRemoveAmortization.TabIndex = 8;
             btnRemoveAmortization.Text = "Remove";
             btnRemoveAmortization.UseVisualStyleBackColor = true;
             btnRemoveAmortization.Click += btnRemoveAmortization_Click;
@@ -640,7 +639,7 @@
             btnAddAmortization.Location = new Point(184, 166);
             btnAddAmortization.Name = "btnAddAmortization";
             btnAddAmortization.Size = new Size(70, 23);
-            btnAddAmortization.TabIndex = 19;
+            btnAddAmortization.TabIndex = 7;
             btnAddAmortization.Text = "Add";
             btnAddAmortization.UseVisualStyleBackColor = true;
             btnAddAmortization.Click += btnAddAmortization_Click;
@@ -656,10 +655,9 @@
             dgvAmortizations.Location = new Point(8, 48);
             dgvAmortizations.Name = "dgvAmortizations";
             dgvAmortizations.RowHeadersVisible = false;
-            dgvAmortizations.MultiSelect = true;
             dgvAmortizations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAmortizations.Size = new Size(398, 110);
-            dgvAmortizations.TabIndex = 17;
+            dgvAmortizations.TabIndex = 5;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -678,7 +676,7 @@
             btnCalculate.Location = new Point(8, 724);
             btnCalculate.Name = "btnCalculate";
             btnCalculate.Size = new Size(335, 60);
-            btnCalculate.TabIndex = 25;
+            btnCalculate.TabIndex = 27;
             btnCalculate.Text = "Calculate";
             btnCalculate.UseVisualStyleBackColor = true;
             btnCalculate.Click += btnCalculate_Click;
@@ -690,7 +688,7 @@
             btnReset.Location = new Point(347, 724);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(60, 60);
-            btnReset.TabIndex = 26;
+            btnReset.TabIndex = 28;
             btnReset.Text = "⟳";
             btnReset.UseVisualStyleBackColor = true;
             btnReset.Click += btnReset_Click;
@@ -1072,6 +1070,20 @@
             aboutMenuItem.Text = "About";
             aboutMenuItem.Click += OnAboutClick;
             // 
+            // exportMenuItem
+            // 
+            exportMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exportTxtMenuItem });
+            exportMenuItem.Name = "exportMenuItem";
+            exportMenuItem.Size = new Size(53, 20);
+            exportMenuItem.Text = "Export";
+            // 
+            // exportTxtMenuItem
+            // 
+            exportTxtMenuItem.Name = "exportTxtMenuItem";
+            exportTxtMenuItem.Size = new Size(109, 22);
+            exportTxtMenuItem.Text = "As TXT";
+            exportTxtMenuItem.Click += OnExportTxt;
+            // 
             // toolsMenuItem
             // 
             toolsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishItem, russianItem });
@@ -1092,20 +1104,6 @@
             russianItem.Size = new Size(119, 22);
             russianItem.Text = "Русский";
             russianItem.Click += OnLanguageRussian;
-            // 
-            // exportMenuItem
-            // 
-            exportMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exportTxtMenuItem });
-            exportMenuItem.Name = "exportMenuItem";
-            exportMenuItem.Size = new Size(57, 20);
-            exportMenuItem.Text = "Export";
-            // 
-            // exportTxtMenuItem
-            // 
-            exportTxtMenuItem.Name = "exportTxtMenuItem";
-            exportTxtMenuItem.Size = new Size(120, 22);
-            exportTxtMenuItem.Text = "As TXT";
-            exportTxtMenuItem.Click += OnExportTxt;
             // 
             // BondCalc
             // 
