@@ -178,10 +178,10 @@
     <value>Ставка купона должна быть больше 0.</value>
   </data>
   <data name="MenuExport" xml:space="preserve">
-    <value>Экспорт</value>
+    <value>&amp;Экспорт</value>
   </data>
   <data name="MenuExportTxt" xml:space="preserve">
-    <value>Как TXT</value>
+    <value>Как &amp;TXT</value>
   </data>
   <data name="ExportDialogTitle" xml:space="preserve">
     <value>Экспорт графика</value>
@@ -274,16 +274,16 @@
     <value>Накопленный реальный доход</value>
   </data>
   <data name="MenuLanguage" xml:space="preserve">
-    <value>Язык</value>
+    <value>&amp;Язык</value>
   </data>
   <data name="MenuEnglish" xml:space="preserve">
-    <value>Английский</value>
+    <value>&amp;Английский</value>
   </data>
   <data name="MenuRussian" xml:space="preserve">
-    <value>Русский</value>
+    <value>&amp;Русский</value>
   </data>
   <data name="MenuAbout" xml:space="preserve">
-    <value>О программе</value>
+    <value>&amp;О программе</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>О программе</value>

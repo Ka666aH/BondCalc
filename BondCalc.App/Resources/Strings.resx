@@ -178,10 +178,10 @@
     <value>Coupon rate must be greater than 0.</value>
   </data>
   <data name="MenuExport" xml:space="preserve">
-    <value>Export</value>
+    <value>&amp;Export</value>
   </data>
   <data name="MenuExportTxt" xml:space="preserve">
-    <value>As TXT</value>
+    <value>As &amp;TXT</value>
   </data>
   <data name="ExportDialogTitle" xml:space="preserve">
     <value>Export Schedule</value>
@@ -274,16 +274,16 @@
     <value>Cumulative Real Income</value>
   </data>
   <data name="MenuLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>&amp;Language</value>
   </data>
   <data name="MenuEnglish" xml:space="preserve">
-    <value>English</value>
+    <value>&amp;English</value>
   </data>
   <data name="MenuRussian" xml:space="preserve">
-    <value>Русский</value>
+    <value>&amp;Русский</value>
   </data>
   <data name="MenuAbout" xml:space="preserve">
-    <value>About</value>
+    <value>&amp;About</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>About</value>

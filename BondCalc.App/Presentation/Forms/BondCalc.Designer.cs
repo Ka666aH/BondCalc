@@ -1066,6 +1066,8 @@
             // aboutMenuItem
             // 
             aboutMenuItem.Name = "aboutMenuItem";
+            aboutMenuItem.ShortcutKeys = Keys.Control | Keys.A;
+            aboutMenuItem.ShowShortcutKeys = true;
             aboutMenuItem.Size = new Size(52, 20);
             aboutMenuItem.Text = "About";
             aboutMenuItem.Click += OnAboutClick;

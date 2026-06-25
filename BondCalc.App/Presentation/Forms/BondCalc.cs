@@ -27,6 +27,24 @@ namespace BondCalc.App.Presentation.Forms
             ApplyLanguage();
             Reset();
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Control | Keys.A:
+                    OnAboutClick(null, EventArgs.Empty);
+                    return true;
+                case Keys.Control | Keys.E:
+                    exportMenuItem.ShowDropDown();
+                    return true;
+                case Keys.Control | Keys.L:
+                    toolsMenuItem.ShowDropDown();
+                    return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void InitializeChart()
         {
             chartSchedule = new Chart();
@@ -108,7 +126,7 @@ namespace BondCalc.App.Presentation.Forms
                 try
                 {
                     Process.Start(new ProcessStartInfo("https://github.com/Ka666aH/BondCalc")
-                        { UseShellExecute = true });
+                    { UseShellExecute = true });
                 }
                 catch { }
             }
