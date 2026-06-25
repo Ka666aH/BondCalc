@@ -614,7 +614,7 @@
             // btnClearAmortizations
             // 
             btnClearAmortizations.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnClearAmortizations.Location = new Point(336, 166);
+            btnClearAmortizations.Location = new Point(336, 164);
             btnClearAmortizations.Name = "btnClearAmortizations";
             btnClearAmortizations.Size = new Size(70, 23);
             btnClearAmortizations.TabIndex = 9;
@@ -625,7 +625,7 @@
             // btnRemoveAmortization
             // 
             btnRemoveAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnRemoveAmortization.Location = new Point(260, 166);
+            btnRemoveAmortization.Location = new Point(260, 164);
             btnRemoveAmortization.Name = "btnRemoveAmortization";
             btnRemoveAmortization.Size = new Size(70, 23);
             btnRemoveAmortization.TabIndex = 8;
@@ -636,7 +636,7 @@
             // btnAddAmortization
             // 
             btnAddAmortization.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAddAmortization.Location = new Point(184, 166);
+            btnAddAmortization.Location = new Point(184, 164);
             btnAddAmortization.Name = "btnAddAmortization";
             btnAddAmortization.Size = new Size(70, 23);
             btnAddAmortization.TabIndex = 7;
