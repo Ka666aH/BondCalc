@@ -33,29 +33,7 @@ namespace BondCalc.App.Application.Services
             WriteSection(lines, "GrpParameters", fmt,
                 ("LblNominal", _bond.Value.ToString("N2", fmt)),
                 ("LblPlacement", _bond.Placement.ToString("d", fmt)),
-                ("LblRepayment", _bond.Repayment.ToString("d", fmt)),
-                ("LblInflation", _annualInflationRatePercent.ToString("N2", fmt) + " %"));
-
-            lines.Add(t("GrpCoupons"));
-            if (_bond.Coupons.Count > 0)
-            {
-                var colDate = t("ColDate");
-                var colAmount = t("ColAmount");
-                int wNum = 2;
-                int wDate = Math.Max(colDate.Length, 10);
-                int wAmount = Math.Max(colAmount.Length, 10);
-                lines.Add($"  {"".PadRight(wNum)}  {colDate.PadRight(wDate)}  {colAmount.PadLeft(wAmount)}");
-                for (int i = 0; i < _bond.Coupons.Count; i++)
-                {
-                    var c = _bond.Coupons[i];
-                    lines.Add($"  {(i + 1).ToString().PadRight(wNum)}  {c.Date.ToString("d", fmt).PadRight(wDate)}  {c.Amount.ToString("N2", fmt).PadLeft(wAmount)}");
-                }
-            }
-            else
-            {
-                lines.Add("  \u2014");
-            }
-            lines.Add("");
+                ("LblRepayment", _bond.Repayment.ToString("d", fmt)));
 
             lines.Add(t("GrpAmortizations"));
             if (_bond.Amortizations.Count > 0)
@@ -78,22 +56,44 @@ namespace BondCalc.App.Application.Services
             }
             lines.Add("");
 
+            lines.Add(t("GrpCoupons"));
+            if (_bond.Coupons.Count > 0)
+            {
+                var colDate = t("ColDate");
+                var colAmount = t("ColAmount");
+                int wNum = 2;
+                int wDate = Math.Max(colDate.Length, 10);
+                int wAmount = Math.Max(colAmount.Length, 10);
+                lines.Add($"  {"".PadRight(wNum)}  {colDate.PadRight(wDate)}  {colAmount.PadLeft(wAmount)}");
+                for (int i = 0; i < _bond.Coupons.Count; i++)
+                {
+                    var c = _bond.Coupons[i];
+                    lines.Add($"  {(i + 1).ToString().PadRight(wNum)}  {c.Date.ToString("d", fmt).PadRight(wDate)}  {c.Amount.ToString("N2", fmt).PadLeft(wAmount)}");
+                }
+            }
+            else
+            {
+                lines.Add("  \u2014");
+            }
+            lines.Add("");
+
             WriteSection(lines, "GrpDeal", fmt,
                 ("LblPrice", _deal.Price.ToString("N2", fmt)),
                 ("LblAccrued", _deal.ACI.ToString("N2", fmt)),
-                ("LblPurchaseDate", _deal.Date.ToString("d", fmt)));
+                ("LblPurchaseDate", _deal.Date.ToString("d", fmt)),
+                ("LblInflation", _annualInflationRatePercent.ToString("N2", fmt) + " %"));
 
             WriteSection(lines, "GrpOutput", fmt,
                 ("LblBuyPrice", _calculator.BuyPrice.ToString("N2", fmt)),
                 ("LblRepayIncome", _calculator.RepaymentIncome.ToString("N2", fmt)),
-                ("LblRealRepayIncome", _calculator.RealRepaymentIncome.ToString("N2", fmt)),
                 ("LblCouponIncome", _calculator.TotalCouponIncome.ToString("N2", fmt)),
-                ("LblRealCouponIncome", _calculator.RealTotalCouponIncome.ToString("N2", fmt)),
                 ("LblTotalIncome", _calculator.TotalIncome.ToString("N2", fmt)),
-                ("LblRealIncome", _calculator.RealTotalIncome.ToString("N2", fmt)),
                 ("LblTotalYield", _calculator.TotalYield.ToString("P2", fmt)),
-                ("LblRealTotalYield", _calculator.RealTotalYield.ToString("P2", fmt)),
                 ("LblAnnualYield", _calculator.AnnualYield.ToString("P2", fmt)),
+                ("LblRealRepayIncome", _calculator.RealRepaymentIncome.ToString("N2", fmt)),
+                ("LblRealCouponIncome", _calculator.RealTotalCouponIncome.ToString("N2", fmt)),
+                ("LblRealIncome", _calculator.RealTotalIncome.ToString("N2", fmt)),
+                ("LblRealYield", _calculator.RealTotalYield.ToString("P2", fmt)),
                 ("LblRealAnnualYield", _calculator.RealAnnualYield.ToString("P2", fmt)));
 
             lines.Add(t("GrpSchedule"));
